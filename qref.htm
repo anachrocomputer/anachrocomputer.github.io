@@ -1,0 +1,121 @@
+<!-- qref --- se quick reference                                  19/01/1990 -->
+<HTML>
+<HEAD>
+<TITLE>Se Quick Reference</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN=CENTER>Se Quick Reference</H1>
+<H2>Control Characters</H2>
+<TABLE BORDER COLS=2>
+<TR><TH>Control Character</TH><TH>Function</TH></TR>
+<TR><TD><TT>control-a</TT></TD><TD>Toggle insert mode</TD></TR>
+<TR><TD><TT>control-b</TT></TD><TD>Scan right and erase</TD></TR>
+<TR><TD><TT>control-c</TT></TD><TD>Insert space</TD></TR>
+<TR><TD><TT>control-d</TT></TD><TD>Cursor up</TD></TR>
+<TR><TD><TT>control-e</TT></TD><TD>Tab left</TD></TR>
+<TR><TD><TT>control-f</TT></TD><TD>Funny return</TD></TR>
+<TR><TD><TT>control-g</TT></TD><TD>Cursor right</TD></TR>
+<TR><TD><TT>control-h</TT></TD><TD>Cursor left</TD></TR>
+<TR><TD><TT>control-i</TT></TD><TD>Tab right</TD></TR>
+<TR><TD><TT>control-j</TT></TD><TD>Scan right</TD></TR>
+<TR><TD><TT>control-k</TT></TD><TD>Cursor down</TD></TR>
+<TR><TD><TT>control-l</TT></TD><TD>Scan left</TD></TR>
+<TR><TD><TT>control-m</TT></TD><TD>Return</TD></TR>
+<TR><TD><TT>control-n</TT></TD><TD>Scan left and erase</TD></TR>
+<TR><TD><TT>control-o</TT></TD><TD>Cursor to end of line</TD></TR>
+<TR><TD><TT>control-p</TT></TD><TD>Identify bindable keys</TD></TR>
+<TR><TD><TT>control-q</TT></TD><TD>Page up</TD></TR>
+<TR><TD><TT>control-r</TT></TD><TD>Delete char right</TD></TR>
+<TR><TD><TT>control-s</TT></TD><TD>Page down</TD></TR>
+<TR><TD><TT>control-t</TT></TD><TD>Kill right</TD></TR>
+<TR><TD><TT>control-u</TT></TD><TD>Delete char left</TD></TR>
+<TR><TD><TT>control-v</TT></TD><TD>Terminate</TD></TR>
+<TR><TD><TT>control-w</TT></TD><TD>Cursor to start of line</TD></TR>
+<TR><TD><TT>control-x</TT></TD><TD>Insert tab</TD></TR>
+<TR><TD><TT>control-y</TT></TD><TD>Kill left</TD></TR>
+<TR><TD><TT>control-z</TT></TD><TD>Enter literal</TD></TR>
+<TR><TD><TT>control-[</TT></TD><TD>not used</TD></TR>
+<TR><TD><TT>control-^</TT></TD><TD>Tab left and erase</TD></TR>
+<TR><TD><TT>control-]</TT></TD><TD>Redraw screen</TD></TR>
+<TR><TD><TT>control-\</TT></TD><TD>Tab right and erase</TD></TR>
+<TR><TD><TT>control-_</TT></TD><TD>Insert newline</TD></TR>
+</TABLE>
+<H2>Commands</H2>
+<TABLE BORDER COLS=4>
+<TR><TH>Command Syntax</TH><TH>Default Range</TH><TH>Mnemonic</TH><TH>Description</TH></TR>
+<TR><TD><TT>a[:text]</TT></TD><TD><TT>.,.</TT></TD><TD>Append        </TD><TD>Adds new text after the current line</TD></TR>
+<TR><TD><TT>b</TT></TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>-</TD></TR>
+<TR><TD><TT>c[:text]</TT></TD><TD><TT>.,.</TT></TD><TD>Change        </TD><TD>Deletes old text and add new text</TD></TR>
+<TR><TD><TT>d</TT></TD><TD><TT>.,.</TT></TD><TD>Delete        </TD><TD>Deletes lines</TD></TR>
+<TR><TD><TT>e[!] file</TT></TD><TD>&nbsp;</TD><TD>Enter         </TD><TD>Starts a new editing session with a file</TD></TR>
+<TR><TD><TT>f file</TT></TD><TD>&nbsp;</TD><TD>File          </TD><TD>Sets the file name</TD></TR>
+<TR><TD><TT>g/pat/cmd</TT></TD><TD><TT>1,$</TT></TD><TD>Global        </TD><TD>Performs a command on all lines that match a pattern</TD></TR>
+<TR><TD><TT>h topic</TT></TD><TD>&nbsp;</TD><TD>Help          </TD><TD>Displays documentation about the editor</TD></TR>
+<TR><TD><TT>i[:text]</TT></TD><TD><TT>.,.</TT></TD><TD>Insert        </TD><TD>Adds new text above the current line</TD></TR>
+<TR><TD><TT>j/text/</TT></TD><TD><TT>^,.</TT></TD><TD>Join          </TD><TD>Joins lines together</TD></TR>
+<TR><TD><TT>k[name]</TT></TD><TD><TT>.,.</TT></TD><TD>marK          </TD><TD>Assigns mark names to lines</TD></TR>
+<TR><TD><TT>l</TT></TD><TD>&nbsp;</TD><TD>Locate        </TD><TD>Displays host machine name</TD></TR>
+<TR><TD><TT>m[line]</TT></TD><TD><TT>.,.</TT></TD><TD>Move          </TD><TD>Moves lines around in the buffer</TD></TR>
+<TR><TD><TT>n[name]</TT></TD><TD><TT>.,.</TT></TD><TD>Name          </TD><TD>Uniquely names a line</TD></TR>
+<TR><TD><TT>o[stuff]</TT></TD><TD>&nbsp;</TD><TD>Option        </TD><TD>Sets various optional parameters</TD></TR>
+<TR><TD><TT>p</TT></TD><TD><TT>.,.</TT></TD><TD>Page up       </TD><TD>Moves the window up by one page</TD></TR>
+<TR><TD><TT>q[!]</TT></TD><TD>&nbsp;</TD><TD>Quit          </TD><TD>Quits the editor</TD></TR>
+<TR><TD><TT>r file</TT></TD><TD><TT>.,.</TT></TD><TD>Read          </TD><TD>Reads a file into the buffer</TD></TR>
+<TR><TD><TT>s/pat/sub/[g]</TT></TD><TD><TT>.,.</TT></TD><TD>Substitute    </TD><TD>Replaces old text with new text</TD></TR>
+<TR><TD><TT>t[line]</TT></TD><TD><TT>.,.</TT></TD><TD>To            </TD><TD>Copies lines to another place in the buffer</TD></TR>
+<TR><TD><TT>u[d]</TT></TD><TD>&nbsp;</TD><TD>Undo          </TD><TD>Reverses the action of the last command</TD></TR>
+<TR><TD><TT>v</TT></TD><TD><TT>.,.</TT></TD><TD>oVerlay       </TD><TD>Full-screen cursor key editing</TD></TR>
+<TR><TD><TT>w[!][q] file</TT></TD><TD><TT>1,$</TT></TD><TD>Write         </TD><TD>Writes buffer into a file</TD></TR>
+<TR><TD><TT>x/pat/cmd</TT></TD><TD><TT>1,$</TT></TD><TD>eXclude       </TD><TD>Performs a command on all lines that do not match a pattern</TD></TR>
+<TR><TD><TT>y/from/to/</TT></TD><TD><TT>.,.</TT></TD><TD>translYterate </TD><TD>Maps one character set into another</TD></TR>
+<TR><TD><TT>z[stuff]</TT></TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>Miscellaneous command</TD></TR>
+<TR><TD><TT>![OS cmd]</TT></TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>Shell escape</TD></TR>
+<TR><TD><TT>@[stuff]</TT></TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>Second window command</TD></TR>
+<TR><TD><TT>'[name]cmd</TT></TD><TD><TT>1,$</TT></TD><TD>&nbsp;</TD><TD>Global on markname</TD></TR>
+<TR><TD><TT>~[name]cmd</TT></TD><TD><TT>1,$</TT></TD><TD>&nbsp;</TD><TD>Exclude on markname</TD></TR>
+<TR><TD><TT>:</TT></TD><TD><TT>.,.</TT></TD><TD>&nbsp;</TD><TD>Moves the window down by one page</TD></TR>
+<TR><TD><TT>=</TT></TD><TD><TT>.,.</TT></TD><TD>&nbsp;</TD><TD>Display absolute line number</TD></TR>
+</TABLE>
+<TABLE BORDER COLS=4>
+<TR><TH>Command Syntax</TH><TH>Default Range</TH><TH>Mnemonic</TH><TH>Description</TH></TR>
+<TR><TD><TT>zb[left],[right][chr]</TT></TD><TD><TT>.,.</TT></TD><TD>Box   </TD><TD>Draw or erase boxes</TD></TR>
+<TR><TD><TT>zp</TT></TD><TD>&nbsp;</TD><TD>Privilege     </TD><TD>Toggle PRIV mode</TD></TR>
+<TR><TD><TT>zv</TT></TD><TD>&nbsp;</TD><TD>Version       </TD><TD>Display version number</TD></TR>
+</TABLE>
+<H2>Options</H2>
+<TABLE BORDER COLS=3>
+<TR><TH>Option</TH><TH>Mnemonic</TH><TH>Description</TH></TR>
+<TR><TD><TT>oa</TT></TD><TD>Absolute      </TD><TD>Toggles absolute line numbers</TD></TR>
+<TR><TD><TT>ob</TT></TD><TD>Bind          </TD><TD>Binds control keys to functions</TD></TR>
+<TR><TD><TT>oc</TT></TD><TD>Code          </TD><TD>Toggles Source-Code mode</TD></TR>
+<TR><TD><TT>od</TT></TD><TD>Delete        </TD><TD>Sets delete direction</TD></TR>
+<TR><TD><TT>oe</TT></TD><TD>&nbsp;</TD><TD>-</TD></TR>
+<TR><TD><TT>of</TT></TD><TD>Filetype      </TD><TD>Sets the file type information</TD></TR>
+<TR><TD><TT>og</TT></TD><TD>Global        </TD><TD>Controls behaviour of global substitutions</TD></TR>
+<TR><TD><TT>oh</TT></TD><TD>Hardware      </TD><TD>Toggles hardware line insert/delete</TD></TR>
+<TR><TD><TT>oi</TT></TD><TD>Indent        </TD><TD>Controls indentation</TD></TR>
+<TR><TD><TT>oj</TT></TD><TD>&nbsp;</TD><TD>Sets colour</TD></TR>
+<TR><TD><TT>ok</TT></TD><TD>OK            </TD><TD>Checks file saved status</TD></TR>
+<TR><TD><TT>ol</TT></TD><TD>Line          </TD><TD>Controls line number display</TD></TR>
+<TR><TD><TT>om</TT></TD><TD>Message       </TD><TD>Controls message notification</TD></TR>
+<TR><TD><TT>on</TT></TD><TD>&nbsp;</TD><TD>Sets up Source-Code reserved words</TD></TR>
+<TR><TD><TT>oo</TT></TD><TD>Over          </TD><TD>Swaps between user input and script</TD></TR>
+<TR><TD><TT>op</TT></TD><TD>Prompt        </TD><TD>Sets prompts</TD></TR>
+<TR><TD><TT>oq</TT></TD><TD>Quiet         </TD><TD>Toggles bleep-free operation</TD></TR>
+<TR><TD><TT>or</TT></TD><TD>Read-Only     </TD><TD>Toggles Read-Only mode</TD></TR>
+<TR><TD><TT>os</TT></TD><TD>Source        </TD><TD>Sets Source-Code language</TD></TR>
+<TR><TD><TT>ot</TT></TD><TD>Tab           </TD><TD>Sets tabstops</TD></TR>
+<TR><TD><TT>ou</TT></TD><TD>Unprintable   </TD><TD>Sets unprintable character</TD></TR>
+<TR><TD><TT>ov</TT></TD><TD>oVerlay       </TD><TD>Sets overlay column</TD></TR>
+<TR><TD><TT>ow</TT></TD><TD>Warn          </TD><TD>Sets warning column</TD></TR>
+<TR><TD><TT>ox</TT></TD><TD>XTABS         </TD><TD>Toggles tab expansion mode</TD></TR>
+<TR><TD><TT>oy</TT></TD><TD>&nbsp;</TD><TD>Toggles case-sensitive pattern matching</TD></TR>
+<TR><TD><TT>oz</TT></TD><TD>&nbsp;</TD><TD>Suspends editor</TD></TR>
+<TR><TD><TT>o_</TT></TD><TD>&nbsp;</TD><TD>Toggles INSERT mode</TD></TR>
+<TR><TD><TT>o^</TT></TD><TD>&nbsp;</TD><TD>Toggles CASE mode</TD></TR>
+<TR><TD><TT>o/</TT></TD><TD>&nbsp;</TD><TD>Toggles pattern display</TD></TR>
+<TR><TD><TT>o-</TT></TD><TD>&nbsp;</TD><TD>Controls split-screen mode</TD></TR>
+<TR><TD><TT>o#</TT></TD><TD>&nbsp;</TD><TD>Toggles CRYPT mode</TD></TR>
+</TABLE>
+</BODY>
+</HTML>

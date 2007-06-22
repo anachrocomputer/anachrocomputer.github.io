@@ -1,0 +1,451 @@
+<HTML><HEAD></HEAD><BODY>
+<!--  secmd --- 'se' command reference                            28/11/1988 -->
+<!--  -->
+<H1 ALIGN=CENTER>Editor Command Summary</H1>
+<!--  Fix for our 'fmt' -->
+<!--  -->
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER><U>Range</U></TD><TD ALIGN=CENTER><U>Syntax</U></TD><TD ALIGN=CENTER><U>Function</U></TD>
+</TR>
+</TABLE>
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>.</TD><TD ALIGN=CENTER>a[:text]</TD><TD ALIGN=CENTER>Append</TD>
+</TR>
+</TABLE>
+Inserts text after the specified line.
+Text is inserted until a line containing
+only a full stop and a newline is encountered.
+If the command is followed immediately by a colon,
+then whatever text follows the colon is inserted without entering
+&#147;append&#148; mode.
+The current line pointer is left at the last line inserted.
+<!--  CD "" b "" -->
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>.,.</TD><TD ALIGN=CENTER>c[:text]</TD><TD ALIGN=CENTER>Change</TD>
+</TR>
+</TABLE>
+Deletes the lines specified and inserts text to replace them.
+Text is inserted until a line containing only a full stop and a
+newline is encountered.
+If the command is followed immediately by a colon, then
+whatever text follows the colon is inserted without entering
+&#147;append&#148; mode.
+The current line pointer is left at the last line inserted.
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>.,.</TD><TD ALIGN=CENTER>d</TD><TD ALIGN=CENTER>Delete</TD>
+</TR>
+</TABLE>
+Deletes all lines between the specified lines, inclusive.
+The current line pointer is, by default, left at the line
+after the last one deleted.
+See the &#145;<TT>od</TT>&#146; option for a full description.
+See also the &#145;<TT>u</TT>&#146; command for information on how to
+undo a deletion.
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>none</TD><TD ALIGN=CENTER>e[x][!] [!][file]</TD><TD ALIGN=CENTER>Enter</TD>
+</TR>
+</TABLE>
+Loads the specified file into the buffer and prepares for editing.
+Automatically invoked if a filename is specified as an argument
+on the command line used to invoke the editor.
+The current line pointer is positioned at the first line in the buffer.
+<P>
+An error message is generated if the editing buffer contains text
+that has not been saved.
+The enter command may be resubmitted after the error message, in which
+case it will be obeyed.
+The &#147;enter now&#148; command &#145;<TT>e!</TT>&#146; may be used
+to avoid the error message.
+<P>
+If the file being read in contains &lt;TAB&gt; characters,
+<B>se</B>
+will normally treat them as &#147;unprintable&#148;, and they will
+not appear as expected.
+In order to expand &lt;TAB&gt; characters into the correct number of spaces,
+use the &#145;<TT>ex</TT>&#146; command.
+Alternatively, see the discussion of the &#145;<TT>ox</TT>&#146; option.
+<P>
+If the filename begins with a &#145;<TT>!</TT>&#146;, it is
+assumed to be a Shell command.
+The command's Standard Output is read into the buffer.
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>none</TD><TD ALIGN=CENTER>f [file]</TD><TD ALIGN=CENTER>File</TD>
+</TR>
+</TABLE>
+Print or change the remembered file name.
+If a name is given, the remembered file name is set to that value;
+otherwise, the remembered file name is redisplayed.
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>1,$</TD><TD ALIGN=CENTER>g/pat/command</TD><TD ALIGN=CENTER>Global on pattern</TD>
+</TR>
+</TABLE>
+Performs the given command on all lines in the specified range that
+match the given pattern.
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>none</TD><TD ALIGN=CENTER>h[stuff]</TD><TD ALIGN=CENTER>Help</TD>
+</TR>
+</TABLE>
+Provides access to online documentation on the Screen Editor.
+&#147;Stuff&#148; represents the name of the topic on which
+help is required.
+Typing &#145;<TT>h</TT>&#146; alone will display the initial help directory;
+from there it is possible to locate the topic of interest.
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>.</TD><TD ALIGN=CENTER>i[:text]</TD><TD ALIGN=CENTER>Insert</TD>
+</TR>
+</TABLE>
+Inserts text before the specified line.
+Text is inserted until a line containing only a
+full stop and a newline is encountered.
+If the command is immediately followed by a colon, then whatever
+text follows is inserted without entering &#147;append&#148; mode.
+The current line pointer is left at the last line inserted.
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>^,.</TD><TD ALIGN=CENTER>j[/stuff[/]]</TD><TD ALIGN=CENTER>Join</TD>
+</TR>
+</TABLE>
+The specified lines are joined into a single line.
+You may specify in &#147;stuff&#148; what is to replace the newlines that
+previously separated the lines.
+The default is a single blank.
+Thus &#145;<TT>j</TT>&#146; is equivalent to &#145;<TT>j/&nbsp;/</TT>&#146;.
+In general,
+<B>se</B>
+will supply trailing delimiters for you.
+So &#145;<TT>j/</TT>&#146; is the same as &#145;<TT>j//</TT>&#146;,
+i.e. replace the newline(s) with nothing (delete them).
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>.,.</TD><TD ALIGN=CENTER>km</TD><TD ALIGN=CENTER>marK</TD>
+</TR>
+</TABLE>
+The specified lines are marked with 'm' which
+may be any single character other than a newline. If 'm' is not
+present, the lines are marked with the default name of blank.
+The current line pointer is never changed.
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>none</TD><TD ALIGN=CENTER>l</TD><TD ALIGN=CENTER>Locate</TD>
+</TR>
+</TABLE>
+The name of the current machine
+is displayed on the status line.
+This is so that one can tell what machine he is using from
+within the editor.
+This is particularly useful for installations with many
+machines that can run the editor, where the user can switch
+back and forth between them, and become confused as to where
+he is at a given moment.
+In fact, it is even more useful when a windowing system such as
+X-Windows is being used, because several
+<B>se</B>
+screens are usually visible, all running on different hosts.
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>.,.</TD><TD ALIGN=CENTER>m&lt;line&gt;</TD><TD ALIGN=CENTER>Move</TD> 
+</TR>
+</TABLE>
+Moves the specified block of lines after &lt;line&gt;.
+&lt;Line&gt; may not be omitted.
+The current line pointer is left at the last line moved.
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>.,.</TD><TD ALIGN=CENTER>n[m]</TD><TD ALIGN=CENTER>Name</TD>
+</TR>
+</TABLE>
+If &#145;<TT>m</TT>&#146; is present, the last line in the
+specified range is marked with it and all other lines having that
+mark name are given the default mark name of blank.
+If &#145;<TT>m</TT>&#146; is not present,
+the names of all lines in the range are cleared.
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>none</TD><TD ALIGN=CENTER>o[stuff]</TD><TD ALIGN=CENTER>Option</TD> 
+</TR>
+</TABLE>
+Editing options may be queried or set.
+&#147;Stuff&#148; determines which options are affected.
+See the
+<B>se</B>
+options reference section.
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>.,.</TD><TD ALIGN=CENTER>p</TD><TD ALIGN=CENTER>Print</TD>
+</TR>
+</TABLE>
+As much as possible of the range is displayed, always
+including the last line; if no range is given, the previous
+page is displayed.
+The current line pointer is left at the last line in the range.
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>none</TD><TD ALIGN=CENTER>q[!]</TD><TD ALIGN=CENTER>Quit</TD>
+</TR>
+</TABLE>
+Exit from the editor.
+An error message is generated if the editing buffer contains text
+that has not been saved.
+The quit command may be resubmitted after the error message, in which
+case it will be obeyed.
+The &#147;quit now&#148; command &#145;<TT>q!</TT>&#146; may be used
+to avoid the error message.
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>.</TD><TD ALIGN=CENTER>r[x] [!][file]</TD><TD ALIGN=CENTER>Read</TD>
+</TR>
+</TABLE>
+Insert the contents of the given file after the specified line.
+The current line pointer is left at the last line read.
+See the discussion of the &#145;<TT>e</TT>&#146; command and the &#145;<TT>ox</TT>&#146;
+option for information on &lt;TAB&gt; characters.
+<P>
+If the filename begins with a &#145;<TT>!</TT>&#146;, it is
+assumed to be a Shell command.
+The command's Standard Output is read into the buffer.
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>.,.</TD><TD ALIGN=CENTER>s[/pat/sub[/][g]]</TD><TD ALIGN=CENTER>Substitute</TD>
+</TR>
+</TABLE>
+Substitutes &#145;<TT>sub</TT>&#146; for each occurrence of the pattern &#145;<TT>pat</TT>&#146;.
+If the optional &#145;<TT>g</TT>&#146; is specified, all occurrences in
+each line are changed; otherwise, only the first occurrence is changed.
+The current line pointer is left at the last line in the
+range in which a substitution was made.
+The trailing slash may be omitted with no ill effect.
+Thus &#145;<TT>s/junk/stuff</TT>&#146; is entirely equivalent
+to &#145;<TT>s/junk/stuff/</TT>&#146;.
+If you type an &#145;<TT>s</TT>&#146; by itself,
+without a pattern and replacement string,
+<B>se</B>
+will behave as though you had typed
+&#145;<TT>s//%/</TT>&#146;,
+i.e. substitute the previous replacement pattern
+for the previous search pattern.
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>.,.</TD><TD ALIGN=CENTER>y[/from/to[/]]</TD><TD ALIGN=CENTER>translYterate</TD>
+</TR>
+</TABLE>
+The range of characters specified by &#145;<TT>from</TT>&#146; is
+transliterated into the range of characters specified by &#145;<TT>to</TT>&#146;.
+The last line in the range becomes the new current line.
+Again, if you leave off the trailing delimiter,
+<B>se</B>
+will put it in for you.
+In addition, like the &#145;<TT>s</TT>&#146; command,
+both the &#145;<TT>from</TT>&#146; and &#145;<TT>to</TT>&#146; parts are saved;
+&#145;<TT>y//%/</TT>&#146;
+will perform the same transliteration as the last one, and
+&#145;<TT>y</TT>&#146;
+is the same as
+&#145;<TT>y//%/</TT>&#146;.
+The
+&#145;<TT>%</TT>&#146;
+is special if it is the only character in the &#145;<TT>to</TT>&#146; part,
+otherwise it is treated as a literal
+&#145;<TT>%</TT>&#146;.
+<!--  See <U>Software Tools</U> and the help on 'tlit' for some -->
+<!--  examples of character transliterations. -->
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>.</TD><TD ALIGN=CENTER>u[d]</TD><TD ALIGN=CENTER>Undo</TD>
+</TR>
+</TABLE>
+The specified range of lines is replaced by
+the last range of lines deleted.
+If the &#145;<TT>d</TT>&#146; is used,
+the restored text is inserted after the last line in the specified range.
+The current line pointer is set at the last line that was restored.
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>.,.</TD><TD ALIGN=CENTER>v</TD><TD ALIGN=CENTER>oVerlay</TD>
+</TR>
+</TABLE>
+&#147;Overlay mode&#148; is entered and the control characters may
+be used to modify text anywhere in the buffer.
+A control-V may be used to quit overlay mode.
+A control-F may be used to restore the current line to its
+original state and terminate the command.
+See the
+<B>se</B>
+control character reference for a full description of
+cursor-key editing in &#147;overlay mode&#148;.
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>1,$</TD><TD ALIGN=CENTER>w[!][&gt;|+][q] [!][file]</TD><TD ALIGN=CENTER>Write</TD>
+</TR>
+</TABLE>
+Writes the portion of the buffer specified to the named file.
+The current line pointer is not changed.
+If &#145;<TT>+</TT>&#146; or &#145;<TT>&gt;</TT>&#146; are given,
+the portion of the buffer is appended to the file;
+otherwise the portion of the buffer replaces the file.
+<P>
+If &#145;<TT>!</TT>&#146; is present, an existing file specified
+in the command is overwritten without comment.
+If &#145;<TT>filename</TT>&#146;  is not present, the specified lines will be
+written to the current file name as shown on the status line.
+<P>
+If the &#145;<TT>q</TT>&#146; is present,
+<B>se</B>
+quits immediately after writing the file (unless the write failed).
+This is a convenient shorthand.
+<P>
+If the filename begins with a &#145;<TT>!</TT>&#146;, it
+is assumed to be a Shell command.
+The contents of the buffer are piped into the command's
+Standard Input.
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>1,$</TD><TD ALIGN=CENTER>x/pat/command</TD><TD ALIGN=CENTER>eXclude on pattern</TD>
+</TR>
+</TABLE>
+Performs the command on all lines in the given range that do not match
+the specified pattern.
+Contrast with the &#145;<TT>g</TT>&#146; command.
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>.,.</TD><TD ALIGN=CENTER>t&lt;line&gt;</TD><TD ALIGN=CENTER>To</TD>
+</TR>
+</TABLE>
+Makes a copy of all the lines in the
+given range, and inserts the copies after &lt;line&gt;.
+As with the &#145;<TT>m</TT>&#146; command, &lt;line&gt; may not be omitted.
+The current line pointer is set to the new copy of the last
+line in the range.
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>.,.</TD><TD ALIGN=CENTER>zb&lt;left&gt;[,&lt;right&gt;][&lt;char&gt;]</TD><TD ALIGN=CENTER>draw Box</TD>
+</TR>
+</TABLE>
+A box is drawn using the given &lt;char&gt;
+(blank by default, allowing erasure of a previously-drawn box).
+Line numbers are used to specify top and bottom row positions of the box.
+&lt;Left&gt; and &lt;right&gt; specify left and right column positions of the box.
+If second line number is omitted, the box degenerates to a horizontal
+line.
+If right-hand column is omitted, the box degenerates to a vertical line.
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>none</TD><TD ALIGN=CENTER>zv</TD><TD ALIGN=CENTER>Version</TD>
+</TR>
+</TABLE>
+The version number of
+<B>se</B>
+is displayed on the status line,
+together with the type of video driver, the operating system,
+the pattern-matching characters (SWT or VI) and the type of
+buffer organisation.
+This information is often useful when reporting problems with
+<B>se</B>.
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>.</TD><TD ALIGN=CENTER>=</TD><TD ALIGN=CENTER>Equals</TD>
+</TR>
+</TABLE>
+The number of the specified line is displayed on the status line.
+The current line pointer is not changed.
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>1,$</TD><TD ALIGN=CENTER>~mcommand</TD><TD ALIGN=CENTER>Exclude on markname</TD>
+</TR>
+</TABLE>
+Similar to the &#145;<TT>x</TT>&#146; prefix except that &#145;<TT>command</TT>&#146;
+is performed for all lines in the range that do not have the
+mark name &#145;<TT>m</TT>&#146;.
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>1,$</TD><TD ALIGN=CENTER>'mcommand</TD><TD ALIGN=CENTER>Global on markname</TD>
+</TR>
+</TABLE>
+Similar to the &#145;<TT>g</TT>&#146; prefix except that &#145;<TT>command</TT>&#146;
+is performed for all lines in the range that have the
+mark name &#145;<TT>m</TT>&#146;.
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>.</TD><TD ALIGN=CENTER>:</TD><TD ALIGN=CENTER>Display next page</TD>
+</TR>
+</TABLE>
+The next screenful of the buffer is displayed and the current&nbsp;line
+pointer is placed at the top of the window.
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>none</TD><TD ALIGN=CENTER>![!|&lt;Shell_command&gt;]</TD><TD ALIGN=CENTER>Shell Escape</TD>
+</TR>
+</TABLE>
+If present, the shell command is passed to the shell to
+be executed.
+Otherwise, an interactive shell is created.
+For a command,
+<B>se</B>
+asks you to type a newline before redrawing the screen,
+but for an interactive shell,
+<B>se</B>
+will redraw the screen immediately.
+If the shell command is a &#145;<TT>!</TT>&#146;,
+then the &#145;<TT>!</TT>&#146; is replaced with the text of the
+previous shell command.
+An unescaped &#145;<TT>%</TT>&#146; in the shell command
+will be replaced with the current saved file name.
+If the shell command is expanded,
+<B>se</B>
+will echo it first, and then execute it.
+<!--  .sp -->
+<!--  Until EPFs are supported, when using 'ed', do not use the Shell -->
+<!--  to execute external commands. -->
+<!--  Internal commands (like 'cd') are OK. -->
+<!--  This does not apply to &#145;<TT>se</TT>&#146;. -->
+<!--  .sp -->
+<!--  For a deeper discussion of using the shell from within a program, -->
+<!--  see the help on the 'shell' subroutine. -->
+<!--  .in -24 -->
+<P>
+The
+<B>se</B>
+editor only accepts commands in upper case when absolute
+line numbers are turned on.
+This is because upper case letters are used
+to represent lines on the screen when in relative line number mode.

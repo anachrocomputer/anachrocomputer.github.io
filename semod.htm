@@ -1,0 +1,207 @@
+<HTML><HEAD></HEAD><BODY>
+<!--  semod --- 'se' modes                                        11/01/1992 -->
+<!--  -->
+<H1 ALIGN=CENTER>Summary of Modes</H1>
+Modes are often said to be a Bad Thing.
+<B>Se</B>
+has lots of modes and this section describes them.
+<P>
+The three main modes are command mode, append mode and overlay mode.
+These modes correspond to the activities of entering commands, entering
+text and editing text, respectively.
+The other modes are switched on and off by options and affect the
+overall operation of
+<B>se</B>.
+<H2>Command mode</H2>
+This is the mode that
+<B>se</B>
+starts up in.
+All the editor commands operate in this mode.
+Use the &#145;<TT>a</TT>&#146; or &#145;<TT>i</TT>&#146; commands to get into append mode,
+or the &#145;<TT>v</TT>&#146; command to get into overlay mode.
+The quit command, &#145;<TT>q</TT>&#146;, exits from command mode and returns
+control to the operating system.
+<H2>Append mode</H2>
+This mode is the result of an &#145;<TT>a</TT>&#146; or &#145;<TT>i</TT>&#146; command.
+When in append mode, the cursor appears in the text window and all
+user input is taken as text to be added to the buffer.
+Use dot (&#145;<TT>.</TT>&#146;) on a line by itself to get out of append
+mode and back into command mode.
+<P>
+Note that most of
+<B>se</B>'s
+control characters can be used to move the cursor around,
+but vertical movement is not allowed.
+In other words, left and right cursor motion works normally,
+but keys such as cursor up, cursor down, page up and page down
+will not work.
+The control-f key functions like control-v, but the text of the current
+line is duplicated instead of a blank line appearing.
+<H2>Overlay mode</H2>
+This mode is the result of a &#145;<TT>v</TT>&#146; command.
+The cursor appears in the text window and the user can use the editor's
+cursor control functions to edit the text directly.
+Use the Enter key or a control-v to get out of overlay mode
+and back into command mode.
+Use the control-f key to abandon the changes on the current line
+and then go back to command mode.
+<P>
+All the cursor movement characters function normally in overlay mode.
+<P>
+All the remaining modes are switched on and off by options or
+control keys.
+<H2>Absolute line-number mode</H2>
+Toggled by &#145;<TT>oa</TT>&#146;.
+Normally, lines are identified by upper-case letters in the left margin
+of the screen.
+Letter &#145;<TT>A</TT>&#146; refers to the top line of the screen, letter &#145;<TT>B</TT>&#146;
+to the second, and so on.
+It is often more useful to refer to lines in the buffer by their line
+numbers and this is known as absolute line number mode.
+Numeric line numbers appear in the left margin when this mode is
+in effect.
+<H2>Source-code mode</H2>
+Toggled by &#145;<TT>oc</TT>&#146;.
+Normally,
+<B>se</B>
+regards the text in the buffer as simply a sequence of lines and does
+not imply any meaning from the text itself.
+However, the editor is often used to edit text such as program source
+code or document formatter input.
+This text is subject to formal rules and can be &#147;understood&#148; by
+programs such as compilers or document formatters.
+<B>Se</B>
+provides a mode where it applys rules to the text and understands it
+in just the same way that a compiler would.
+Since this mode is mainly intended for use by programmers, with program
+source code, it is known as source-code mode.
+<P>
+In this mode,
+<B>se</B>
+recognises patterns in the text corresponding to the comment delimiter
+symbols, preprocessor directives and reserved words of the language.
+Comments, directives and reserved words are highlighted on the display
+by colour or other similar visual effects.
+<P>
+Various options are used to configure
+<B>se</B>
+to recognise different source languages.
+The basic requirements are the comment, directive and string delimiters
+and a list of reserved words.
+The &#145;<TT>of</TT>&#146; option sets up most of these and &#145;<TT>on</TT>&#146; does the
+reserved words.
+<H2>Read-only mode</H2>
+Toggled by &#145;<TT>or</TT>&#146;.
+Most operating systems provide the ability to make files read-only,
+that is, to prevent their contents being altered.
+<B>Se</B>
+cannot be used to alter a read-only file, but it can be useful to look
+at such a file with the editor and perhaps copy parts of it into other
+files.
+Even if the file is writeable it is sometimes important to prevent
+accidental alteration of a file's contents.
+None of the commands that alter the contents of the buffer will operate
+when read-only mode is in effect.
+That is, the &#145;<TT>a</TT>&#146;, &#145;<TT>c</TT>&#146;, &#145;<TT>d</TT>&#146;, &#145;<TT>i</TT>&#146;, &#145;<TT>j</TT>&#146;,
+&#145;<TT>m</TT>&#146;, &#145;<TT>r</TT>&#146;, &#145;<TT>s</TT>&#146;, &#145;<TT>t</TT>&#146;, &#145;<TT>u</TT>&#146;, &#145;<TT>v</TT>&#146;,
+&#145;<TT>y</TT>&#146; or &#145;<TT>zb</TT>&#146; commands will all fail with the message
+&#145;<TT>File is read-only</TT>&#146;.
+The &#145;<TT>w</TT>&#146; command will attempt to write the contents of the buffer
+into the file but, if the file itself is read-only, it will fail.
+The message &#145;<TT>read-only</TT>&#146; appears on the status line when this
+mode is in effect.
+<P>
+If the editor is used to edit a read-only file, read-only mode is set
+automatically by the &#145;<TT>e</TT>&#146; command.
+The &#145;<TT>orf</TT>&#146; command can be used to toggle the state of the
+read-only flag of the <U>file</U> as well as the buffer, but the operating
+system may prevent the change.
+<H2>Tab expansion and compression mode</H2>
+Toggled by &#145;<TT>ox</TT>&#146;.
+The message &#145;<TT>XTABS</TT>&#146; appears on the status line when this
+mode is in effect.
+<H2>Auto-indent mode</H2>
+Switched on by &#145;<TT>oia</TT>&#146;.
+When this mode is in effect, the behaviour of append mode is altered;
+the cursor is not positioned at the left margin but is placed just
+below the first non-blank chracter of the previous line.
+You can still use the control-w key to move the cursor back to
+the left margin if required.
+This mode is normally used when writing program code and is
+often used in conjunction with source-code mode (see above).
+<H2>Case insensitive pattern matching mode</H2>
+Toggled by &#145;<TT>oy</TT>&#146;.
+The message &#145;<TT>case sensitive pattern matching</TT>&#146; or
+&#145;<TT>case insensitive pattern matching</TT>&#146; appears on the status
+line in response to the &#145;<TT>oy</TT>&#146; command, as a confirmation.
+Normally,
+<B>se</B>
+will search for and match patterns in a case-sensitive way, that is
+the letters in the pattern must be of the same case as the letters
+in the text.
+When &#145;<TT>oy</TT>&#146; is used, the letters in the pattern need not be
+the same case as the letters in the text, for the match to succeed.
+This mode is normally used with plain text, or with programming
+languages which are case-insensitive..
+<H2>Quiet mode</H2>
+Toggled by &#145;<TT>oq</TT>&#146;.
+Normally,
+<B>se</B>
+will make an audible signal when the cursor reaches the margin
+or when certain error conditions exist.
+When &#145;<TT>oq</TT>&#146; is used to turn quiet mode on, no audible signals
+are produced.
+The message &#145;<TT>no bells</TT>&#146; or &#145;<TT>bells</TT>&#146; appears on the status
+line in response to the &#145;<TT>oq</TT>&#146; command, as a confirmation.
+<H2>Global substitute mode</H2>
+Toggled by &#145;<TT>og</TT>&#146;.
+The message &#145;<TT>failed global substitutes continue</TT>&#146; or
+&#145;<TT>failed global substitutes stop</TT>&#146; appears on the status
+line in response to the &#145;<TT>og</TT>&#146; command, as a confirmation.
+<H2>Encryption mode</H2>
+Toggled by &#145;<TT>o#</TT>&#146;.
+The message &#145;<TT>CRYPT</TT>&#146; appears on the status line when this
+mode is in effect.
+Encryption mode is only available on Unix systems that have the
+&#145;<TT>crypt</TT>&#146; utility installed.
+<H2>Insert mode</H2>
+Toggled by &#145;<TT>o_</TT>&#146; or control-a.
+The message &#145;<TT>INSERT</TT>&#146; appears on the status line when this
+mode is in effect.
+Normally, characters typed by the user will overwrite characters
+already present on a line of text.
+When insert mode is in effect, characters typed in will cause
+<B>se</B>
+to move the existing text to the right to make room for the new text.
+You can insert a single blank by typing control-c, but insert mode
+will do this automatically on every keystroke.
+<!--  Doesn't work in se 2.10! -->
+<!--  .SH "Case-map mode" -->
+<!--  Toggled by &#145;<TT>o^</TT>&#146; or an unbound control function. -->
+<!--  The message &#145;<TT>CAPS</TT>&#146; appears on the status line when this -->
+<!--  mode is in effect. -->
+<H2>Script mode</H2>
+Toggled by &#145;<TT>oo</TT>&#146;.
+<P>
+This gives
+<B>se</B>
+the ability to be controlled by a script of commands in a file.
+Typically, the script would guide the user to a particular line,
+then hand over control with &#145;<TT>oo</TT>&#146;.
+Once the user has done the edits on the line, he types &#145;<TT>oo</TT>&#146;
+again to get the next line.
+<H2>Mail notify mode</H2>
+Toggled by &#145;<TT>om</TT>&#146;.
+On some operating systems,
+<B>se</B>
+can inform the user when new electronic mail arrives in the user's
+mailbox.
+This feature is normally turned on, but can be turned of if it
+is not required.
+<H2>VMS privilege mode</H2>
+Allows super-user status when running under VAX VMS.
+This mode only works if
+<B>se</B>
+has been installed with special priviledges by the system manager.
+Toggled by &#145;<TT>zp</TT>&#146;.
+</BODY></HTML>

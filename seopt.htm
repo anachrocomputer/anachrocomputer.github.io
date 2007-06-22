@@ -1,0 +1,676 @@
+<HTML><HEAD></HEAD><BODY>
+<!--  seopt --- 'se' option reference                             28/11/1988 -->
+<!--  -->
+<H1 ALIGN=CENTER>Screen Editor Options</H1>
+<!--  Fix for our 'fmt' -->
+<!--  -->
+Options for
+<B>se</B>
+can be specified in three ways:
+with the &#145;<TT>o</TT>&#146; command, on the
+Shell
+command line that invokes
+<B>se</B>,
+or in the
+.RC
+file.
+To specify an option with the &#145;<TT>o</TT>&#146; command,
+just enter &#145;<TT>o</TT>&#146; followed immediately by
+the option letter and its parameters.
+To specify an option on the command line,
+just use &#145;<TT>-</TT>&#146; followed by the option letter and its parameters.
+With this second method, if there are embedded spaces in the parameter
+list, the entire option should be enclosed in quotes.
+To specify an option in the
+.RC
+file, add a line that contains an &#145;<TT>o</TT>&#146; command as described above.
+<P>
+For example, to specify the &#145;<TT>a</TT>&#146; (absolute line number) option
+and tab stops at column 8 and every fourth thereafter with the
+&#145;<TT>o</TT>&#146; command, just enter
+<PRE>
+oa
+ot 8 +4
+</PRE>
+when
+<B>se</B>
+is waiting for a command.
+To enter the same options on the invoking command line, you might use
+<PRE>
+se myfile -a "-t 8 +4"
+</PRE>
+<P>
+The following table summarizes the available
+<B>se</B>
+options:
+<BR>
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER><U>Option</U></TD><TD ALIGN=CENTER><U>Syntax</U></TD><TD ALIGN=CENTER><U>Action</U></TD>
+</TR>
+</TABLE>
+<!--  -->
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>a</TD><TD ALIGN=CENTER>oa</TD><TD ALIGN=CENTER>Absolute</TD>
+</TR>
+</TABLE>
+Toggles &#147;absolute line numbers&#148; mode on and off.
+When this mode is in effect,
+<B>se</B>
+displays absolute, numeric, line labels in the line number area
+of the screen.
+The default behaviour is to run with this mode turned off and hence
+display upper-case letters as line labels
+with the letter &#145;<TT>A</TT>&#146; corresponding to the first line in the window.
+Note that
+<B>se</B>
+accepts numbers to identify lines no matter what mode is in effect;
+it only accepts letters when letters are displayed in the line number
+area.
+<!--  -->
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>b</TD><TD ALIGN=CENTER>ob&lt;key&gt;&lt;string&gt;</TD><TD ALIGN=CENTER>Bind</TD>
+</TR>
+</TABLE>
+Associates a string with the given function key.
+Gives
+<B>se</B>
+a simple keyboard macro facility plus the ability
+to redefine the control keys to emulate other editors if required.
+<!--  but if you want WordStar keys, USE WORDSTAR! -->
+<!--  -->
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>c</TD><TD ALIGN=CENTER>oc</TD><TD ALIGN=CENTER>Code</TD>
+</TR>
+</TABLE>
+Toggles &#147;Source-Code&#148; mode on and off.
+Normally,
+<B>se</B>
+regards text as an arbitrary sequence of characters,
+organised into lines.
+When Source-Code mode is in effect,
+<B>se</B>
+recognises certain symbols in a file that have special meanings.
+They are the open and close comment symbols, two kinds of quotes
+and both round and square brackets.
+The text is scanned for these symbols and special action is taken
+when they are found.
+<P>
+The comment symbols are used to display comments in a different colour
+from program text.
+The actual colour (or other visual effect) used is set by the
+&#145;<TT>oj</TT>&#146; option.
+As a consequence of the need to scan text for comment symbols,
+<B>se</B>
+also needs to know the language's quote symbols.
+<P>
+Finally, Source-Code mode checks for correct nesting of brackets
+at certain times.
+Nesting is checked only on the current line, so a spurious
+warning appears if an expression has been continued from one line
+to the next.
+Checking is performed after each line is entered in append mode,
+or after a line is changed in overlay mode.
+The message &#145;<TT>bracket mismatch</TT>&#146; is displayed on the status line
+when the bracket-checker spots an error.
+It is only a warning and does not affect the operation of the editor.
+<P>
+By using the
+<B>se</B>
+initialisation file, it is possible
+to recognise the file type, usually by its name,
+and set up Source-Code mode accordingly.
+Refer to the &#145;<TT>f</TT>&#146; option for details on defining symbols.
+Refer to the description of the initialisation file for information
+on recognising files by name.
+See also the &#145;<TT>s</TT>&#146; option.
+<!--  -->
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>d</TD><TD ALIGN=CENTER>od[&lt;dir&gt;]</TD><TD ALIGN=CENTER>Delete</TD>
+</TR>
+</TABLE>
+selects the placement of the current line pointer following
+a &#145;<TT>d</TT>&#146; (delete) command.
+&lt;dir&gt; must be either &#145;<TT>&gt;</TT>&#146; or &#145;<TT>&lt;</TT>&#146;.
+If &#145;<TT>&gt;</TT>&#146; is specified, the default behavior is selected:
+the line following the deleted lines becomes the new current line.
+If &#145;<TT>&lt;</TT>&#146; is specified, the line immediately preceding
+the deleted lines becomes the new current line.
+If neither is specified,
+the current value of &lt;dir&gt; is displayed in the status line.
+<!--  -->
+<!--  .OD "e" "oe" "" -->
+<!--  No such option -->
+<!--  -->
+<!--  Obsolete: -->
+<!--  .OD "f" "of" "FORTRAN" -->
+<!--  selects Fortran oriented options. This is equivalent to specifying -->
+<!--  both the &#145;<TT>c</TT>&#146; and &#145;<TT>t7 +3</TT>&#146; (see below) options. -->
+<!--  -->
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>f</TD><TD ALIGN=CENTER>of/&lt;q1&gt;/&lt;q2&gt;/&lt;lc&gt;/&lt;rc&gt;/&lt;lp&gt;/&lt;rp&gt;/&lt;cset&gt;/</TD><TD ALIGN=CENTER>Filetype</TD>
+</TR>
+</TABLE>
+sets filetype-related options.
+Usually used in the &#147;conditional&#148; blocks of the
+.RC
+file,
+this option sets up the source-code mode of
+<B>se</B>
+to respond correctly to the comment symbols and quoting convention
+of the current language.
+The two types of quote are specified first, followed by the left
+and right comment symbols and the left and right pre-processor symbols.
+Finally, a character set, specified using the same shorthand
+notation as &#147;tlit&#148;, that helps
+<B>se</B>
+to recognise reserved words.
+The usual conventions for representing special characters can be
+used, particularly where the comment delimiter is NEWLINE.
+Any character may be used, in place of &#145;<TT>/</TT>&#146;, as a delimiter.
+<P>
+See also the &#145;<TT>c</TT>&#146; and &#145;<TT>s</TT>&#146; options.
+<!--  -->
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>g</TD><TD ALIGN=CENTER>og</TD><TD ALIGN=CENTER>Global</TD>
+</TR>
+</TABLE>
+controls the behavior of the &#145;<TT>s</TT>&#146; (substitute)
+command when it is under
+the control of a &#145;<TT>g</TT>&#146; (global) command.
+By default, if a substitute inside a global command fails,
+<B>se</B>
+will not continue with the rest of the lines which might succeed.
+If &#145;<TT>og</TT>&#146; is given,
+then the global substitute will continue, and lines
+which failed will not be affected.
+Successive &#145;<TT>og</TT>&#146; commands will toggle this behavior.
+An explanatory message is placed in the status line.
+<!--  -->
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>h</TD><TD ALIGN=CENTER>oh</TD><TD ALIGN=CENTER>Hardware</TD>
+</TR>
+</TABLE>
+Toggles line insert/delete behaviour.
+Certain types of computer (those that have serial terminals)
+require this option to adjust the method of screen updating.
+When line insert/delete is active,
+<B>se</B>
+uses more efficient and logical behaviour when &#145;<TT>append</TT>&#146; mode
+reaches the bottom of the screen.
+When it is inactive, the behaviour can appear strange to some users,
+so this option defaults to &#145;<TT>on</TT>&#146;.
+&#145;<TT>oh</TT>&#146; is provided for those users whose terminals are too
+slow for line insert/delete to be used.
+<!--  -->
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>o</TD><TD ALIGN=CENTER>oi[a | &lt;indent&gt;]</TD><TD ALIGN=CENTER>Indent</TD>
+</TR>
+</TABLE>
+Selects indent value for lines typed in
+with &#145;<TT>a</TT>&#146;, &#145;<TT>c</TT>&#146; and &#145;<TT>i</TT>&#146; commands.
+The indent value is initially set to 1, i.e. text begins at the
+left margin.
+&#145;<TT>a</TT>&#146; selects auto-indent which sets the
+indent to the value which equals the indent of the previous line.
+If &lt;indent&gt; is an integer, then the indent value will be set
+to that number.
+If neither &#145;<TT>a</TT>&#146; nor &lt;indent&gt; are specified, the current value
+of indent is displayed.
+<!--  -->
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>j</TD><TD ALIGN=CENTER>oj&lt;zone&gt;&lt;c1&gt;&lt;c2&gt;</TD><TD ALIGN=CENTER>colour</TD>
+</TR>
+</TABLE>
+Set foreground and background colours for the given screen zone.
+The screen zones are indicated by a single letter code, as follows:
+<PRE>
+<BR>
+t - text in the buffer
+c - text on the command line
+C - text of comments in source-code mode
+h - text of help display
+- - line below help display
+b - vertical bar (left margin)
+m - messages on status line
+s - status line
+p - prompts
+u - unprintable characters
+n - line numbers
+1 - number of first line
+.cc |
+. - number of current line
+|cc
+&#145;<TT>$</TT>&#146; - number of last line
+k - mark names
+! - OS shell
+<BR>
+</PRE>
+The codes for colours vary from one machine to another,
+but the following table gives the general idea:
+<PRE>
+<BR>
+k - blacK
+b - Blue
+g - Green
+c - Cyan
+r - Red
+m - Magenta
+y - Yellow
+w - White
+Upper case letters indicate brighter colours
+Bright black comes out dark grey!
+<BR>
+</PRE>
+<!--  -->
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>k</TD><TD ALIGN=CENTER>ok[i]</TD><TD ALIGN=CENTER>OK</TD>
+</TR>
+</TABLE>
+Indicates whether the current contents of your edit buffer
+has been saved or not by displaying either a &#145;<TT>saved</TT>&#146; or
+&#145;<TT>not saved</TT>&#146; message on the status line.
+<P>
+As an alternative to using the &#145;<TT>ok</TT>&#146; command, the &#145;<TT>oki</TT>&#146;
+option is available.
+When &#145;<TT>oki</TT>&#146; is used, an indicator appears on the status line
+as soon as the buffer has been changed.
+The indicator goes away again whenever the file is written to disk.
+<!--  -->
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>l</TD><TD ALIGN=CENTER>ol[&lt;lop&gt;]</TD><TD ALIGN=CENTER>Line display</TD>
+</TR>
+</TABLE>
+sets the line number display option.
+Under control of this option,
+<B>se</B>
+continuously displays the value of one of three symbolic line numbers
+in the status line.
+&lt;lop&gt; may be any of the following:
+<UL>
+<LI>&#145;.&#146;
+display the current line number
+<LI>&#145;#&#146;
+display the number of the top line on the screen
+<LI>&#145;$&#146;
+display the number of the last line in the buffer
+<LI>&#145;%&#146;
+display the current line number as a percentage of
+the value of &#145;<TT>$</TT>&#146;.
+Indicates how far down a file the current line is.
+</UL>
+.ta 11
+<BR>
+If &lt;lop&gt; is omitted, the line number display is disabled.
+<!--  -->
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>lm</TD><TD ALIGN=CENTER>olm[&lt;col&gt;]</TD><TD ALIGN=CENTER>Left Margin</TD>
+</TR>
+</TABLE>
+sets the left margin to &lt;col&gt; which must be a positive integer.
+This option will shift your entire screen to the left,
+enabling you to see characters at the end of the line that
+were previously off the screen;
+the characters in columns 1 through &lt;col&gt; - 1 will not be visible.
+You may continue editing in the normal fashion.
+To reset your screen enter the command &#145;<TT>olm 1</TT>&#146;.
+If &lt;col&gt; is omitted, the current left margin column
+is displayed in the status line.
+<!--  -->
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>m</TD><TD ALIGN=CENTER>om</TD><TD ALIGN=CENTER>Mail notify</TD>
+</TR>
+</TABLE>
+Toggles &#147;mail notify&#148; mode on and off.
+<!--  -->
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>n</TD><TD ALIGN=CENTER>on&lt;reserved_word&gt;</TD><TD ALIGN=CENTER>Nominate reserved words</TD>
+</TR>
+</TABLE>
+Defines a reserved word when
+<B>se</B>
+is running in Source-code mode.
+This option is normally used in the
+.RC
+file as part of a language setup block.
+<!--  -->
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>o</TD><TD ALIGN=CENTER>oo [&lt;file&gt;]</TD><TD ALIGN=CENTER>Over</TD>
+</TR>
+</TABLE>
+toggles &#147;Script&#148; mode.
+When given a file name, &#145;<TT>oo</TT>&#146; switches
+<B>se</B>'s
+input stream to that file.
+If &#145;<TT>oo</TT>&#146; is encountered in that file, the file remains open,
+but the input is again read from the keyboard.
+Now, when &#145;<TT>oo</TT>&#146; is typed, input toggles back to the file again,
+and so on until either another &#145;<TT>oo</TT>&#146; is read, or the file ends.
+<!--  -->
+<!--  Obsolete: -->
+<!--  .OD "p" "p[s | u]" "Unix mode" -->
+<!--  converts to or from UNIX (tm) compatibility mode. -->
+<!--  The &#145;<TT>op</TT>&#146; command, by itself, will toggle between normal -->
+<!--  (Software Tools mode) and UNIX mode. -->
+<!--  The command &#145;<TT>opu</TT>&#146; will force 'se' to use UNIX mode, -->
+<!--  while the command &#145;<TT>ops</TT>&#146; will force 'se' to use Software -->
+<!--  Tools mode. -->
+<!--  .sp -->
+<!--  When in UNIX mode, 'se' uses the following for its patterns and -->
+<!--  commands: -->
+<!--  .in +5 -->
+<!--  .ta 6 -->
+<!--  .HI 5 "?pattern[?]" -->
+<!--  searches backwards for a pattern. -->
+<!--  .HI 5 ^ -->
+<!--  matches the beginning of a line. -->
+<!--  .HI 5 . -->
+<!--  matches any character. -->
+<!--  .HI 5 ^ -->
+<!--  is used to negate character classes. -->
+<!--  .HI 5 % -->
+<!--  used by itself in the replacement part of a substitute command -->
+<!--  represents the replacement part of the previous substitute command. -->
+<!--  .tc -->
+<!--  .HI 5 "\(&lt;regular expression&gt;\)" -->
+<!--  tags pieces of a pattern. -->
+<!--  .HI 5 \&lt;digit&gt; -->
+<!--  represents the text matched by the tagged sub-pattern -->
+<!--  specified by &lt;digit&gt;. -->
+<!--  .HI 5 \ -->
+<!--  is the escape character, instead of @. -->
+<!--  .HI 5 t -->
+<!--  copies lines. -->
+<!--  .HI 5 y -->
+<!--  transliterates lines. -->
+<!--  .HI 5 ~ -->
+<!--  does the global exclude on markname -->
+<!--  (see the &#145;<TT>!</TT>&#146; command, in the help on 'se'). -->
+<!--  .HI 5 "![&lt;Software Tools Command&gt;]" -->
+<!--  will create a new instance of the Software Tools shell, or -->
+<!--  execute &lt;Software Tools Command&gt; if it is present (see the &#145;<TT>~</TT>&#146; -->
+<!--  command, in the help on 'se'). -->
+<!--  .in -5 -->
+<!--  .ta 11 -->
+<!--  .sp -->
+<!--  All other characters and commands are the same for both UNIX and -->
+<!--  normal (Software Tools) mode.  The help command will always call -->
+<!--  up documentation appropriate to the current mode. -->
+<!--  UNIX mode is indicated by the message &#145;<TT>UNIX</TT>&#146; in the status line. -->
+<!--  .sp -->
+<!--  UNIX mode is available <U>only</U> in 'se'. -->
+<!--  This extension is not available in 'ed'. -->
+<!--  -->
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>p</TD><TD ALIGN=CENTER>op[a|c|g|w] &lt;string&gt;</TD><TD ALIGN=CENTER>Prompt</TD>
+</TR>
+</TABLE>
+sets prompts that
+<B>se</B>
+displays in the left margin.
+Typing &#145;<TT>opa</TT>&#146; sets the append prompt, normally &#145;<TT>apd&gt;</TT>&#146;,
+&#145;<TT>opg</TT>&#146; sets the gone prompt &#145;<TT>gone</TT>&#146;,
+&#145;<TT>opc</TT>&#146; sets the command prompt &#145;<TT>cmd&gt;</TT>&#146; and
+&#145;<TT>opw</TT>&#146; sets the wait prompt, normally blank.
+Up to six characters are permitted in prompt strings.
+<!--  -->
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>q</TD><TD ALIGN=CENTER>oq</TD><TD ALIGN=CENTER>Quiet</TD>
+</TR>
+</TABLE>
+toggles &#147;Quiet&#148; mode.
+By default,
+<B>se</B>
+will use whatever means is available to make a noise when certain
+conditions arise.
+One example is when the cursor reaches the margin.
+This can be annoying in a quiet environment, or when the hardware
+designer has been over-keen with the audio output power,
+hence quiet mode.
+<!--  -->
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>r</TD><TD ALIGN=CENTER>or[f]</TD><TD ALIGN=CENTER>Read-only</TD>
+</TR>
+</TABLE>
+toggles &#147;Read-Only&#148; mode.
+When read-only mode is in effect,
+no changes are permitted to the buffer.
+This is useful when viewing a file that must not be modified.
+If the command &#145;<TT>orf</TT>&#146; is used, the state of the file's
+read-only flag is toggled in addition to protecting the buffer;
+if &#145;<TT>or</TT>&#146; is used, only the buffer is affected.
+If a file is protected by the Operating System,
+preventing
+<B>se</B>
+writing any changes into it,
+Read-Only mode is set automatically by the &#145;<TT>e</TT>&#146; command.
+The message &#145;<TT>read-only</TT>&#146; appears on the status line
+when this mode is in effect.
+<!--  -->
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>s</TD><TD ALIGN=CENTER>os[&lt;file_suffix&gt;]</TD><TD ALIGN=CENTER>Source code</TD>
+</TR>
+</TABLE>
+Sets up
+<B>se</B>
+for editing certain types of file.
+<B>Se</B>
+looks at the suffix on the file name whenever it reads a file.
+It first resets all the options to their default states,
+then reads the
+.RC
+file (if it finds one).
+In this file there may be blocks of commands that are
+&#147;conditional&#148;.
+That is, they are only obeyed if the file suffix matches the
+block's name.
+The &#145;<TT>os</TT>&#146; option allows the user to set options for a file
+suffix given on the command line; this is usually used when
+typing into an un-named buffer.
+<P>
+Refer to the &#145;<TT>c</TT>&#146; and &#145;<TT>f</TT>&#146; options for information
+on how to set up
+<B>se</B>
+for different languages.
+<!--  -->
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>t</TD><TD ALIGN=CENTER>ot[&lt;tabs&gt;]</TD><TD ALIGN=CENTER>Tabs</TD>
+</TR>
+</TABLE>
+sets tab stops according to &lt;tabs&gt;.
+&lt;Tabs&gt; consists of a series of numbers indicating
+columns in which tab stops are to be set.
+If a number is preceded by a plus sign (&#145;<TT>+</TT>&#146;),
+it indicates that the number is an increment; stops are set
+at regular intervals separated by that many columns, beginning with
+the most recently specified absolute column number.  If no such
+number precedes the first increment specification, the stops are
+set relative to column 1.
+By default, tab stops are set in every third column starting with
+column 1, corresponding to a &lt;tabs&gt; specification of &#145;<TT>+3</TT>&#146;.
+If &lt;tabs&gt; is omitted, the current tab spacing is
+displayed in the status line.
+<!--  -->
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>u</TD><TD ALIGN=CENTER>ou[&lt;chr&gt;]</TD><TD ALIGN=CENTER>Unprintable</TD>
+</TR>
+</TABLE>
+selects the character that
+<B>se</B>
+displays in place of unprintable characters.
+.mc |
+On colour displays, the colour of the unprintable character
+may be set independently of the colour of normal text.
+.mc
+&lt;chr&gt; may be any printable character; it is initially set to blank.
+If &lt;chr&gt; is omitted,
+<B>se</B>
+displays the current replacement character on the status line.
+<!--  -->
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>v</TD><TD ALIGN=CENTER>ov[&lt;col&gt;]</TD><TD ALIGN=CENTER>oVerlay</TD>
+</TR>
+</TABLE>
+sets the &#147;overlay column&#148;.
+This is the column at which the cursor is initially
+positioned by the &#145;<TT>v</TT>&#146; command.
+&lt;Col&gt; must be a positive integer, or a dollar sign (&#145;<TT>$</TT>&#146;) to indicate
+the end of the line.
+If &lt;col&gt; is omitted,
+the current overlay column is displayed in the status line.
+The default overlay column is &#145;<TT>$</TT>&#146;.
+<!--  -->
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>w</TD><TD ALIGN=CENTER>ow[&lt;col&gt;]</TD><TD ALIGN=CENTER>Warning</TD>
+</TR>
+</TABLE>
+Sets the &#147;warning threshold&#148; to &lt;col&gt; which
+must be a positive integer, or a dollar sign (&#145;<TT>$</TT>&#146;) to indicate
+the right-hand edge of the screen.
+Whenever the cursor is positioned at or beyond this column,
+the column number is displayed in the status line and the
+terminal's bell
+is sounded.
+If &lt;col&gt; is omitted, the current warning threshold is displayed
+in the status line.
+The default warning threshold is &#145;<TT>$</TT>&#146;.
+<!--  -->
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>x</TD><TD ALIGN=CENTER>ox</TD><TD ALIGN=CENTER>eXpand tabs</TD>
+</TR>
+</TABLE>
+&#145;<TT>ox</TT>&#146; toggles the expansion of TAB characters into multiple
+spaces in &#145;<TT>e</TT>&#146; and &#145;<TT>r</TT>&#146; commands.
+<!--  -->
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>y</TD><TD ALIGN=CENTER>oy</TD><TD ALIGN=CENTER>pattern match</TD>
+</TR>
+</TABLE>
+By default,
+<B>se</B>
+pattern matching is case sensitive, that is, the pattern &#145;<TT>FOO</TT>&#146;
+will <U>not</U> match the text &#145;<TT>foo</TT>&#146;.
+In many cases, however, this is not desired; it prevents words that
+occur at the beginning of a sentence from being matched.
+Option &#145;<TT>oy</TT>&#146; reverses this behaviour, making pattern matching
+insensitive to case.
+&#145;<TT>oy</TT>&#146; toggles on and off with an explanatory message
+in the status line.
+<!--  -->
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>z</TD><TD ALIGN=CENTER>oz</TD><TD ALIGN=CENTER>sleep</TD>
+</TR>
+</TABLE>
+On BSD Unix systems, this option puts
+<B>se</B>
+into the background.
+Typing control-Z won't work because the editor responds to control
+characters as commands.
+This option has no effect on single-tasking operating systems.
+<!--  -->
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>-</TD><TD ALIGN=CENTER>o-[&lt;lnr&gt;]</TD><TD ALIGN=CENTER>split screen</TD>
+</TR>
+</TABLE>
+splits the screen at the line specified by &lt;lnr&gt; which must
+be a line number within the current window.
+All lines above &lt;lnr&gt; remain frozen on the screen,
+the line specified by &lt;lnr&gt; is replaced by a row of dashes,
+and the space below this row becomes the new window on the file.
+Further editing commands do not affect the
+lines displayed in the top part of the screen.
+If &lt;lnr&gt; is omitted, the screen is restored to its full size.
+<!--  -->
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>/</TD><TD ALIGN=CENTER>o/</TD><TD ALIGN=CENTER>pattern display</TD>
+</TR>
+</TABLE>
+toggles the pattern indicator on the status line.
+<B>Se</B>
+always remembers the last pattern used in a search or substitute.
+By typing &#145;<TT>o/</TT>&#146;, the remembered pattern is made visible on
+the status line.
+<!--  -->
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>^</TD><TD ALIGN=CENTER>o^</TD><TD ALIGN=CENTER>case map</TD>
+</TR>
+</TABLE>
+inverts the case of all letters you type (i.e., converts
+upper-case to lower-case and vice versa).
+This option causes
+commands to be recognised only in upper-case and alphabetic line
+numbers to be displayed and recognised only in lower-case.
+<!--  -->
+<P>
+<TABLE BORDER COLS=3>
+<TR>
+<TD ALIGN=CENTER>_</TD><TD ALIGN=CENTER>o_</TD><TD ALIGN=CENTER>insert</TD>
+</TR>
+</TABLE>
+toggles &#147;Insert&#148; mode.
+Similar to the CTRL-A key, &#145;<TT>o_</TT>&#146; is provided to allow users
+to configure
+<B>se</B>
+to start up with insert mode turned on.
+Some users find this preferable to overtype mode.
+If the terminal is able to, the
+shape of the cursor is changed when in insert mode.

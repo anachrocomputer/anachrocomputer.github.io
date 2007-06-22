@@ -1,0 +1,353 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>UK101 Architecture and Design</TITLE>
+
+<!-- keywords: Compukit UK101 6502 architecture hardware memory map expansion -->
+
+<META NAME="keywords" CONTENT="Compukit, UK101, 6502, architecture, hardware, memory map, expansion">
+
+<META NAME="author" CONTENT="John Honniball">
+
+<META NAME="description" CONTENT="UK101 Architecture and Design. The structure of the machine, including memory map and expansion">
+
+</HEAD>
+
+<BODY BACKGROUND="graphp.gif">
+
+<!-- Two-column table for page header -->
+
+<TABLE BGCOLOR="#ccffcc" WIDTH="100%">
+
+<TR>
+
+<TD ALIGN=LEFT>
+
+<IMG SRC="grid41.gif" ALT="Grid" HEIGHT=41 WIDTH=41>
+
+</TD>
+
+<TD ALIGN=CENTER>
+
+<FONT SIZE=7><B>UK101 Architecture and Design</B></FONT>
+
+</TD>
+
+</TR>
+
+</TABLE>
+
+<!-- Two-column tables for main body of page -->
+
+<TABLE WIDTH="100%" COLS=2>
+
+<TR>
+
+<TD WIDTH="25%" VALIGN=TOP>
+
+<B>6502 System</B><BR>
+
+</TD>
+
+<TD WIDTH="75%">
+
+<P>
+
+The UK101 is an 8-bit microcomputer based on the MOS Technologies
+
+6502.
+
+This is the same CPU as the Apple II, the Commodore PET and
+
+the BBC Micro.
+
+In common with most machines of its day, the UK101 had a BASIC
+
+interpreter in ROM.
+
+In fact, at the time, it was difficult to imagine a machine
+
+that <EM>didn't</EM> run BASIC.
+
+</P>
+
+</TD>
+
+</TR>
+
+</TABLE>
+
+<!-- Second paragraph -->
+
+<TABLE WIDTH="100%" COLS=2>
+
+<TR>
+
+<TD WIDTH="25%" VALIGN=TOP>
+
+<B>Origins</B><BR>
+
+</TD>
+
+<TD WIDTH="75%">
+
+<P>
+
+Before the UK101 came the Ohio Scientific Superboard.
+
+The two machines were very similar, so much so that were was
+
+talk of legal action at Ohio Scientific.
+
+They weren't identical, though, because the UK101 worked at
+
+at UK video frequencies and had the 5-volt power regulator built-in.
+
+</P>
+
+</TD>
+
+</TR>
+
+</TABLE>
+
+<!-- Third paragraph -->
+
+<TABLE WIDTH="100%" COLS=2>
+
+<TR>
+
+<TD WIDTH="25%" VALIGN=TOP>
+
+<B>Architecture</B><BR>
+
+</TD>
+
+<TD WIDTH="75%">
+
+<P>
+
+In common with many microcomputers of the early 1980s, the UK101
+
+had a memory-mapped text display, BASIC in ROM, a cassette
+
+interface and a switch-matrix keyboard.
+
+It didn't use the 6502's interrupts at all; I/O was done by
+
+polling.
+
+There was a crude expansion connector for additional memory
+
+and peripherals.
+
+The memory map was conventional for the 6502, with RAM at
+
+the lower addresses, I/O in the middle and ROM at the higher
+
+addresses.
+
+</P>
+
+<!-- Start of memory map -->
+
+<CENTER>
+
+<TABLE BORDER BGCOLOR="#ffffff">
+
+<CAPTION ALIGN=BOTTOM>
+
+Memory Map
+
+</CAPTION>
+
+<TR>
+
+<TD>F800-FFFF</TD>
+
+<TD>Monitor ROM</TD>
+
+</TR>
+
+<TR>
+
+<TD>F000-F7FF</TD>
+
+<TD>ACIA</TD>
+
+</TR>
+
+<TR>
+
+<TD>DC00-DFFF</TD>
+
+<TD>Keyboard port</TD>
+
+</TR>
+
+<TR>
+
+<TD>D000-D3FF</TD>
+
+<TD>Video memory</TD>
+
+</TR>
+
+<TR>
+
+<TD>A000-BFFF</TD>
+
+<TD>Basic ROM</TD>
+
+</TR>
+
+<TR>
+
+<TD>0000-1FFF</TD>
+
+<TD>8K RAM</TD>
+
+</TR>
+
+</TABLE>
+
+</CENTER>
+
+<!-- End of memory map -->
+
+</TD>
+
+</TR>
+
+</TABLE>
+
+<!-- Fourth paragraph -->
+
+<TABLE WIDTH="100%">
+
+<TR>
+
+<TD WIDTH="25%" VALIGN=TOP COLS=2>
+
+<B>Interfaces</B><BR>
+
+</TD>
+
+<TD WIDTH="75%">
+
+<P>
+
+Interfaces on the UK101 were quite limited, as on most microcomputers
+of the time.
+The video output was a 625-line, 50Hz signal modulated onto the UK
+channel 36.
+A minor modification would allow the use of a composite-video monitor.
+Data storage was via the 300 baud cassette tape interface.
+BASIC programs were recorded in ASCII source form, while machine code
+programs used a hex format.
+In practice, most machine-code programs initially loaded a checksum
+loader, and that then ran to read data in
+<A HREF="mosptp.htm">MOS Technology Paper Tape format</A>.
+The Extended Monitor program would allow the user to write checksum
+format tapes, too.
+</P>
+
+</TD>
+
+</TR>
+
+</TABLE>
+
+<!-- Fifth paragraph -->
+
+<TABLE WIDTH="100%">
+
+<TR>
+
+<TD WIDTH="25%" VALIGN=TOP COLS=2>
+
+<B>Expansion</B><BR>
+
+</TD>
+
+<TD WIDTH="75%">
+
+<P>
+
+The UK101 had a 40-pin DIL socket known as the "J1 Expansion Connector".
+
+It was intended to be used to connect up a disk controller or other
+
+peripherals.
+
+In fact, the original Practical Electronics article claimed that it
+
+"Supports all Ohio Scientific expansions including floppy disc"
+
+and included a photograph of the disc unit plugged in.
+
+</P>
+
+<P>
+
+Comp Shop planned a few add-on devices for the UK101, but the only
+
+one I ever saw was the colour video board.
+
+It consisted of a couple of 2114 memories, some multiplexers and
+
+an RGB output stage.
+
+I actually borrowed the prototype for a weekend to try it out!
+
+I don't think it was ever made into a product, but I built a
+
+similar circuit into my machine.
+
+</P>
+
+<P>
+
+Practical Electronics published some hardware projects based on
+
+the UK101, notably an EPROM programmer by Dr. A.A.Berk.
+
+</P>
+
+</TD>
+
+</TR>
+
+</TABLE>
+
+<HR>
+
+<CENTER>
+
+<P>Return to the <A HREF="uk101.htm">Compukit UK101 Home Page</A></P>
+
+<P>Return to <A HREF="index.htm">BeeJay's home page</A></P>
+
+<FONT SIZE="-1">
+
+<NOBR>
+
+Copyright &copy; 1998
+
+by <A HREF="mailto:coredump@gifford.co.uk">BeeJay</A>.<WBR>
+
+All rights reserved.
+
+</NOBR>
+
+</FONT>
+
+</CENTER>
+
+<HR>
+
+</BODY>
+
+</HTML>
+

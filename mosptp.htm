@@ -1,0 +1,77 @@
+<HTML>
+<HEAD>
+<TITLE>MOS Technology Paper Tape Format</TITLE>
+<!-- keywords: Compukit UK101 6502 museum Comp Shop Practical Electronics 8-bit computer kit -->
+<META NAME="keywords" CONTENT="Compukit, UK101, Compukit UK101, 6502, museum, Comp Shop, Practical Electronics, 8-bit, computer kit">
+<META NAME="author" CONTENT="John Honniball">
+<META NAME="description" CONTENT="Home page for the Compukit UK101, an 8-bit micro of 1979 with 6502 CPU, ROM BASIC and data storage on cassette.  Contains links to several other pages of UK101 information including software.">
+<LINK HREF="index.htm" REL="parent" REV="child" TITLE="Home Page">
+</HEAD>
+<BODY BGCOLOR="#ccffcc">
+<H1 ALIGN=CENTER>MOS Technology Paper Tape Format</H1>
+The following information is taken from the KIM-1 User Manual,
+published in August 1976 by MOS&nbsp;Technology, Inc. of Norristown, PA.
+It appears as Appendix&nbsp;F of the KIM-1 manual and is reproduced here
+exactly as in the original.
+<HR>
+<H2 ALIGN=CENTER>PAPER TAPE FORMAT</H2>
+<P>
+The paper tape LOAD and SAVE routines store and retrieve data in
+a specific format designed to insure error free recovery.
+Each byte of data to be stored is converted to two half bytes.
+The half bytes (whose possible values are 0 to FF<SUB>HEX</SUB>)
+are translated into their ASCII equivalents and written out onto
+paper tape in this form.
+</P>
+<P>
+Each record outputted begins with a ";" character (ASCII 3B) to mark
+the start of a valid record.
+The next byte transmitted (18<SUB>HEX</SUB>) or (24<SUB>10</SUB>) is
+the number of data bytes contained in the record.
+The record's starting address High (1 byte, 2 characters), starting
+address Lo (1 byte, 2 characters), and data (24 bytes, 48 characters)
+follow.
+Each record is terminated by the record's check-sum
+(2 bytes, 4 characters), a carriage return (ASCII 0D), line feed
+(ASCII 0A), and six "NULL" characters (ASCII 00).
+</P>
+<P>
+The last record transmitted has zero data bytes (indicated by ;00).
+The starting address field is replaced by a four digit Hex number
+representing the total number of data records contained in the
+transmission, followed by the records usual check-sum digits.
+A "XOFF" character ends the transmission.
+</P>
+<P>
+<TT>
+<U>;18</U>0000<U>FF</U>EE<U>DD</U>CC<U>BB</U>AA<U>00</U>99<U>88</U>77<U>66</U>55<U>44</U>33<U>22</U>11<U>22</U>33<U>44</U>55<U>66</U>77<U>88</U>99<U>0AFC</U><BR>
+<U>;18</U>0001<U>0001</U><BR>
+</TT>
+</P>
+<P>
+During a "LOAD" all incoming data is ignored until a ";" character
+is received.
+The receipt of non ASCII data or a mismatch between a records calculated
+check-sum and the check-sum read from tape will cause an error condition
+to be recognized by KIM.
+The check-sum is calculated by adding all data in the record except the
+";" character.
+</P>
+<P>
+The paper tape format described is compatible with all other
+MOS Technology, Inc. software support programs.
+</P>
+<!-- Start of page footer -->
+<HR>
+<DIV ALIGN=CENTER>
+<P>Return to the <A HREF="uk101.htm">Compukit UK101 Home Page</A></P>
+<P>Return to <A HREF="index.htm">BeeJay's home page</A></P>
+<FONT SIZE="-1">
+<NOBR>
+Copyright &copy; 1976 by MOS Technology, Inc.
+</NOBR>
+</FONT>
+</DIV>
+<HR>
+</BODY>
+</HTML>

@@ -1,0 +1,424 @@
+<HTML><HEAD></HEAD><BODY>
+<!--  seapp --- 'se' application notes                            29/11/1988 -->
+<!--  Copyright (c) 1988 BJ, Froods Software Development -->
+<!--  -->
+<H1 ALIGN=CENTER>Screen Editor Application Notes</H1>
+<H2>Introduction</H2>
+This document details some of the useful command sequences, options,
+configurations and techniques for getting the most out of the Screen
+Editor,
+<B>se</B>.
+<P>
+It is assumed that the reader has a copy of
+<B>se</B>
+installed on his machine and is reasonably familiar with using it.
+Other useful programs from Software Tools are mentioned, such as the
+text formatter <I>fmt</I>, the paginator <I>pg</I> and the list files
+<I>lf</I> program.
+Also mentioned are other Public Domain programs such as <I>arc</I>.
+A reasonable familiarity with
+Unix
+is also assumed.
+<P>
+Topics covered include:
+setting up
+<B>se</B>
+according to the user's needs;
+solutions to common problems;
+using
+<B>se</B>
+with other software;
+and useful
+<B>se</B>
+command language idioms.
+<H2>Using the Screen Editor with other software</H2>
+An editor that cannot interface with other software is no use
+to anyone.
+<B>Se</B>
+talks to other programs via the most standard interface of all:
+the plain ASCII file.
+Unlike word processors,
+<B>se</B>'s
+documents are not stored in any special format, but are simply
+normal ASCII text files.
+In fact,
+<B>se</B>
+has no &#147;word processor&#148; mode at all&nbsp;&#151;&nbsp;there are
+plenty of word processors available!
+<P>
+<B>Se</B>
+is used to generate files that can be fed into other applications:
+text formatters,
+programming language compilers,
+electronic mail systems and so on.
+So, how does one connect
+<B>se</B>
+into other software?
+Most programs will have facilities to &#147;import&#148; or &#147;export&#148;
+files.
+Sometimes a menu of possible file formats is provided,
+sometimes the file name tells the program how to interpret the data.
+In either case, the option we want is ASCII text.
+Avoid options such as WordStar format, Lotus worksheet or
+dBase data&nbsp;&#151;&nbsp;they won't work. 
+<H2>Calling the Shell</H2>
+One of the very useful features of
+<B>se</B>
+is its ability to invoke a shell.
+This means that it is possible to type
+a Unix shell
+command on the 
+<B>se</B>
+command line and make it execute.
+The advantage is that there is no need to exit from
+<B>se</B>
+merely to find out, say, the name of a file.
+<P>
+By way of example, here is the command to display a list
+of the files in the current directory:
+<PRE>
+<B>!ls</B>
+</PRE>
+The list of files appears in the usual way, then
+<B>se</B>
+displays the message &#145;<TT>type return to continue:</TT>&#146;.
+When you have finished reading the display, press return;
+<B>se</B>
+will re-draw the editing screen exactly as it was before.
+<P>
+There are some problems with shell escapes, as these commands
+are called.
+The obvious one is that you can forget where you are and
+log out of
+the machine while
+<B>se</B>
+is still running unseen.
+This will lose your editing buffer, so it is usually wise to write
+the buffer into a file before using the shell escape.
+<P>
+In fact,
+<B>se</B>
+displays a message &#145;<TT>No writes since last change</TT>&#146; on
+the status line if the buffer hasn't been saved during a shell escape.
+This is also important if the command that you execute refers to
+the file that you are editing.
+<H2>Document Preparation</H2>
+As mentioned above,
+<B>se</B>
+is not a word processor.
+However, it is possible to use it to create well-laid-out documents
+by adding a &#147;text formatter&#148; to
+<B>se</B>.
+Such a program is <I>fmt</I>, the Software Tools Text Formatter.
+<P>
+Using <I>fmt</I> one can create documents that can be read either
+on the screen or printed out.
+Input to <I>fmt</I>, as created with
+<B>se</B>,
+consists of a mixture of formatting commands and text.
+An <I>fmt</I> command is distinguished from the text around it by
+the following convention:
+a command begins in column one with a full-stop.
+<P>
+Clearly, it is easy to get
+<B>se</B>
+to spot commands for you.
+To search for the next <I>fmt</I> command in a file, type:
+<PRE>
+<B>/^\./</B>
+</PRE>
+Note the use of the
+caret &#145;<TT>^</TT>&#146;
+metacharacter to match &#147;start of line&#148;.
+Also, the special meaning of dot has been escaped.
+<P>
+<I>Fmt</I>'s inline function syntax uses square brackets &#145;<TT>[</TT>&#146;
+and &#145;<TT>@</TT>&#146;].
+To find the next function call in a file, type:
+<PRE>
+<B>/\[/</B>
+</PRE>
+Note the use of
+&#145;<TT>\</TT>&#146;
+to escape the special meaning of &#145;<TT>[</TT>&#146;.
+<P>
+In order to get
+<B>se</B>
+to recognise <I>fmt</I> comments, use the following commands, either
+on the command line or in a
+.RC
+file:
+<PRE>
+<B>of/"/'/.#/\n/</B>
+<B>oc</B>
+</PRE>
+The &#145;<TT>oc</TT>&#146; option acts as a toggle when used on the command line.
+<P>
+Once the <I>fmt</I> document is ready to test, it is useful to run
+<I>fmt</I> from within
+<B>se</B>.
+The shell escape mechanism allows this and also allows the use of a
+pipe into <I>pg</I> to see the result of special effects such as
+underlining or boldfacing.
+Try the following commands with an <I>fmt</I> document in the buffer:
+<PRE>
+<B>w</B>
+<B>!fmt % | pg -m</B>
+</PRE>
+First, the file is written to disk to ensure that <I>fmt</I> gets the
+latest version.
+Then the percent character &#145;<TT>%</TT>&#146; is used to give the current
+file name in the shell command.
+The &#145;<TT>-m</TT>&#146; option to <I>pg</I> tells it to expect an <I>fmt</I>
+metafile.
+Remember that
+<B>se</B>
+has one level of shell command history;
+to repeat the preview command, type:
+<PRE>
+<B>w</B>
+<B>!!</B>
+</PRE>
+and
+<B>se</B>
+will place the previous shell command back on the command line for
+editing; pressing return will cause it to be executed.
+So, with the shell history feature it is possible to spend an
+entire session in
+<B>se</B>,
+while calling up other programs via the shell escape.
+The
+&#147;pling-pling-return-return&#148;
+sequence soon becomes well-known.
+<H2>Programming with SE</H2>
+Programmers find
+<B>se</B>
+a very powerful tool.
+They are not even put off by the complexity of pattern-matching
+metacharacters...
+<P>
+It was for programmers that the Source-Code Mode was incorporated.
+The following list shows the quote and comment symbols for a number
+of popular languages, together with the corresponding file suffix.
+<PRE>
+C           .c   .h  of|"|'|/*|*/|#|\n|
+BASIC       .bas     of|"|"|'|\n|||
+BASIC       .bas     of|"|'|REM|\n|||
+Pascal      .pas     of|"|'|(*|*)|(*$|*)|
+Pascal      .pas     of|"|'|{|}|{$|}|
+occam       .occ     of|"|'|--|\n|||
+PostScript  .ps      of|"|'|%|\n|||
+Ratfor      .r       of|"|'|#|\n|||
+fmt         .fmt     of|"|'|.#|\n|||
+TeX         .tex     of|"|'|%|\n|||
+Algol-68    .a68     of|"|'|#|#|||
+PL/1        .pl1     of|"|'|/*|*/|||
+<!--  M4          .m4      won't work; needs `...' -->
+</PRE>
+<H1 ALIGN=CENTER>Configuring SE</H1>
+<B>Se</B>
+has been designed to be as flexible as possible;
+most of its features can be customised in some way to suit the user.
+In fact, very few users actually run
+<B>se</B>
+in its default state; most make at least a few changes.
+<H2>Environment Variables</H2>
+It is possible to configure
+<B>se</B>
+to look for its important files anywhere in the file system.
+These are the message file, the help file and the startup file.
+In fact, only the message file is mandatory for
+<B>se</B>
+to operate; the help and startup files are optional.
+<P>
+In each case an &#147;environment variable&#148; can be set up to
+indicate the location of the file itself.
+A &#147;sensible&#148; default is used if the
+environment variable has not been set up.
+<PRE>
+<U>File</U>              <U>Default Name</U>      <U>Environment Variable</U>
+message file      SE.MSG            SE_MSG
+help file         SE.HLP            SE_HLP
+startup file      SE.RC             SE_RC
+</PRE>
+As an example, here is the command required to tell
+<B>se</B>
+to look in a file called &#145;<TT>HELP.SE</TT>&#146; in the directory
+&#145;<TT>C:\TOOLS</TT>&#146; whenever the user asks for help:
+<PRE>
+C&gt; <B>set se_hlp=C:\tools\help.se</B>
+</PRE>
+Similar commands are used to set the other files up.
+Remember to put the &#145;<TT>set</TT>&#146; commands in your &#145;<TT>AUTOEXEC.BAT</TT>&#146;
+file so that they are executed each time you reboot.
+<H2>The Startup File</H2>
+Once
+<B>se</B>
+is able to find all the files it needs, you can turn your attention
+to the contents of the startup file.
+This file contains a mixture of normal
+<B>se</B>
+commands and special language-sensitive commands.
+The idea is that many of the configuration parameters of
+<B>se</B>
+depend on what kind of text is in the file you are editing.
+For instance, in many programming languages, auto-indent is very helpful;
+in normal text, it is a nuisance.
+<P>
+When
+<B>se</B>
+reads a file, either with a &#145;<TT>e</TT>&#146; command or from the command line,
+it looks at the name of the file in order to determine what it contains.
+In most systems, the suffix of the file name is a good indication of
+the type.
+For instance,
+&#145;<TT>prog.p</TT>&#146;
+is a Pascal program whereas
+&#145;<TT>note.text</TT>&#146;
+is a file of plain text.
+<P>
+In the startup file
+<B>se</B>
+recognises a special construct consisting of a line beginning with
+a curly bracket &#145;<TT>{</TT>&#146;.
+This is followed by either the keyword &#145;<TT>LANG</TT>&#146; or &#145;<TT>TERM</TT>&#146;.
+The &#145;<TT>LANG</TT>&#146; keyword is followed by a list of file suffices.
+If the suffix of the file being read matches any of the suffices
+following the keyword, all the commands up to the next closing
+curly bracket &#145;<TT>}</TT>&#146; are executed; if not, they are ignored.
+<P>
+The &#145;<TT>TERM</TT>&#146; keyword does a similar job with terminal types.
+<P>
+An example of a typical startup file will make this clear.
+Note the use of a hash &#145;<TT>#</TT>&#146; to introduce comments:
+<PRE>
+# Startup file for 'se'
+oa
+# Pascal
+{ LANG pas p
+oia
+ol$
+}
+# Documents
+{ LANG txt doc
+ol%
+}
+</PRE>
+In this example, &#145;<TT>oa</TT>&#146; is obeyed no matter what kind of file
+is being edited.
+However, if a Pascal program is edited &#145;<TT>oia</TT>&#146; and &#145;<TT>ol$</TT>&#146;
+are obeyed because the file suffices match.
+If a text file is edited, &#145;<TT>ol%</TT>&#146; is obeyed.
+If some other kind of file, with an unrecognised suffix,
+is edited, the only effect is to obey the &#145;<TT>oa</TT>&#146;.
+<P>
+A slight problem arises with options like &#145;<TT>oa</TT>&#146; because they
+toggle the state of some option.
+Since the
+.RC
+file is read every time a new file is read into
+<B>se</B>,
+options like &#145;<TT>oa</TT>&#146; would not behave as desired.
+The problem is solved by a simple rule: before reading the
+.RC
+file,
+<B>se</B>
+restores all options to their default states.
+This means that all reserved words are erased,
+key bindings are put back to the default set,
+and default screen colours are set up.
+In addition, of course, toggle-type options such as &#145;<TT>oa</TT>&#146;,
+&#145;<TT>or</TT>&#146;, &#145;<TT>oc</TT>&#146; and &#145;<TT>oy</TT>&#146; are put back to a known
+state.
+<P>
+Any of
+<B>se</B>'s
+commands or options may be put in the startup file.
+It is possible to arrange for different types of file
+to set up different colours for
+<B>se</B>'s
+screen (on a colour system).
+Different prompts can be set; insert mode can be turned on.
+<P>
+The most powerful use of this ability is to put key-binding &#145;<TT>ob</TT>&#146;
+commands in the startup file.
+In this way, it is possible to customise the whole keyboard
+according to the work being done.
+Another example from the world of programming:
+<PRE>
+oa
+{ LANG bas
+ob[a-p]"PRINT"
+ob[a-r]"RETURN"
+ob[a-g]"GOSUB"
+}
+{ LANG c h
+oia
+ob[a-b]"break;"
+ob[a-r]"return;" 
+ob[a-p]"printf ("
+ob[a-u]"unsigned"
+ob[a-i]kill_all "#include &lt;stdio.h&gt;"
+}
+</PRE>
+The last example shows the use of the &#145;<TT>kill_all</TT>&#146; function to
+ensure that the &#145;<TT>#include</TT>&#146; begins in column one.
+In fact, an even better version would use the &#145;<TT>left</TT>&#146; cursor
+function eight times to move the cursor back to the &#145;<TT>s</TT>&#146;,
+ready for the user to overtype the filename.
+<P>
+In practice, you would put &#145;<TT>of</TT>&#146;
+and &#145;<TT>oc</TT>&#146; commands in the language-dependent blocks as well.
+<!--  -->
+<H2>Configuring the Message File</H2>
+All the text that
+<B>se</B>
+displays in the form of messages on the status line is held in
+a file.
+This is known as the &#147;message file&#148; and is read in by
+<B>se</B>
+when the editor starts up.
+By changing the message file, you can change the wording of the
+error messages, or even arrange for
+<B>se</B>'s
+messages to use a different language altogether.
+<P>
+The message file contains, as the first line, the version number
+of
+<B>se</B>
+that it works with.
+This is to avoid the situation where a new version of the editor
+requires more messages than the previous version, but the old message
+file is still installed on the system.
+If you upgrade to a new version of
+<B>se</B>,
+and you want to use a specially-modified message file from the old
+version, make sure that you compare the lengths of the message files.
+New messages will normally be added to the end of the file and you
+should ensure that any extra ones from the new version are added to
+your old file.
+<P>
+We have already seen how environment variables are used to tell
+<B>se</B>
+where to find the message file.
+There is one special point to note about the file itself;
+it is possible to make a message ring the terminal's bell or bleeper.
+This is done by making the first character of the message a control-G
+character (ASCII 7, BEL).
+Two messages are normally modified in this way:
+&#145;<TT>No room for any more lines</TT>&#146; and
+&#145;<TT>Buffer hasn't been saved</TT>&#146;.
+These messages are severe enough to justify an audible warning.
+However, if the user objects to the noise all that is required is
+to remove the control-G characters from the message file.
+Note that another way to make
+<B>se</B>
+silent is to use the &#145;<TT>oq</TT>&#146; option.
+This has the effect of silencing all the bleeps normally produced,
+not just those that are specified by the message file.
+<P>
+When creating a modified or translated message file, remember that
+space on the status line is limited and messages should not be too long.
+In fact, a useful modification for experienced users is a file of
+terse messages.
+</BODY></HTML>

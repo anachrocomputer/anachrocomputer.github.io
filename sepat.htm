@@ -1,0 +1,33 @@
+<HTML><HEAD></HEAD><BODY>
+<!--  sepat --- 'se' pattern matching reference                   28/11/1988 -->
+<!--  -->
+<H1 ALIGN=CENTER>Summary of Pattern Elements</H1>
+<U>Element</U> <U>Meaning</U>
+<UL>
+<LI>&#145;^&#146;
+Matches the null string at the beginning of a line.
+However, if not the <U>first</U>
+element of a pattern, is treated as a
+literal caret.
+<LI>&#145;.&#146;
+Matches any single character other than newline.
+<LI>&#145;$&#146;
+Matches the newline character at the end of a line.
+However, if not the <U>last</U>
+element of a pattern, is treated as a literal dollar sign.
+<LI>&#145;[&lt;ccl&gt;]&#146;
+Matches any single character that is a member of the set
+specified by &lt;ccl&gt;.
+&lt;Ccl&gt; may be composed of single characters
+or of character ranges of the form &lt;c1&gt;-&lt;c2&gt;.
+If character ranges are used, &lt;c1&gt; and &lt;c2&gt; must both belong
+to the digits, the upper case alphabet or the lower case alphabet.
+<LI>&#145;[^&lt;ccl&gt;]&#146;
+Matches any single character that is <U>not</U>
+a member of the set specified by &lt;ccl&gt;.
+<LI>&#145;*&#146;
+In combination with the immediately preceding pattern element,
+matches zero or more characters that are matched by that
+pattern element.
+</UL>
+</BODY></HTML>

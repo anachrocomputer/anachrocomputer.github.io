@@ -1,0 +1,688 @@
+<HTML><HEAD></HEAD><BODY>
+<!--  sedev --- 'se' developer's guide                            29/11/1988 -->
+<!--  Copyright (c) 1988 BJ, Froods Software Development -->
+<!--  -->
+<H1 ALIGN=CENTER>SE Developer's Guide</H1>
+<H2>Introduction</H2>
+This document describes
+<B>se</B>
+from the point of view of the programmer who has the source code
+and wishes to make changes.
+The changes could be anything from minor cosmetic alterations
+to major porting onto new machines.
+<P>
+Familiarity with the C language is essential;
+familiarity with
+<B>se</B>
+from the user's point of view is also very important.
+Knowledge of C compilers, operating systems and programming tools
+is assumed.
+<!--  -->
+<H2>The Distribution Disks</H2>
+<B>Se</B>
+is distributed in many forms on many media.
+One of the most popular forms is on IBM PC disks, either in plain
+text files or in an ARC file.
+Atari ST computers can read the 3.5" IBM disks.
+<P>
+The VAX version is usually distributed on a TK50 tape cartridge.
+The Unix versions are often distributed on DC600 tape cartridges
+or via E-mail.
+<!--  -->
+<H2>You Will Need</H2>
+In order to recompile
+<B>se</B>
+you will need one of the following:
+<BR>
+<UL>
+<LI>An
+IBM PC or PS/2 with hard disk (about 1Mb free).
+A copy of the Microsoft C Compiler Version 5.00 or higher or
+a copy of the Borland Turbo C Compiler Version 2.00 or higher.
+A copy of the Microsoft Macro Assembler Version 4.00 or higher.
+A copy of <I>ARC</I> version 5.20 or higher (if you have an
+<I>ARC</I>ed distribution).
+<LI>A
+Sirius or Victor 9000 with hard disk (about 1Mb free).
+A copy of the Microsoft C Compiler Version 5.00 or higher.
+A copy of the Microsoft Macro Assembler Version 5.00 or higher.
+A copy of <I>ARC</I> version 5.20 or higher (if you have an
+<I>ARC</I>ed distribution).
+<LI>An
+Atari 520ST or 1040ST with hard disk (about 1Mb free).
+A copy of the Mark Williams C Compiler Version 2.xx or higher.
+A copy of <I>ARC</I> version 5.20 or higher (if you have an
+<I>ARC</I>ed distribution).
+<LI>A
+Unix machine with an appropriate C compiler and the <I>make</I>
+program.
+<LI>A
+VAX or MicroVAX with VMS version 4.7 or higher.
+A copy of the VAX C compiler.
+<LI>A
+transputer system and the Inmos ANSI C compiler.
+<LI>A
+Minix 68000 or 386 machine with an appropriate C compiler
+and the <I>make</I> program.
+</UL>
+<BR>
+If you're trying to build any version of
+<B>se</B>
+apart from the PC and Unix versions, you'll probably need
+a great deal of patience and perseverance as well.
+The code worked on all the above hosts once, really it did!
+<P>
+In order to rebuild the
+<B>se</B>
+documentation, you will need, in addition, all of the following:
+<BR>
+A copy of the PD M4 program.
+<BR>
+A copy of <I>fmt</I>, the Software Tools Text Formatter.
+<BR>
+A copy of <I>pg</I>, the paginator.
+<BR>
+An <I>fmt</I> post-processor
+suitable for your printer.
+<I>fx</I> for the Epson FX,
+<I>lj</I> for the HP LaserJet Series II
+or <I>ps</I> for PostScript.
+<BR>
+If you have the LaTeX system, it is possible to post-process
+<!--  OK, it's a 'sed' script... -->
+the <I>fmt</I> documents into a form that LaTeX will accept.
+The resulting document will look nicer than the <I>fmt</I> version,
+but then not everyone can run LaTeX.
+To do this you will also need a copy of the stream editor,
+<I>sed</I>.
+<P>
+It's also possible to post-process the <I>fmt</I> documents into
+<!--  'sed' again, along with a script that resembles line noise... -->
+HTML, which nowadays nearly everybody can use.
+The resulting documents look OK in any browser and can be
+viewed at the same time as running
+<B>se</B>
+in another window.
+At present, however, there are no hyperlinks within the documents.
+This feature is high on the list of things to add.
+<P>
+Of course, you will also need an editor, such as
+<B>se</B>
+itself!
+<!--  -->
+<H2>SE Design Philosophy</H2>
+<B>Se</B>
+was not designed to be an easy-to-use word processor for idiots.
+Its command language is very similar to the Unix <I>ed</I> line editor,
+which is famed for its terseness.
+It has been said that an <I>ed</I> command line resembles line noise;
+this of course assumes that the reader can remember using dial-up
+teletypes over 300 baud modems...
+<P>
+Unix users will know the <I>vi</I> screen editor.
+Although <I>vi</I> has a command line, it starts up in full-screen mode.
+Unfortunately, there is no way of knowing from looking at the
+screen whether one is in &#147;append&#148; mode or &#147;command&#148; mode.
+There is no status line and line numbers have to be invoked with an
+option.
+<P>
+Some favour the <I>emacs</I> approach: no command line, everything done
+with control keys and function keys.
+One of the great advantages of <I>emacs</I> is its ability to
+redefine almost any command key.
+However, <I>emacs</I> cannot do any of the tricks
+<B>se</B>
+can do with &#147;global on pattern&#148; or &#147;global on markname&#148;
+commands.
+This can result in laborious editing sessions doing repetitive
+changes throughout a file.
+<P>
+<B>Se</B>
+attempts to be friendlier than <I>vi</I> while retaining the power
+of a command-line driven editor.
+The screen layout includes a status line, so that the user can see
+what state
+<B>se</B>
+is in at a glance.
+Line numbers are displayed for reference against, say, a compiler
+error message.
+On machines with colour displays,
+<B>se</B>
+supports a fully configurable colour option.
+On machines with a mouse, it supports the mouse.
+But if you really want to do a substitute command on all lines that
+begin with a dot and don't contain the letter &#147;A&#148;, you can.
+<P>
+Better still,
+<B>se</B>
+is free and comes with full source code.
+It is portable between widely differing machines, so once you've
+learned to use it, you can take it with you to another system.
+It has full documentation, so users can't complain (but probably will).
+<P>
+OK, now for the bad news.
+On micros,
+<B>se</B>
+is best used with a hard disk&nbsp;&#151;&nbsp;although it will
+work on floppies if you're desperate.
+It needs at least half a meg of memory to run in (the more the better).
+It takes time to learn how to use
+<B>se</B>.
+<P>
+If a choice has to be made between &#147;easy to use&#148; and
+&#147;powerful&#148;,
+<B>se</B>
+usually goes for &#147;powerful&#148;.
+<!--  -->
+<H1 ALIGN=CENTER>Structure of the Code</H1>
+<B>Se</B>
+is as modular as possible, both for good structure and for ease
+of compilation.
+The following sections describe each of the source files that make up
+<B>se</B>.
+<H2>main.c</H2>
+This file contains all of the global data that
+<B>se</B>
+uses to store information about its option settings, the screen display
+and of course the text buffer itself.
+<P>
+The function &#145;<TT>main</TT>&#146; sets up all the internal state that
+the editor needs.
+Certain modules have private data that must be initialised
+and functions are called to do this.
+On some systems, the terminal must be switched into an unbuffered
+mode (&#147;cbreak&#148; on Unix, for instance) and this is done
+by a function called from &#145;<TT>main&nbsp;()</TT>&#146;.
+Once the terminal is set up, the text buffer is created with
+&#145;<TT>mkbuf&nbsp;()</TT>&#146; and then &#145;<TT>edit&nbsp;()</TT>&#146; is called.
+When the user decides to quit, &#145;<TT>edit&nbsp;()</TT>&#146; returns and the
+buffer is destroyed, the terminal is reset and
+<B>se</B>
+exits to the operating system.
+<H2>edit.c</H2>
+In &#145;<TT>edit.c</TT>&#146; the major function is &#145;<TT>edit&nbsp;()</TT>&#146;.
+It parses the command line and enters the main command loop.
+&#145;<TT>getcmd&nbsp;()</TT>&#146; is called to get a command line,
+followed by &#145;<TT>docmd&nbsp;()</TT>&#146; to execute it.
+Various other things are done once per iteration of the command loop:
+messages are polled by &#145;<TT>mswait&nbsp;()</TT>&#146;,
+breaks are polled by &#145;<TT>intrpt&nbsp;()</TT>&#146; and
+the command prompt is displayed and erased by &#145;<TT>prompt&nbsp;()</TT>&#146;.
+<H2>docmd.c</H2>
+Commands are parsed in &#145;<TT>docmd.c</TT>&#146; by a function called
+&#145;<TT>docmd&nbsp;(uchar&nbsp;lin[</TT>&#146;,&nbsp;int&nbsp;i,&nbsp;bool&nbsp;glob,&nbsp;int&nbsp;*status)].
+The letters used for command names are defined in the header file
+&#145;<TT>cmds.h</TT>&#146; and are included here.
+<H2>docmd1.c</H2>
+This file and one other, &#145;<TT>docmd2.c</TT>&#146;,
+contain most of the code to actually execute editor commands.
+<P>
+&#145;<TT>getcmd.c</TT>&#146; contains just one major function &#145;<TT>getcmd&nbsp;()</TT>&#146;.
+A number of smaller functions deal with scanning the command line
+for tabs or for specific characters; they are declared <B>static</B>.
+An important <B>static</B> function here is &#145;<TT>stuff_string&nbsp;()</TT>&#146;.
+It is used to insert strings into the command line in response to
+certain function tokens such as &#145;<TT>curln</TT>&#146;, &#145;<TT>date</TT>&#146; and
+&#145;<TT>filename</TT>&#146;.
+<H2>pat.c</H2>
+&#145;<TT>pat.c</TT>&#146; contains the Software Tools Pattern Library.
+The preprocessor symbol &#145;<TT>SWT</TT>&#146; is tested to build the two
+different versions with different metacharacters.
+Unfortunately, this once-useful feature not only complicates
+the code, it also complicates the documentation,
+adds to the testing problems and creates difficultites for the user
+when the compiled binary and the on-line help files get out of sync.
+Not to mention the confusion that results when a Unix user runs
+a SWT version of
+<B>se</B>
+without realising it.
+All in all, this compile-time option is more trouble than it's
+worth and will be removed from the code at the next version.
+<P>
+Most of the pattern-matching code is, in fact,
+a C translation of the original Software Tools Ratfor code.
+Virtually the only addition is the use of a global flag to control
+case-sensitive matching.
+<H2>bind.c</H2>
+The main purpose of this file is to manage key binding.
+All keystrokes are mapped into integer tokens by the machine-dependant
+video driver.
+The function of the bind module is to map single keystroke tokens into
+a stream of cursor editing functions and text.
+<P>
+A cursor editing function is represented by a token, a negative
+code that triggers an editing function (such as cursor motion).
+The user sets up mappings with the &#145;<TT>ob</TT>&#146; option, which results
+in a call to &#145;<TT>dobind&nbsp;()</TT>&#146;.
+<H2>doopt.c</H2>
+Options are parsed and set by &#145;<TT>doopt.c</TT>&#146;.
+The file &#145;<TT>cmds.h</TT>&#146; is again included here to define the
+option letters.
+The main function is &#145;<TT>doopt&nbsp;(uchar&nbsp;lin[</TT>&#146;,&nbsp;int&nbsp;*i)],
+which is simply a big <B>switch</B> statement.
+<P>
+Other, <B>static</B>, functions in this file deal with more complex
+options such as colour and tab settings.
+<H2>screen.c</H2>
+Most of the code to generate the screen display is in this file,
+although some of it is in &#145;<TT>display.c</TT>&#146;.
+<P>
+It makes calls on other routines in the video driver to actually
+do the output.
+All the code to recognise reserved words is in this module,
+functions &#145;<TT>kwlookup&nbsp;()</TT>&#146;, &#145;<TT>addkw&nbsp;()</TT>&#146;
+and &#145;<TT>clearkws&nbsp;()</TT>&#146;.
+<H2>display.c</H2>
+The four prompt strings are kept in <B>static</B> arrays in this file.
+<P>
+The function &#145;<TT>watch&nbsp;(void)</TT>&#146;, which displays the time
+on the status line, is also in this module but the code
+to read the OS clock is not&nbsp;&#151;&nbsp;that belongs elsewhere.
+<P>
+The function &#145;<TT>scroll_window</TT>&#146; is used by the code for command
+mode and overlay mode to handle vertical motion of the cursor.
+Cursor functions such as &#145;<TT>page_up</TT>&#146; and &#145;<TT>scroll_up</TT>&#146;
+are implemented here.
+<P>
+The minor function &#145;<TT>hwinsdel</TT>&#146; just deals with the hardware
+line insert/delete flag.
+<H2>scratch.c</H2>
+The text buffer structure is maintained by code in the
+files &#145;<TT>scratch.c</TT>&#146; and &#145;<TT>buffer.c</TT>&#146;.
+Two different organisations are possible for the line descriptors
+depending on the setting of the &#145;<TT>OLD_SCRATCH</TT>&#146; macro.
+If &#145;<TT>OLD_SCRATCH</TT>&#146; is defined,
+<B>se</B>
+will maintain a linked-list of line descriptors;
+if it is undefined, a simple array is used.
+&#145;<TT>scratch.c</TT>&#146; also maintains an integer variable called
+&#145;<TT>Scratch</TT>&#146;, which is initially set to MEMORY.
+If &#145;<TT>Scratch</TT>&#146; is set to DISK,
+the text is held in a temporary file instead of being
+kept in memory via calls to &#145;<TT>malloc&nbsp;()</TT>&#146;.
+The function &#145;<TT>create_scratch&nbsp;(void)</TT>&#146; is called to switch
+over from memory-based to disk-based text.
+The third value for &#145;<TT>Scratch</TT>&#146;, EMS, is only used with the
+brain-damaged MS-DOS operating system on the PC.
+It allows the use of EMS memory for storing the text
+while keeping the LINEDESC structures in normal RAM.
+An EMS allocation library is in &#145;<TT>emslib.c</TT>&#146;.
+<H2>os.c</H2>
+All the operating system dependent code is in this module
+except that which concerns the screen output.
+The file is big enough without the complexity of terminal drivers...
+<P>
+Two routines, &#145;<TT>shell_open&nbsp;()</TT>&#146; and &#145;<TT>shell_close&nbsp;()</TT>&#146;,
+deal with reading or writing to shell commands.
+On Unix, this is done via a pipe; on MS-DOS a temporary file is used.
+Another function, &#145;<TT>call_shell&nbsp;(const&nbsp;uchar&nbsp;*)</TT>&#146;
+handles shell escapes.
+<P>
+The function &#145;<TT>getflen&nbsp;()</TT>&#146; is used in just one place,
+to determine the size of the message file and therefore how much
+memory to allocate before reading it in.
+<P>
+The functions &#145;<TT>getreadonly&nbsp;()</TT>&#146; and &#145;<TT>setreadonly&nbsp;()</TT>&#146;
+are used to read and set a file's read-only flag, respectively.
+<P>
+If the symbol &#145;<TT>LOG_USAGE</TT>&#146; is defined, the function
+&#145;<TT>log_usage&nbsp;()</TT>&#146; is compiled in and called whenever
+<B>se</B>
+starts up.
+Its purpose is to write a line into a log file that identifies the
+date and time when the editor was used, the version that was used
+and the name of the user.
+This log is only really useful on multi-user systems.
+<H2>filecmds.c</H2>
+Commands that read or write the buffer to or from files are handled here.
+&#145;<TT>filecmds.c</TT>&#146; also contains Unix code to open a pipe to
+<I>crypt</I>, the Unix data encryption program.
+It has, unfortunately, no equivalent in other systems and besides,
+the US government won't let anyone have <I>crypt</I> anyway.
+<H2>dowind.c</H2>
+Second window commands are parsed and executed in &#145;<TT>dowind.c</TT>&#146;.
+<H2>global.c</H2>
+Global prefixes are parsed and executed in &#145;<TT>global.c</TT>&#146;.
+You will also find the global prefix characters included
+from &#145;<TT>cmds.h</TT>&#146; here.
+<H2>misccmds.c</H2>
+Miscellaneous commands, those prefixed with &#145;<TT>z</TT>&#146;,
+are parsed and executed in &#145;<TT>misccmds.c</TT>&#146;.
+At present there are only a few, such as &#145;<TT>zb</TT>&#146; and &#145;<TT>zv</TT>&#146;.
+<H2>markcmds.c</H2>
+Commands dealing with marknames are in &#145;<TT>markcmds.c</TT>&#146;.
+This means &#145;<TT>k</TT>&#146; and &#145;<TT>n</TT>&#146;.
+<H2>misc.c</H2>
+Several miscellaneous support routines are in &#145;<TT>misc.c</TT>&#146;.
+In particular, if a certain function that
+<B>se</B>
+requires is missing from the C library on some systems, it is
+usually implemented here.
+&#145;<TT>strcmpi&nbsp;()</TT>&#146; is a good example.
+<!--  -->
+<H1 ALIGN=CENTER>The Machine Dependent Video Drivers</H1>
+All the remaining C files are Machine Dependent Video Drivers.
+They can be broadly divided into terminal drivers and
+memory-mapped display drivers.
+<P>
+The file &#145;<TT>ibmpc.c</TT>&#146; drives various IBM&nbsp;PC video displays
+via a small assembler routine in &#145;<TT>mvaddch.asm</TT>&#146;.
+Some of these displays are particularly obscure...
+<P>
+The file &#145;<TT>sirius.c</TT>&#146; deals with Bob Green's Sirius and
+also uses some assembler code, &#145;<TT>sirtty.asm</TT>&#146;.
+Anybody who still runs a Sirius is welcome to compile up
+the code and see if it still works.
+<P>
+The Atari&nbsp;ST driver currently drives the bit-mapped screen
+via the ROM-based VT-52 emulator; a more direct A-line
+driver might have been useful if A-line code hadn't been
+deprecated by Atari Corp.
+Well, the whole machine's deprecated now...
+<P>
+On a VAX running VMS, &#145;<TT>vaxtty.c</TT>&#146; drives the terminal via the
+&#145;<TT>SMG$</TT>&#146; library.
+<P>
+On Unix systems, the driver file is &#145;<TT>uxterm.c</TT>&#146;.
+This driver uses either the &#145;<TT>termcap</TT>&#146; library or the
+&#145;<TT>terminfo</TT>&#146; library according to the flavour of Unix
+that you're running.
+Linux is just another flavour of Unix, as far as this driver is
+concerned.
+Minix V1.50 systems also have &#145;<TT>termcap</TT>&#146;,
+so this file suits them too.
+<P>
+An additional driver, &#145;<TT>hardterm.c</TT>&#146;, is provided
+for those rare systems that require control sequences for terminals
+but provide no terminal-handling library.
+A notable example is the ICL&nbsp;PERQ running certain versions of PNX.
+<H2>Initialisation and Termination</H2>
+Several functions in the video driver deal with setting things up and
+closing them down again.
+One reason for the apparant over-design here is that certain video
+modules require extra set-up steps and corresponding close-down steps.
+An example is the X windows driver that allocates various data structures
+at start-up and must free them again cleanly on exit.
+<!--  void mdvd_init (void) -->
+<!--  int set_term (const char *type, bool *hwinsdel, int *r, int *c) -->
+<!--  term_init () -->
+<!--  term_exit () -->
+<H2>Displaying Text</H2>
+Two functions deal with displaying text at particular row and column
+coordinates on the screen.
+The function &#145;<TT>load&nbsp;()</TT>&#146; places a single character at a given
+coordinate and in a given screen zone.
+It is used to draw the &#147;bar&#148; at the left margin and also for
+writing the status line.
+Most of the other parts of the display are drawn with
+&#145;<TT>loadstr&nbsp;()</TT>&#146;, which places a string of characters on the screen.
+<H2>Controlling Colours</H2>
+<!--  void setcolr (zone, fg, bg) -->
+<!--  void shellcolr () -->
+<H2>Data Abstraction</H2>
+<B>Se</B>
+holds a copy of the video screen in memory, conventionally in an
+array called &#145;<TT>Screen_image</TT>&#146;.
+This data structure is declared within the video driver and is
+private, i.e. declared <B>static</B>.
+<P>
+<!--  int mvinch (r, c) -->
+Certain routines in the main part of
+<B>se</B>
+need to read back from the screen image and &#145;<TT>mvinch&nbsp;()</TT>&#146; is
+provided for this.
+Usually, it is simply implemented by a single line of code that
+returns a character from &#145;<TT>Screen_image</TT>&#146;.
+<P>
+<!--  uchar *term_name () -->
+The code that deals with the
+.RC
+file needs to know the name of the terminal and calls &#145;<TT>term_name&nbsp;()</TT>&#146;
+to get this from the video driver.
+The terminal name is passed in as an argument to &#145;<TT>set_term&nbsp;()</TT>&#146;, but
+this routine is provided for systems where the terminal type is fixed, such
+as the IBM&nbsp;PC, Atari&nbsp;ST and X&nbsp;windows.
+In such systems, the value passed into &#145;<TT>set_term&nbsp;()</TT>&#146; will be NULL and
+will be ignored.
+<P>
+<!--  void cprow (from, to) -->
+When
+<B>se</B>
+operates on a terminal that cannot do hardware line insert and delete,
+the behaviour of append mode is altered.
+This involves special code to copy a row of the screen from the bottom
+to the top of the text window.
+The function &#145;<TT>cprow&nbsp;()</TT>&#146; performs this copying, since it needs
+access to the screen image.
+<P>
+<!--  void restore_screen () -->
+Finally, the function &#145;<TT>restore_screen&nbsp;()</TT>&#146; is called in response to
+the &#145;<TT>fix_screen</TT>&#146; cursor function.
+Its job is to rebuild the display from
+<B>se</B>'s
+internal copy in &#145;<TT>Screen_image</TT>&#146;.
+The most efficient way to do this is to clear the screen and then redraw
+all the characters that are either non-blank or have non-default colours.
+<H2>Controlling the Cursor</H2>
+<!--  void position_cursor (r, c) -->
+The function &#145;<TT>position_cursor&nbsp;()</TT>&#146; is called by the main
+<B>se</B>
+code only when doing user input, i.e. in &#145;<TT>getcmd&nbsp;()</TT>&#146;.
+On memory-mapped systems, the screen can be updated at any location
+without the need to move the cursor; on terminal-based systems, the video
+driver must call &#145;<TT>position_cursor&nbsp;()</TT>&#146; itself before sending
+characters to the terminal.
+The terminal-based code for &#145;<TT>position_cursor&nbsp;()</TT>&#146; is usually
+optimised to send as few characters as possible and therefore increase
+the speed of screen updates.
+The memory-mapped driver code need not be as efficient since all it does
+is reposition the cursor when the user moves it.
+<P>
+<!--  void show_cursor (on) -->
+The &#145;<TT>show_cursor&nbsp;()</TT>&#146; function is currently unused but reserved for
+future expansion.
+<P>
+<!--  void shape_cursor (size) -->
+The &#145;<TT>shape_cursor&nbsp;()</TT>&#146; function is used to change to appearance of
+the cursor when in insert mode.
+Not many terminals support this, but it is useful as a hook for future
+use.
+<H2>Screen Control Functions</H2>
+<!--  void clrscreen () -->
+One of the first things that
+<B>se</B>
+must do to the terminal is clear the screen.
+The function &#145;<TT>clrscreen&nbsp;()</TT>&#146; does this and also initialises
+the cursor position variables to the top left corner of the screen
+(row&nbsp;=&nbsp;0, col&nbsp;=&nbsp;0).
+<P>
+<!--  void inslines (row, n) -->
+<!--  void dellines (row, n) -->
+If the terminal is capable of performing line insert and delete,
+as mentioned above, two functions will be called whenever this
+operation is required.
+&#145;<TT>inslines&nbsp;()</TT>&#146; is called to insert lines and &#145;<TT>dellines&nbsp;()</TT>&#146;
+to delete them.
+<P>
+<!--  void ringbell (type) -->
+There are several routines in
+<B>se</B>
+that need to make an audible alert signal.
+This is generally referred to as &#147;ringing the terminal's bell&#148;,
+but nowadays is unlikely to involve a large brass bell being struck
+inside a teletype!
+Some computers can control the volume, pitch or duration of the bleep
+that they produce and &#145;<TT>ringbell&nbsp;()</TT>&#146; accepts a parameter that
+can be used to distinguish various classes of bell sounds.
+<H2>Reading Keyboard and Mouse Input</H2>
+A single function, &#145;<TT>readkey&nbsp;()</TT>&#146;, performs all of
+<B>se</B>'s
+input operations.
+In the case of simple character-based systems, this means reading ASCII
+codes from the terminal and mapping some of them into key tokens.
+On more complex systems, it may also involve scan-code translation and
+mouse button detection.
+The most complicated implementations of &#145;<TT>readkey&nbsp;()</TT>&#146; are complete
+event dispatch loops&nbsp;&#151;&nbsp;this is the case for GEM and
+X windows.
+<!--  -->
+<H1 ALIGN=CENTER>Porting SE</H1>
+<B>Se</B>
+can be made to operate with little more than the C Standard Library
+but for full functionality (shell escapes in particular)
+you will need a fairly rich set of operating system functions.
+<P>
+The obvious functions are &#145;<TT>fopen&nbsp;()</TT>&#146;, &#145;<TT>fclose&nbsp;()</TT>&#146;,
+&#145;<TT>fgets&nbsp;()</TT>&#146; and &#145;<TT>fputs&nbsp;()</TT>&#146;.
+Hopefully your C library contains these!
+<B>Se</B>
+will open a file during &#145;<TT>e</TT>&#146;, &#145;<TT>r</TT>&#146; and &#145;<TT>w</TT>&#146;
+commands and close it as soon as it has been read or written.
+The scratch file is opened when
+<B>se</B>
+is invoked and remains open until either a garbage collect
+is done, a new file is edited or the user quits.
+The file in the second window is opened when the window is opened
+and remains open until the window is closed.
+If message polling is enabled,
+<B>se</B>
+may attempt to open a file after each command;
+if this takes significant time, conditionally compile out the code.
+<P>
+<B>Se</B>
+also needs to read characters from the keyboard with no echo
+and no waiting for a carriage return.
+In Unix, this is done by setting &#147;cbreak&#148; mode.
+On the IBM PC and Atari ST, a BIOS call is available that does the job.
+Some machines assume all input is buffered until return is pressed,
+while others throw away certain control characters whether you like
+it or not.
+This type of system may be a problem.
+<P>
+Output to the screen is the most versatile part of
+<B>se</B>'s
+links with the hardware.
+The interface is well-defined via a few function calls,
+all of which hide the implementation of the screen driver itself.
+See the next section for a description of the current video
+driver modules.
+<P>
+In &#147;os.c&#148; you will find a number of operating system
+routines which are conditionally compiled according to the
+target machine.
+The simpler functions do things like reading the system clock and
+polling for messages.
+<P>
+A function called &#147;sysname&nbsp;(void)&#148; returns a pointer
+to a string that gives the current machine name for the &#147;l&#148;
+command.
+Two functions, &#147;isreadonly&nbsp;(const&nbsp;uchar&nbsp;*)&#148; and
+&#147;setreadonly&nbsp;(const&nbsp;uchar&nbsp;*,&nbsp;bool)&#148;, deal with
+reading and setting the file's read-only flag, respectively.
+Most of these are usually available but they can be faked
+if necessary.
+<P>
+&#145;<TT>call_shell&nbsp;()</TT>&#146; is the real problem.
+By no means all systems can invoke a new level of shell and
+even those that can may well not do it reliably.
+The Atari ST falls into the latter category, with a variety
+of shells available but little in the way of standardisation.
+The functions &#145;<TT>shell_open&nbsp;()</TT>&#146; and &#145;<TT>shell_close&nbsp;()</TT>&#146;
+allow
+<B>se</B>
+to read from or write into a pipe connected to another program.
+Again, not many systems can do this.
+The MS-DOS version fakes it by means of a temporary file.
+<P>
+If you cannot do shell escapes at all,
+arrange to conditionally compile out all references to the shell
+in the source code and in the documentation.
+If you can call the shell, but with limitations, make sure
+<B>se</B>
+gives a reasonable error message when something goes wrong
+and document the problem.
+Refer to the error codes ENOSHELL, ESHELLERR and ECANTFORK.
+If there is a strong chance of losing the buffer due to a problem
+with shell escapes, do <U>not</U> provide them.
+<!--  -->
+<H1 ALIGN=CENTER>The Video Drivers</H1>
+Unix machines can be broadly divided onto BSD and System V.
+In each case, there is a database of terminal types and
+control characters.
+<B>Se</B>
+looks up the current terminal in the database and behaves accordingly.
+All terminal output is buffered.
+Only primitive visual attributes are available as
+a substitute for colour.
+Unfortunately, not all terminals render the attributes
+in the same way and the availability of certain attributes
+is dependent on the setting of the terminal database.
+<P>
+&#147;ibmpc.c&#148; consists of the C routines required to drive
+a Monochrome Display and Printer Adaptor (MDPA),
+a Colour Graphics Adaptor (CGA),
+an Enhanced Graphics Adaptor (EGA)
+or a Video Graphics Array (VGA).
+Each of these adaptors is driven in 80 column text
+mode&nbsp;&#151;&nbsp;mode 7 on MDPAs, mode 3 otherwise.
+If the PC is found to be in a graphics mode when
+<B>se</B>
+is started, it is immediately put into mode 3; the graphics mode
+is restored on exit.
+<P>
+On the PC, either BIOS calls or direct memory access is used,
+depending on the setting of the boolean variable &#145;<TT>Use_bios</TT>&#146;.
+If the symbol &#147;ODDVID&#148; is defined,
+<B>se</B>
+knows about the Wyse 700 monochrome display and
+can drive it in 160 column, 50 row mode.
+In order to drive the Wyse,
+<B>se</B>
+has to use BIOS, so &#145;<TT>Use_bios</TT>&#146; is set to YES.
+BIOS is also useful when running under Microsoft Windows,
+so the environment variable &#145;<TT>SE_BIOS</TT>&#146; will
+set the &#145;<TT>Use_bios</TT>&#146; flag.
+Otherwise, all characters are placed directly into video memory
+by an assembler routine called &#147;mvaddch&nbsp;()&#148;.
+The reason, of course, is speed of screen updates;
+<B>se</B>
+is usable even on a slow 8088 system.
+<P>
+For certain VGAs, it is possible to set a video mode that gives a
+132 column display.
+In this case, a call to &#147;setncols&nbsp;()&#148; sets the
+memory width to (132 * 2) bytes instead of (80 * 2).
+In this way, the low-level code is aware of the layout of the
+screen and we can still use the fast &#147;mvaddch&nbsp;()&#148;.
+<P>
+If anyone adds non-IBM video adaptors to the IBM PC version of
+<B>se</B>,
+please make the code conditional on &#147;ODDVID&#148; so
+that the size of the EXE file is not increased by unwanted
+display driver code.
+When distributing binary copies of
+<B>se</B>
+try to give both variants: &#147;ODDVID&#148; and standard IBM.
+<P>
+On the Atari ST, BIOS is used for all screen output at present,
+although it may be modified to use A-line instructions instead.
+The ST has a VT52 emulator built-in which is the only way
+to do cursor motion from BIOS.
+Therefore, the &#147;atari.c&#148; file bears a remarkable similarity
+to the parts of &#147;hardterm.c&#148; that drive a VT52.
+<P>
+The Sirius driver goes right ahead and reprograms the 6845
+CRT controller.
+Cursor size and position are both controlled by 6845
+registers on the Sirius.
+Like the IBM PC driver, an assembler routine is used for
+most of the speed-critical stuff.
+Code to perform line insert-delete is also coded in the
+assembler file &#147;sirtty.asm&#148;.
+<!--  -->
+<H2>Error codes and messages</H2>
+<PRE>
+ 0  SNULL         V2.08   /* Special null string (not in file) */
+ 1  EBACKWARD     Line numbers in backward order
+</PRE>
+</BODY></HTML>

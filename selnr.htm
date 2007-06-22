@@ -1,0 +1,36 @@
+<HTML><HEAD></HEAD><BODY>
+<!--  selnr --- 'se' line number expression reference -->
+<!--  -->
+<H1 ALIGN=CENTER>Elements of Line Number Expressions</H1>
+<U>Form</U> <U>Value</U>
+<UL>
+<LI>&#145;integer&#146;
+value of the integer (e.g., 42).
+<LI>&#145;.&#146;
+number of the current line in the buffer.
+<LI>&#145;$&#146;
+number of the last line in the buffer.
+<LI>&#145;^&#146;
+number of the previous line in the buffer (same as &#145;<TT>.-1</TT>&#146;).
+<LI>&#145;-&#146;
+number of the previous line in the buffer (same as &#145;<TT>^</TT>&#146;).
+<LI>&#145;#&#146;
+number of the first line on the screen.
+<LI>&#145;/pattern[/]&#146;
+number of the next line in the buffer that matches
+the given pattern (e.g., &#145;<TT>/February/</TT>&#146;);
+the search proceeds to the end of the buffer, then wraps around
+to the beginning and back to the current line.
+The trailing &#145;<TT>/</TT>&#146; is optional.
+<LI>&#145;?pattern[?]&#146;
+number of the previous line in the buffer that matches
+the given pattern (e.g., &#145;<TT>?January?</TT>&#146;);
+search proceeds in reverse, from the current
+line to line 1, then from the last line back to the current line.
+The trailing &#145;<TT>?</TT>&#146; is optional.
+<LI>&#145;&gt;name&#146;
+number of the next line having the given mark name.
+<LI>&#145;&lt;name&#146;
+number of the previous line having the given mark name.
+</UL>
+</BODY></HTML>
