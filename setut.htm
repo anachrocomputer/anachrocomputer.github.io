@@ -1,0 +1,1957 @@
+<HTML><HEAD></HEAD><BODY>
+<!--  setut --- 'se' tutorial                                     28/11/1988 -->
+<!--  -->
+<H1 ALIGN=CENTER>Tutorial</H1>
+<!--  -->
+<!--  Introduction -->
+<!--  -->
+<H2>Introduction</H2>
+This document describes how to use
+<B>se</B>,
+assuming you have not used it before.
+<B>Se</B>
+is a powerful, friendly, full-screen text editor.
+It runs on a number of different computers&nbsp;&#151;&nbsp;in fact,
+one of the advantages of using
+<B>se</B>
+is that once you have learned it,
+you can use it on any of the computers you find it on.
+Some parts of this manual refer specifically to
+computers
+running the
+Unix
+operating system.
+The version of
+<B>se</B>
+described below follows the
+Unix
+pattern-matching conventions;
+if you are unsure whether this manual refers to the
+version that you have, consult a guru.
+<P>
+We assume that your computer is operational, and
+that you have access to
+<B>se</B>.
+If you need assistance, best see your local guru.
+We further assume that you know how to use the backspace key;
+which is usually found at the top right of the main part of the keyboard,
+and that you have some idea of what a &#147;file&#148; is.
+<P>
+<B>Se</B>
+is a very flexible editor;
+it is possible to modify its behaviour to suit the user.
+In this manual it is assumed that
+<B>se</B>
+is being used in its default configuration
+&#147;straight out of the box&#148;.
+If someone has been using it before you and has set it up
+to suit themselves, please ask them to restore
+<B>se</B>
+to its original condition.
+<!--  -->
+<!--  Getting Started -->
+<!--  -->
+<H2>Starting an Editing Session</H2>
+The first step is to tell the computer that you want to use
+<B>se</B>.
+To do this, type:
+<PRE>
+$ <B>se</B>
+</PRE>
+and press return.
+<!--  or double-click on SE.TTP if you are a GEM user. -->
+<BLOCKQUOTE>
+Throughout this guide, boldface is used to indicate
+information that you should type in.
+Things displayed by
+<B>se</B>
+are shown in the regular font.
+</BLOCKQUOTE>
+You are now in the editor, ready to go.
+You should see a blank screen, except for a rule down the left-hand
+side, and a line at the bottom of the screen.
+(If your computer can display colour, the various parts of the screen
+will be shown in colours given below.)
+<P>
+The space in the left margin is used for information about lines;
+lines may have names or numbers which can appear in this margin.
+The (green) line at the bottom is known as the status line;
+it is used to display information about what the
+editor is doing&nbsp;&#151;&nbsp;for example saving your work to disk.
+It also shows the time, and whether various options are switched on.
+The line above the status line is special;
+it is the command line, and is used for telling the editor what to do.
+The (red) command prompt &#145;<TT>cmd&gt;</TT>&#146; appears there.
+The text of documents which you are editing will appear (in white) in the
+large blank area of the screen.
+<P>
+At this point,
+<B>se</B>
+is waiting for instructions from you.
+You can instruct
+<B>se</B>
+by using &#147;commands&#148;, which are single letters
+(occasionally accompanied by other
+information, which you will see shortly).
+<!--  -->
+<!--  Append -->
+<!--  -->
+<H2>Entering Text - the Append Command</H2>
+The first thing that you will need is text to edit.
+Working with
+<B>se</B>
+is like working with a blank sheet of paper; you write on the paper,
+alter or add to what you have written, and either file the paper
+away for further use or throw it away.
+In
+<B>se</B>'s
+terminology, the blank sheet of paper you start with is
+called the &#147;buffer&#148;.
+The buffer is empty when you start editing.
+All editing operations take place in the buffer;
+nothing you do can affect any file unless you make an explicit request
+to transfer the contents of the buffer to a file.
+<P>
+So how do you put text into the buffer?
+The &#147;append&#148; command is used to do this:
+<PRE>
+<B>a</B>
+</PRE>
+Note that this command and all other commands given to the editor
+must be in lower-case.
+Upper-case is used for line names, as we shall see later.
+This command appends (adds) text lines to the buffer,
+as they are typed in.
+<P>
+To put text into the buffer, simply type it in,
+terminating each line with a newline:
+<PRE>
+<B>The quick brown fox</B>
+    <B>jumps over</B>
+   <B>the lazy dog.</B>
+<B>.</B>
+</PRE>
+To stop entering text, you must enter a line containing only a
+full stop, immediately followed by a newline, as in the last line above.
+This tells
+<B>se</B>
+that you are finished writing on the buffer,
+and are ready to do some editing.
+<P>
+The buffer now contains:
+<PRE>
+The quick brown fox
+    jumps over
+   the lazy dog.
+</PRE>
+Neither the append command nor the final full stop are included in
+the buffer&nbsp;&#151;&nbsp;just the text you typed in between them.
+<P>
+Since the example above is very small, it fits easily on the screen.
+<B>Se</B>
+is actually capable of editing files of many thousands of lines
+and each line can be hundreds of characters long.
+Clearly, the screen is not big enough to show all of the file at once!
+We will see later how to move around a large file.
+For the moment, try the following experiment:
+start editing again and this time type in more lines of
+text&nbsp;&#151;&nbsp;enough to reach the bottom of the screen.
+What happens when you type in even <U>more</U> text?
+<P>
+In fact,
+<B>se</B>
+will show you as much of the text as it can fit on your screen,
+but still remembers text that has disappeared.
+The commands we will learn about later will tell
+<B>se</B>
+which part of the file you are interested in and therefore
+which part to show on the screen.
+<!--  -->
+<!--  Write -->
+<!--  -->
+<H2>Writing text on a file - the Write command</H2>
+Now that you have some text in the buffer, you need to
+know how to save it.
+The write command &#145;<TT>w</TT>&#146; is used for this purpose.
+It is used like this:
+<PRE>
+<B>w file</B>
+</PRE>
+where &#145;<TT>file</TT>&#146; is the name of the file used to store what you
+just typed in.
+<B>Se</B>
+produces a message in the status line saying &#145;<TT>writing</TT>&#146; when
+it is busy copying the information to the disk.
+(The message may appear and disappear too quickly to be seen
+on fast machines.)
+<!--  This is never the case on an Atari ST :-) -->
+The write command copies the contents of the buffer to the named file,
+destroying whatever was previously in the file.
+The buffer, however, remains intact;
+whatever you typed in is still there.
+To indicate that the transfer of data was successful,
+<B>se</B>
+displays the number of lines written.
+In this example,
+<B>se</B>
+would say:
+<PRE>
+3
+</PRE>
+on the status line.
+It is advisable to write the contents of the buffer out to a file
+periodically, to ensure that you have an up-to-date version in
+case of some terrible catastrophe (like a system crash).
+<!--  ...or an Atari ST on a normal day -->
+<!--  -->
+<!--  Quit -->
+<!--  -->
+<H2>Finishing up - the Quit command</H2>
+Now that you have saved your text in a file, you may wish to
+leave the editor.
+The &#147;quit&#148;
+command &#145;<TT>q</TT>&#146; is provided for this:
+<PRE>
+<B>q</B>
+</PRE>
+The next thing you see should be the prompt from
+the shell.
+If you did not write out the contents of the buffer, the editor
+would respond
+&#145;<TT>Buffer hasn't been saved</TT>&#146; on the status line.
+This is to remind you to write out the buffer, so that the results
+of your editing session are not lost.
+If you intended that the buffer be discarded, just hit return again and
+<B>se</B>
+will throw away the buffer and terminate.
+<BLOCKQUOTE>
+When you receive the prompt from
+the shell,
+the buffer has been thrown away;
+there is absolutely no way to recover it.
+If you wrote the contents of the buffer to a file, then
+this is of no concern; if you did not, it may mean disaster.
+</BLOCKQUOTE>
+As a convenience feature to reduce the risk of losing data,
+<B>se</B>
+provides a &#147;write then quit&#148; command:
+<PRE>
+<B>wq</B>
+</PRE>
+This command will first write your file to disk, then exit from
+<B>se</B>.
+If any errors occur while writing the file,
+<B>se</B>
+will not quit but will display a message on the status line.
+<P>
+If you are not sure whether or not you have written your file,
+<B>se</B>
+provides a simple way of checking.
+Type
+<PRE>
+<B>ok</B>
+</PRE>
+and 
+<B>se</B>
+will reply either &#145;<TT>saved</TT>&#146; or &#145;<TT>not saved</TT>&#146;
+on the status line.
+(This command is actually an
+<B>se</B>
+&#147;option&#148;.)
+<!--  -->
+<!--  Enter -->
+<!--  -->
+<H2>Reading files - the Enter command</H2>
+Of course, most of the time you will not be entering text into the
+buffer for the first time.
+You need a way to fill the buffer with the contents of some file that
+already exists, so that you can modify it.
+This is the purpose of the &#147;enter&#148;
+command &#145;<TT>e</TT>&#146;;
+it enters the contents of a file into the buffer.
+To try out &#147;enter&#148;, you must first get back into the editor:
+<PRE>
+$ <B>se</B>
+</PRE>
+&#147;Enter&#148; is used like this:
+<PRE>
+<B>e file</B>
+</PRE>
+&#145;<TT>File</TT>&#146; is the name of a file to be read into the buffer.
+<P>
+Note that you are not restricted to editing files in the current
+directory;
+you may also edit files
+belonging to other users
+(provided they have given you permission).
+Files which are not in the current directory must be identified by their
+full &#147;pathname&#148;.
+If you are not familiar with the idea of a pathname,
+you should read the manual for your system, or consult a guru.
+For example, to edit a file named
+&#147;document&#148; belonging to user &#147;tom&#148;,
+you would enter the following command:
+<PRE>
+<B>e /usr/tom/document</B>
+</PRE>
+<P>
+After the file's contents are copied into the buffer,
+<B>se</B>
+displays the number of lines it read (on the status line, as usual).
+In our example, the buffer would now contain:
+<PRE>
+The quick brown fox
+    jumps over
+   the lazy dog.
+</PRE>
+If anything at all is present in the buffer,
+the &#145;<TT>e</TT>&#146; command destroys it before reading the named file.
+<P>
+As a matter of convenience,
+<B>se</B>
+remembers the file name specified on the last &#145;<TT>e</TT>&#146; command,
+so you do not have to specify a file name on the &#145;<TT>w</TT>&#146; command.
+The remembered name always appears on the status line,
+usually near the left-hand end.
+With these provisions, a common editing session looks like
+<PRE>
+$ <B>se</B>
+<B>e file</B>
+{editing}
+<B>w</B>
+<B>q</B>
+</PRE>
+The &#147;file&#148;
+command (&#145;<TT>f</TT>&#146;) is available for changing
+the remembered file name.
+To change the name, just type:
+<PRE>
+<B>f new-name</B>   
+</PRE>
+<P>
+You might also want to check that
+<PRE>
+$ <B>se file</B>
+</PRE>
+is exactly the same as
+<PRE>
+$ <B>se</B>
+<B>e file</B>
+</PRE>
+That is,
+<B>se</B>
+performs an &#145;<TT>e</TT>&#146; command for you if you give it a file name
+on the command line.
+<!--  (GEM users should enter the name of the required -->
+<!--  file in the &#147;parameters&#148; box which appears after double-clicking -->
+<!--  SE.TTP). -->
+<!--  GEM users should go out and buy a proper computer :-) -->
+<!--  -->
+<!--  Delete Key -->
+<!--  -->
+<H2>Errors - (editing rejected commands)</H2>
+Occasionally, an error of some kind is encountered.
+Often, these are caused by misspelled file names.
+Another possible cause is that you have specified a
+command which does not exist.
+Whenever an error occurs,
+<B>se</B>
+displays a brief message on the status line.
+It is usually clear what caused the problem,
+but if not, you may need to consult this guide.
+<P>
+In most cases, when an error occurs,
+<B>se</B>
+leaves your command intact on the command line:
+at these times you are being given the opportunity to edit
+your command and try again.
+You should use the backspace key to edit your command
+and correct it.
+When you think you have got it right, move to the right-hand end
+of the command and hit return again.
+<P>
+We will see later on how to use other keys to
+add extra text into the middle of your command.
+<BLOCKQUOTE>
+If you try to quit without saving your buffer,
+you will be given a message saying
+&#145;<TT>Buffer hasn't been saved</TT>&#146;, and the cursor will be left at the
+end of the command line with your &#147;quit&#148; command intact.
+<U>Beware!</U>
+If you press return a second time, 
+<B>se</B>
+will exit and your work will be lost.
+To save your work, erase the &#145;<TT>q</TT>&#146; command
+using the backspace key, and use the &#145;<TT>w</TT>&#146; command.
+</BLOCKQUOTE>
+<P>
+If the file that you ask for in the &#145;<TT>e</TT>&#146; command cannot be
+found, or if you have no permission to read it,
+<B>se</B>
+will display a message
+&#145;<TT>File is not readable</TT>&#146; in the status line.
+In this situation, check the name of the file and directory
+and try again.
+<!--  -->
+<!--  Line Numbers -->
+<!--  -->
+<H2>Viewing text</H2>
+As mentioned above, you are likely to need to
+edit files much bigger than the screen can display all at once.
+<B>Se</B>
+provides several commands to allow the user to see different
+parts of a large file.
+Before we look at commands, however, some terminology is required.
+<P>
+The part of the buffer that is visible on the screen is called
+the &#147;window&#148;, for obvious reasons.
+The window can be moved up and down the file as required, or
+it can be moved left and right to look at very long lines.
+<B>Se</B>
+has one special line called the &#147;current&nbsp;line&#148;.
+The current&nbsp;line is the last line you have edited in any way, and
+<B>se</B>
+always marks this line with a little arrow &#145;<TT>-&gt;</TT>&#146;
+in the left margin.
+(On some computers, the arrow will highlighted on the display.)
+In the margin, you will see the &#147;line&nbsp;labels&#148;.
+These are capital letters that can be used to identify a line.
+<P>
+At this point, some word processor users might be wondering what happened
+to pages and &#147;page&nbsp;breaks&#148;.
+<B>Se</B>
+is not a word processing program and as such does not constrain the
+user to the size of a page, either in height or width.
+Since
+<B>se</B>
+is often used to edit program source code,
+this is an important feature.
+Of course, 
+<B>se</B>
+can be used to prepare text for a document formatter,
+but it is up to the formatter program to worry about page breaks.
+<P>
+The simplest way to move to a line is to name it, that is,
+type its label on the command line, and hit return.
+Be sure to type line labels in capitals!
+When you do this, watch the &#147;current&nbsp;line&#148; arrow jump
+up and down in the margin.
+This works fine for lines that are visible on the screen,
+but cannot be used to move the window.
+<P>
+If you simply press return without typing a command or a line label,
+<B>se</B>
+moves the current line down to the line below it.
+Again, the arrow moves in the margin.
+If the arrow reaches the bottom of the window,
+<B>se</B>
+is forced to move the window because the current line must always
+be visible.
+Watch carefully to see how it does this, and also note that the
+line labels remain &#147;fixed&#148; in the left margin
+(they label lines in the window, not lines in the buffer).
+<P>
+Another method of moving down the file is to use
+the &#147;cursor&nbsp;down&#148; key, control-K.
+<!--  -->
+Similarly, to move up, use the &#147;cursor&nbsp;up&#148; key, control-D.
+Once again,
+<B>se</B>
+will move the window when the current line reaches either the top
+or the bottom.
+<P>
+It is often quicker when moving large distances to move the
+window by more than a single line at a time.
+<B>Se</B>
+provides two commands to do this, &#145;<TT>:</TT>&#146; and &#145;<TT>p</TT>&#146;.   
+They both move the window by a complete screenful, the colon command
+moving it forwards (down) and the &#145;<TT>p</TT>&#146; command moving it backwards
+(up).
+To move down by a screenful, type the command
+<PRE>
+<B>:</B>
+</PRE>
+and to move the window up by a screenful, type
+<PRE>
+<B>p</B>
+</PRE>
+If you look carefully you will see that
+<B>se</B>
+allows an overlap of one line to make it a little
+easier to read over the join.
+As before, it is possible to use single keystrokes to move up and
+down by a screenful.
+The &#147;page&nbsp;down&#148; key, control-S and the &#147;page&nbsp;up&#148; key,
+control-Q should do the same thing as &#145;<TT>:</TT>&#146; and &#145;<TT>p</TT>&#146;,
+respectively.
+<P>
+<!--  (in fact both of these are abbreviated forms of other commands). -->
+However, to move larger distances than one screenful, especially in
+large files, you will find it more convenient to use a different
+method of identifying lines.
+<B>Se</B>
+can label lines either with capital letters, as we have seen,
+or with numbers.
+When it uses numbers, the first line in the file is numbered one,
+the second two, and so on.
+It makes no difference where the window is positioned and you can
+refer to a line by number whether you can see it or not.
+<P>
+So how do we tell
+<B>se</B>
+to use line numbers?
+Simply type:
+<PRE>
+<B>oa</B>
+</PRE>
+and you will see the capital letters disappear and numbers replace them.
+Also you should know that saying
+<PRE>
+<B>oa</B>
+</PRE>
+again will restore the previous way of working.
+Use whichever system is more appropriate to the job in hand;
+you can switch freely between the two.
+<P>
+So, we can now jump straight to any line in the buffer simply
+by typing its number on the command line and pressing return.
+If you type a line number that is too big or too small,
+<B>se</B>
+will display a message &#145;<TT>Line number out of range</TT>&#146; on
+the status line.
+If you type a number which refers to a line that is off the screen,
+<B>se</B>
+will move the window so that the line is visible again.
+<P>
+There are also some special labels:
+Suppose we want to visit the last line in the buffer, but we don't know
+what its number is.
+<B>Se</B>
+provides an abbreviation to specify the last line in the buffer:
+<PRE>
+<B>$</B>
+</PRE>
+The dollar sign can be used just like a number.
+We will see later the usefulness of the &#147;current&nbsp;line&#148;
+symbol, &#145;<TT>.</TT>&#146;
+(read &#147;dot&#148;).
+Another special label is &#145;<TT>#</TT>&#146;; it refers to the top line
+of the window.
+<P>
+If you are using
+<B>se</B>
+with alphabetic line labels,
+it is sometimes useful to know that you can type
+<PRE>
+<B>.=</B>
+</PRE>
+and
+<B>se</B>
+will display the number of the line.
+You can then refer to the line by number, even if numbers are not
+being displayed in the margin.
+<P>
+Finally, a brief mention of how to move the window left and right.
+If you type:
+<PRE>
+<B>olm4</B>
+</PRE>
+<B>se</B>
+will move the window to the right so that the fourth character on
+each line appears at the left margin.
+Typing:
+<PRE>
+<B>olm1</B>
+</PRE>
+restores normality;
+the first character on each line appears at the margin.
+(There is no keystroke to do this.)
+<!--  -->
+<!--  Introduction to Substitute &amp; Delete -->
+<!--  -->
+<H2>Correcting Mistakes In Text</H2>
+You may, by this point, have typed in many lines of text but we have not
+yet introduced any ways to correct typing mistakes&nbsp;&#151;&nbsp;apart
+from the backspace key.
+Since it is too late to use backspace once you have pressed return,
+you probably have several lines that need corrections.
+So, this section will introduce the &#147;substitute&#148; command
+(in its simplest form) so that you can correct your text
+and the &#147;delete&#148; command to remove lines altogether.
+<P>
+First, you must locate your mistake and make it the current line.
+For example, you may have a mistake on line 5 of the buffer,
+so you would get there by typing:
+<PRE>
+<B>5</B>
+</PRE>
+as explained above.
+Let's say you have typed &#147;left&#148; instead of &#147;right&#148;.
+You need to tell
+<B>se</B>
+to find the word &#147;left&#148; and substitute the word &#147;right&#148;;
+the following command will do this:
+<PRE>
+<B>s/left/right/</B>
+</PRE>
+We will see later how to use more complex forms of this command
+to do more complex corrections.
+<P>
+After a little experimentation with &#145;<TT>s</TT>&#146;, you
+may discover that you can eliminate all the text on a line,
+but you cannot delete the line altogether.
+There is a different command, &#145;<TT>d</TT>&#146;, to do this.
+<P>
+Once you have found the line that you want to delete, type
+<PRE>
+<B>d</B>
+</PRE>
+and it will disappear.
+All the lines below it will be moved up to fill the gap.
+Later, we will see ways of deleting many lines with one command.
+<!--  -->
+<!--  Review -->
+<!--  -->
+<H2>The Story So Far</H2>
+This is a good place to look over what we have seen so far
+and mention a few useful hints.
+<P>
+The following commands have been described:
+<PRE>
+<BR>
+Append               a     OK                ok
+Enter                e     Left Margin       olm
+Write                w     Line Numbers      oa
+Quit                 q     Equal             =
+Page Down            :     Page Up           p
+Substitute           s     Delete            d
+<BR>
+</PRE>
+In addition, we have described how to move to any line in the buffer
+by typing its number or by using the symbols &#145;<TT>.</TT>&#146;,
+&#145;<TT>#</TT>&#146; and &#145;<TT>$</TT>&#146;.
+<P>
+You should now know enough about
+<B>se</B>
+to start it up,
+type in text or read it from a file,
+make corrections,
+move around the document,
+write text into a file,
+and quit.
+It is probably best to practice a little at this stage,
+but avoid really long documents just in case!
+<P>
+If you are worried that
+<B>se</B>
+is rather tedious to use, remember that we haven't described
+any of the more powerful commands and techniques yet.
+When we do, you will probably find the way of using
+<B>se</B>
+that suits you, and may even go on to customise it for
+yourself!
+<P>
+It is often useful to be reminded of
+<B>se</B>'s
+commands or keystrokes while actually using it.
+This is quite easy;
+<B>se</B>
+provides a &#147;help&#148; command that displays brief descriptions
+of the facilities available.
+To start with, just type
+<PRE>
+h
+</PRE>
+and you will see the introductory screen.
+The information appears in the upper part of the screen,
+separated from your text by a horizontal line.
+On the status line,
+<B>se</B>
+will say &#145;<TT>Enter o- to restore display</TT>&#146;.
+If you type, as it says,
+<PRE>
+o-
+</PRE>
+the help message will vanish and your text will once again fill
+the screen.
+<P>
+As shown on the introductory screen,
+you can type &#145;<TT>hdir</TT>&#146; to get a directory of help topics.
+Within each topic there is an introduction and another directory.
+If you examine the command directory, you will find that typing
+&#145;<TT>ha</TT>&#146; will produce a help screen about
+the &#147;append&#148;
+command.
+<!--  -->
+<!--  Line Ranges -->
+<!--  -->
+<H2>Multi-line commands</H2>
+So far, we have only seen commands that affect a single line.
+However,
+most commands are capable of affecting more than one line at a time.
+It is this ability to operate on many lines with just one command
+that gives
+<B>se</B>
+its power.
+Imagine the work involved in correcting the spelling in a large
+American document, ready for publishing in England.
+Every time the word &#147;color&#148; is used, it must be changed
+into &#147;colour&#148;.
+In some editors, you would have to search the text manually
+and correct the spelling by re-typing each time the word is found.
+<B>Se</B>
+allows this type of substitution to be done fully automatically
+throughout a document.
+Not only does
+<B>se</B>
+speed up the process, it also eliminates the kind of error where
+one of the corrections is overlooked.
+This is especially important when editing program source code.
+<P>
+One way of specifying a set of lines for some operation
+is to use a &#147;range&#148;.
+A range of lines is a continuous sequence of lines with
+a known starting line and a known finishing line.
+(You will find out later how to perform operations on scattered
+groups of lines).
+A range is used as a prefix to a command and is uniquely specified
+by its starting and ending lines.
+You describe a range by typing the number of the first line in
+the range, followed by a comma and the last line in the range.
+For example
+<PRE>
+<B>1,7s/left/right/</B>
+</PRE>
+makes the substitute command apply to all of the lines one to seven,
+inclusive.
+<P>
+Although the above example uses simple line numbers,
+it is quite usual to employ the special symbols mentioned above.
+To go back to the problem of changing American spelling to English,
+we might say
+<PRE>
+<B>1,$s/color/colour/</B>
+</PRE>
+which would affect <U>all</U> the lines in the buffer.
+(Note that this only makes one substitution per
+line&nbsp;&#151;&nbsp;see the section on substitute.)
+<P>
+A combination of &#145;<TT>.</TT>&#146; and &#145;<TT>,</TT>&#146; can be used in many ways.
+Unlike most commands, the &#145;<TT>w</TT>&#146; command refers to the whole buffer
+by default and needs to be given line numbers in order to refer to
+only a part of the buffer.
+For example,
+<PRE>
+<B>1,.w file</B>          
+</PRE>
+copies from the start of the buffer up to the current
+line into &#145;<TT>file</TT>&#146;, and
+<PRE>
+<B>.,$w file</B>
+</PRE>
+copies from the current line to the end of the buffer into &#145;<TT>file</TT>&#146;.
+If you want <U>just</U> the current line written into the file, try:
+<PRE>
+<B>.w file</B>
+</PRE>
+<!--  -->
+<!--  Delete -->
+<!--  -->
+<H2>Deleting Lines</H2>
+Deletion was mentioned earlier as a way of removing unwanted lines
+from the buffer.
+Usually, it is handy to delete several lines in one go.
+This is where line ranges become really useful.
+For instance, to delete the first 20 lines in a file, type:
+<PRE>
+<B>1,20d</B>
+</PRE>
+The &#145;<TT>d</TT>&#146; command expects line numbers that work in
+the same way as those specified above,
+deleting one line or any range of lines.
+<PRE>
+<B>d</B>
+</PRE>
+deletes only the current line.
+It is the same as &#145;<TT>.d</TT>&#146; or &#145;<TT>.,.d</TT>&#146;.
+<P>
+After a deletion,
+the current line pointer is left pointing to the first line <U>after</U>
+the group of deleted lines,
+unless the last line in the buffer was deleted.
+In this case,
+the current line is the last line <U>before</U> the group of deleted lines.
+<!--  -->
+<!--  Line Number Arithmetic -->
+<!--  -->
+<H2>More Complicated Line Numbers</H2>
+<B>Se</B>
+has several ways to specify lines other than just
+numbers and symbols like &#145;<TT>$</TT>&#146;.
+<!--  Most commands, like &#145;<TT>a</TT>&#146; and &#145;<TT>i</TT>&#146; work on -->
+<!--  the &#147;current&nbsp;line&#148;. -->
+<!--  .Se -->
+<!--  allows you to use the symbol &#145;<TT>.</TT>&#146; (read &#145;<TT>dot</TT>&#146;) -->
+<!--  to represent the current line. -->
+<!--  Thus -->
+<!--  .be -->
+<!--  <B>.a</B> -->
+<!--  .ee -->
+<!--  is the same as -->
+<!--  .be -->
+<!--  <B>.,.a</B> -->
+<!--  .ee -->
+<!--  which is the same as just -->
+<!--  .be -->
+<!--  <B>a</B>  -->
+<!--  .ee -->
+<!--  .pp -->
+&#145;<TT>.</TT>&#146;, for instance, is not particularly useful when used alone.
+It becomes much more important when used
+in &#147;line-number expressions&#148;.
+A line-number expression is used to make
+<B>se</B>
+do arithmetic with line numbers&nbsp;&#151;&nbsp;usually
+addition and subtraction.
+Try this experiment:
+<PRE>
+<B>.-3</B>
+</PRE>
+&#145;<TT>.-3</TT>&#146; means
+&#147;find the line that is three lines before the current line&#148;.
+<PRE>
+<B>.+1</B>        
+</PRE>
+&#145;<TT>.+1</TT>&#146; means
+&#147;find the line that is one line after the current line&#148;.
+<PRE>
+<B>.-2,.-1 w file</B>     
+</PRE>
+This rather complex example means
+&#147;save the lines from two lines before to one line before the current line&#148;.
+It would in fact be easier to move up by two lines,
+either by using the cursor keys or typing &#145;<TT>.-2</TT>&#146;,
+and then issue the command:
+<PRE>
+<B>.,.+1w file</B>
+</PRE>
+<P>
+You can also use &#145;<TT>$</TT>&#146; in line-number expressions:
+<PRE>
+<B>$-1</B>
+</PRE>
+This means
+&#147;find the line that is one line before the last line in the buffer, i.e., the next to the last line&#148;.
+<P>
+Some abbreviations are available to help reduce the amount of typing you
+have to do.
+Typing a newline by itself is equivalent to typing &#145;<TT>.+1</TT>&#146; and
+typing a caret, &#145;<TT>^</TT>&#146;, or a single minus sign, &#145;<TT>-</TT>&#146;,
+followed by a newline is equivalent to typing &#145;<TT>.-1</TT>&#146;.
+<P>
+It might be worthwhile to note here that almost
+all commands expect line numbers of one form or another.
+If none are supplied,
+<B>se</B>
+uses default values.
+Thus,
+<PRE>
+<B>w file</B>
+</PRE>
+is equivalent to
+<PRE>
+<B>1,$w file</B>
+</PRE>
+and
+<PRE>
+<B>a</B>
+</PRE>
+is equivalent to
+<PRE>
+<B>.a</B>
+</PRE>
+(which means, append text <U>after</U> the current line.)
+<!--  -->
+<!--  Regular Expressions -->
+<!--  -->
+<H2>Text Patterns</H2>
+Frequently it is desirable to be able to find a
+particular &#147;pattern&#148; in a piece of text.
+For example,
+suppose that after proofreading a report you have typed in using
+<B>se</B>
+you find a spelling error.
+There must be an easy way to find the misspelled word in the file so it
+can be corrected.
+One way to do this would be to count all the lines
+up to the line containing the error,
+so that you can give the line number of the offending line to
+<B>se</B>.
+Obviously, this way is not very fast or efficient.
+<B>Se</B>
+allows you to &#147;search&#148; for patterns of text
+(like words) by enclosing the pattern in slashes:
+<PRE>
+<B>/jumps/</B>
+</PRE>
+<B>Se</B>
+looks for the pattern you specified, and moves to the first line
+which contains the pattern.
+Note that if we had typed
+<PRE>
+<B>/jumped/</B>
+</PRE>
+<B>se</B>
+would display a message on the status line
+&#145;<TT>No line contains that pattern</TT>&#146;;
+this would inform us that it could not find the pattern we wanted.
+<P>
+<B>Se</B>
+searches <U>forward</U>
+from the current line when it attempts to find the pattern you specified.
+If
+<B>se</B>
+reaches the last line without seeing the pattern,
+it &#147;wraps around&#148; to the
+first line in the file and continues searching until it either finds the
+pattern or gets back to the line where it started (line &#145;<TT>.</TT>&#146;).
+This procedure ensures that you get the &#147;next&#148;
+occurrence of the pattern you were looking for,
+and that you don't miss any occurrences because of
+your current position in the file.
+<P>
+Suppose, however, that you do not wish to find
+the &#147;next&#148; occurrence of a word,
+but the <U>previous</U> one instead.
+Very few text editors provide this capability; however,
+<B>se</B>
+makes it simple.
+Just surround the pattern with
+question-marks:
+<PRE>
+<B>?quick?</B>
+<!--  The quick brown fox -->
+</PRE>
+The backward search (or backscan, as it is sometimes called) wraps
+around the file in a manner similar to the forward search (or scan).
+The search begins at the line before the current line, proceeds until the
+first line of the file is seen, then begins at the last line of the file
+and searches upwards until the current line is encountered.
+Once again, this is to ensure that you do not miss any occurrences of a
+pattern due to your current position in the file.
+<P>
+In pattern searches, and in other commands which we will get to later,
+<B>se</B>
+allows you to leave off the trailing delimiter.
+I.e., instead of
+typing
+<PRE>
+<B>/jumps/</B>
+</PRE>
+you can type
+<PRE>
+<B>/jumps</B>
+</PRE>
+to search forward for the first occurrence of the pattern &#145;<TT>jumps</TT>&#146;.
+Similarly, to search backward, you may type
+<PRE>
+<B>?quick</B>
+</PRE>
+instead of
+<PRE>
+<B>?quick?</B>
+</PRE>
+This feature can save considerable time and frustration when you
+are doing some involved editing, and accidentally leave off the
+trailing delimiter (&#145;<TT>/</TT>&#146; or
+&#145;<TT>?</TT>&#146;).
+The rest of this guide will continue to use
+examples with the trailing delimiter,
+but you do not have to in your actual editing.
+<P>
+<B>Se</B>
+also provides more powerful pattern matching services than
+simply looking for a given string of characters.
+<BLOCKQUOTE>
+This section may seem fairly complicated at first,
+and indeed you do not really need to understand it completely for
+effective use of the editor.
+However, the results you might get from some patterns would be mystifying
+if you were not provided with some explanation,
+so look this over once and move on.
+</BLOCKQUOTE>
+<P>
+The pattern that may appear within slashes
+(or question-marks)
+is called a &#147;regular expression&#148;.
+It contains characters to look for and special characters
+used to perform other operations.
+The following characters
+<PRE>
+^  .  $  [  *  \  \(
+</PRE>
+have special meaning to
+<B>se</B>:
+<UL>
+<LI>&#145;^&#146;
+Beginning of line.
+The
+&#145;<TT>^</TT>&#146;
+character appearing as the first element in a pattern
+matches the beginning of a line.
+It is most frequently used to locate lines with some string at the very
+beginning; for example,
+<PRE>
+/^The/
+</PRE>
+finds the next line that begins with the word &#145;<TT>The</TT>&#146;.
+The
+caret
+sign has its special meaning
+<U>only if it is the first element of the pattern</U>;
+otherwise, it is treated as a literal
+caret
+sign.
+<LI>&#145;.&#146;
+Any character.
+The
+dot &#145;<TT>.</TT>&#146;
+in a regular expression matches <U>any</U>
+character (except a beginning-of-line or a newline).
+It can be used like this:
+<PRE>
+/a.b/
+</PRE>
+to find strings like
+<PRE>
+a+b
+a-b
+a b
+arbitrary
+</PRE>
+However,
+&#145;<TT>.</TT>&#146;
+is most often used with the &#147;closure&#148;
+operator &#145;<TT>*</TT>&#146; (see below).
+<LI>&#145;$ &#146;
+End of line.
+The dollar sign appearing as the last element of a pattern
+matches the newline character at the end of a line.
+Thus,
+<PRE>
+/today$/
+</PRE>
+can be used to find a line with the word &#147;today&#148; at the very end.
+Like the
+caret
+sign, the dollar sign has no special
+meaning in positions other than the end of a pattern.
+<LI>&#145;[]&#146;
+Character classes.
+The square brackets are used to match &#147;classes&#148; of characters.
+For example,
+<PRE>
+/[A-Z]/
+</PRE>
+finds the next line containing a capital letter,
+<PRE>
+/^[abcxyz]/
+</PRE>
+finds the next line beginning with an a, b, c, x, y, or z.
+If the class begins with a
+caret,
+it is negated, for example
+<PRE>
+/[^0-9]/
+</PRE>
+finds the next line which contains a non-digit.
+Character classes are also frequently used
+with the &#147;closure&#148;
+operator &#145;<TT>*</TT>&#146;.
+<LI>&#145;*&#146;
+Closure.
+The asterisk is used to mean
+&#147;any number of repetitions (including zero) of the previous pattern element (one character or a character class in brackets)&#148;.
+Thus,
+<PRE>
+/a.*b/
+</PRE>
+finds lines containing an &#145;<TT>a</TT>&#146; followed by
+any number of characters and a &#145;<TT>b</TT>&#146;.
+For example, the following lines are matched:
+<PRE>
+ab
+abnormal
+Recording Media, by Dr. Joseph P. Gunchy
+</PRE>
+As another example,
+<PRE>
+/^=*$/
+</PRE>
+matches only those lines containing all equal-signs (or nothing at all).
+If you wish to ensure that only non-empty lines are matched, use
+<PRE>
+/^==*$/
+</PRE>
+Always remember that &#145;<TT>*</TT>&#146; (closure) matches <U>zero</U>
+or more repetitions of an element.
+<LI>&#145;\&#146;
+Escape.
+The
+backslash character
+has special meaning to
+<B>se</B>.
+It is the &#147;escape&#148; character,
+which is used to prevent interpretation
+of a special character which follows.
+Suppose you wish to locate a line containing the string
+&#145;<TT>a&nbsp;*&nbsp;b</TT>&#146;.
+You may use the following command:
+<PRE>
+/a \* b/
+</PRE>
+The
+backslash character
+&#147;turns off&#148; the special meaning of the asterisk, so it
+can be used as an ordinary text character.
+You may have occasion to escape any of the
+regular expression metacharacters
+<!--  ifelse(SWT,YES,`(%, ?, $, [, * or {)',`(^, ., $, [, * or \))') -->
+or the
+backslash character
+itself.
+For example, suppose you wished to find the next occurrence of
+the string
+&#145;<TT>1\2</TT>&#146;.
+The command you need is:
+<PRE>
+/1\\2/
+</PRE>
+<LI>&#145;\(&#146;
+Pattern tags.
+As seen in the next section, it is sometimes useful
+to remember what part of a line was actually matched by
+a pattern.
+By default, the string matched by the entire
+pattern is remembered.
+It is also possible to remember
+a string that was matched by only a part of a pattern by
+enclosing that part of the pattern in the special symbols
+&#145;<TT>\(</TT>&#146;
+and
+&#145;<TT>\)</TT>&#146;
+The symbol,
+&#145;<TT>\(</TT>&#146;
+introduces the part to be remembered, and the symbol
+&#145;<TT>\)</TT>&#146;
+finishes it.
+Hence to find the next line that contains a quoted string
+and remember the text between the quotes, we might use
+<PRE>
+/"\(.*\)"/
+</PRE>
+If the line thus located looked like this
+<PRE>
+This is a line containing a "quoted string".
+</PRE>
+then the text remembered as matching the tagged part of the
+pattern would be
+<PRE>
+quoted string
+</PRE>
+</UL>
+<P>
+The last important thing you  need to know about patterns is the use
+of the &#147;default&#148; pattern.
+<B>Se</B>
+remembers the last pattern used in any command, to save you
+the trouble of retyping it.
+To access the remembered pattern, simply use an &#147;empty&#148; string.
+For example, the following sequence of commands could be used to step
+through a file, looking for each occurrence of the string &#145;<TT>ICS</TT>&#146;:
+<PRE>
+<B>/ICS/</B>
+<B>//</B>
+<B>//</B>
+(and so on)
+</PRE>
+<P>
+One last comment before leaving pattern searching.
+The constructs
+<PRE>
+/pattern/
+?pattern?
+</PRE>
+are not separate commands;
+they are components of line number expressions.
+Thus, to find the line after the next line containing &#145;<TT>tape</TT>&#146;,
+you could say
+<PRE>
+/tape/+1
+</PRE>
+Or, to use a range of lines from one before to one after a line with a
+given pattern, you could use
+<PRE>
+/pattern/-1,/pattern/+1
+</PRE>
+<!--  -->
+<!--  Substitute (again) -->
+<!--  -->
+<H2>Making Substitutions - the Substitute command</H2>
+This is one of the most used editor commands.
+<!--  was once, but now obsolete? -->
+As mentioned earlier,
+the &#147;substitute&#148;
+command &#145;<TT>s</TT>&#146;
+is used to make small changes within lines,
+without retyping them completely.
+It is used like this:
+<PRE>
+starting-line,ending-line s [/pattern/new-stuff[/[g]]]
+</PRE>
+For instance, suppose our buffer looks like this:
+<PRE>
+The quick brown fox
+    jumps over
+   the lazy dog.
+</PRE>
+To change &#145;<TT>jumps</TT>&#146; to &#145;<TT>jumped</TT>&#146;,
+<PRE>
+<B>2s/jumps/jumped/</B>
+<!--     jumped over -->
+</PRE>
+<P>
+If the last string specified in the substitute command is empty,
+then the text matching the pattern is deleted:
+<PRE>
+<B>s/jumped//</B>
+     over
+<B>s/^ */    jumps /</B>
+    jumps over
+</PRE>
+Recalling that a missing pattern means
+&#147;use the last pattern specified&#148;,
+try to explain what the following commands do:
+<PRE>
+<B>s///</B>
+jumps over
+<B>s//    /</B>
+    jumps over
+</PRE>
+(Note that, like many other commands, the substitute command assumes you
+want to work on the current line if you do not specify any line numbers.)
+<P>
+What if you want to change &#145;<TT>over</TT>&#146; into &#145;<TT>over and over</TT>&#146;?
+You might use
+<PRE>
+<B>s/over/over and over/</B>
+    jumps over and over
+</PRE>
+to accomplish this.
+There is a shorthand notation for this kind of
+substitution that was alluded to briefly in the last section.
+(Recall the discussion of &#147;tagged&#148; patterns.)
+By default, the part of a line that was matched by the
+whole pattern is remembered.
+This string can then be included in the replacement string by
+typing an ampersand (&#145;<TT>&amp;</TT>&#146;) in the desired position.
+So, instead of the command in the last example,
+<PRE>
+s/over/&amp; and &amp;/
+</PRE>
+could have been used to get the same result.
+If a portion of the pattern had been tagged,
+the text matched by the tagged part in the
+replacement could be reused by typing
+&#145;<TT>\1</TT>&#146;:
+<PRE>
+<B>s/jump\(.*\)/vault\1/</B>
+    vaults over and over
+</PRE>
+It is possible to tag up to nine parts of a pattern using
+&#145;<TT>\(</TT>&#146;
+and
+&#145;<TT>\)</TT>&#146;.
+The text matched by each tagged part may then be used
+in a replacement string by typing
+<PRE>
+\n
+</PRE>
+where n corresponds to the nth part in the pattern.
+What does the following command do?
+<!--  Give the user brain damage? -->
+<!--  Resemble line noise? -->
+<PRE>
+s/\([^ ]*\) \(.*\)/\2 \1/
+</PRE>
+<!--  No, it swaps two space-separated fields around! -->
+<P>
+Some more words on substitute:
+the slashes are known as &#147;delimiters&#148; and
+may be replaced by any other character except a newline, as long as
+the same character is used consistently throughout the command.
+Thus,
+<PRE>
+<B>s#vaults#vaulted#</B>
+    vaulted over and over
+</PRE>
+is legal.
+Also, note that substitute changes only the
+first occurrence of the pattern that it finds;
+if you wish to change all occurrences on a line, you may
+append a &#145;<TT>g</TT>&#146;
+(for &#147;global&#148;) to the command, like this:
+<PRE>
+<B>s/ /*/g</B>
+****vaulted*over*and*over
+</PRE>
+In the replacement part of a substitute command, the character
+&#145;<TT>&amp;</TT>&#146;,
+<U>as the only character in the pattern</U>,
+means &#147;the replacement part of the previous substitute command&#148;.
+(This allows an empty replacement pattern as well.)
+Thus, to step through the buffer, and change selected occurrences of
+one pattern into another, you might do the following:
+<PRE>
+<B>/pat1/</B>
+Line containing pat1.
+<B>s/pat1/stuff1/</B>
+Line containing stuff1.
+<B>//</B>
+Another line with pat1.
+<B>//</B>
+Yet another line with pat1.
+<B>s//&amp;/</B>
+Yet another line with stuff1.
+</PRE>
+<!--  -->
+<!--  Change, Insert, Join -->
+<!--  -->
+<H2>Line Changes, Insertions, and Concatenations</H2>
+Two &#147;abbreviation&#148; commands are available
+to shorten common operations applying to changes of entire lines.
+These are the &#147;change&#148;
+command &#145;<TT>c</TT>&#146; and
+the &#147;insert&#148;
+command &#145;<TT>i</TT>&#146;.
+<P>
+The change command is a combination of delete and append.
+Its format is
+<PRE>
+starting-line,ending-line c
+</PRE>
+This command deletes the given range of lines, and then goes into append
+mode to obtain text to replace them.
+Append mode works exactly the same way as it does for
+the &#145;<TT>a</TT>&#146; command;
+input is terminated by a full stop standing alone on a line.
+Examine the following editing session to see how change might be used:
+<PRE>
+<B>1,$c</B>
+<B>Se is an interactive program used for</B>
+<B>the creation and modification of "text.</B>
+<B>.</B>
+<B>c</B>
+<B>the creation and modification of "text."</B>
+<B>"Text" may be any collection of character</B>
+<B>data.</B>
+<B>.</B>
+</PRE>
+As you can see, the current line is set to the last line entered in
+append mode.
+<P>
+The other abbreviation command is &#145;<TT>i</TT>&#146;.
+&#145;<TT>I</TT>&#146; is very closely related to &#145;<TT>a</TT>&#146;;
+in fact, the following two commands are equivalent:
+<PRE>
+4i
+</PRE>
+is the same as
+<PRE>
+3a
+</PRE>
+In short, &#145;<TT>i</TT>&#146; inserts text <U>before</U> the specified line,
+whereas &#145;<TT>a</TT>&#146; inserts text <U>after</U> the specified line.
+<P>
+The join command &#145;<TT>j</TT>&#146; can be used to
+put two or more lines together into a single line.
+It works like this:
+<PRE>
+starting-line,ending-line j[/string[/]]
+</PRE>
+The defaults for starting-line and ending-line
+are &#145;<TT>^</TT>&#146; and &#145;<TT>.</TT>&#146; respectively, that is,
+&#147;join the line before the current line to the current line&#148;.
+You may specify in &#145;<TT>string</TT>&#146; what is to replace the newline(s)
+which currently separate the lines which are to be joined.
+If you do not specify any string,
+<B>se</B>
+will replace the newline with a single blank.
+An extended example should make this clear:
+<PRE>
+The quick brown fox
+jumps over                   
+the lazy dog.
+<B>1,2j</B>
+The quick brown fox jumps over
+the lazy dog.
+<B>1,2j/ the back of /</B>
+The quick brown fox jumps over the back of the lazy dog.
+</PRE>
+<!--  -->
+<!--  Overlay mode -->
+<!--  -->
+<H2>Overlay Mode - full-screen editing</H2>
+If editing with
+<B>se</B>
+looks rather complicated so far, you may find it easier to use
+&#147;overlay mode&#148;.
+In fact, some screen editors have no command line at all and can
+only be used in this mode.
+<P>
+Some of
+<B>se</B>'s
+control keys have already been mentioned; cursor up and down,
+page up and down.
+In overlay mode, we make use of all the control keys.
+<P>
+To switch
+<B>se</B>
+into overlay mode, type:
+<PRE>
+<B>v</B>
+</PRE>
+The cursor jumps from the command line into the window and lands
+at the far right-hand end of the current line.
+Pressing return will make it jump back again.
+<P>
+So, now that we can place the cursor in the window, how do
+we edit the text?
+This is where we use the control keys to move the cursor around,
+delete characters and insert spaces for new characters.
+<P>
+Perhaps we want to remove the last couple of characters from the
+current line, using overlay mode.
+First, switch
+<B>se</B>
+into overlay mode with the &#145;<TT>v</TT>&#146; command.
+Then, press backspace twice and the cursor moves two places to the left.
+Press return and the line is &#147;chopped off&#148; at the cursor
+position&nbsp;&#151;&nbsp;just what we wanted.
+Whenever you press return,
+<B>se</B>
+first chops off the line, then switches back into command mode.
+<P>
+When in overlay mode, the cursor up and down keys, control-D and
+control-K work as usual; so do page up and down, control-Q and control-S.
+To move the cursor to the start of the line, type
+control-W,
+and to move to the end, type
+control-O.
+<P>
+If you type ordinary characters, they will overwrite any characters
+already there; this is known as &#147;overtype mode&#148;.
+To make characters insert themselves into the text, moving the rest
+of the line along to make room, you must put
+<B>se</B>
+into &#147;insert mode&#148;.
+To do this, type
+control-A;
+the word &#145;<TT>INSERT</TT>&#146; will appear on the status line.
+Pressing control-A again will turn insert mode off.
+If you simply want a single blank space inserted,
+use control-C.
+<P>
+To delete characters you can use
+control-R
+which will erase the character under the cursor and move the rest
+of the line left to fill the gap.
+Control-U is similar but erases the character to the left of the cursor.
+<P>
+Finally, when you have finished using overlay mode, you may find
+it useful to type control-V.
+This switches back to command mode in the same way as return,
+but does not chop the line off first.
+If, however, you have botched the edits and want to restore the current
+line to its original state, control-F will do this.
+<P>
+In fact, nearly all the control characters do something in
+overlay mode and either the &#147;help&#148; command
+or the reference manual give the full list.
+<!--  -->
+<!--  Move -->
+<!--  -->
+<H2>Moving Text</H2>
+Throughout this guide, we have concentrated on what may be called
+&#147;in-place&#148; editing.
+The other type of editing commonly used is often
+called &#147;cut-and-paste&#148; editing.
+The move command &#145;<TT>m</TT>&#146; is provided to facilitate
+this kind of editing, and works like this:
+<PRE>
+starting-line,ending-line m after-this-line
+</PRE>
+If you wanted to move the last fifty lines of a file to a point after the
+third line, the command would be
+<PRE>
+$-49,$m3
+</PRE>
+Any of the line numbers may, of course, be full expressions with search
+strings, arithmetic, etc.
+<P>
+The current line is set to the last line moved.
+<!--  -->
+<!--  Global, eXclude -->
+<!--  -->
+<H2>Global Commands</H2>
+The &#147;global&#148;
+command &#145;<TT>g</TT>&#146; is used to perform an editing
+command on all lines in the buffer that match a certain pattern.
+If you wanted to correct some common spelling error, you would use
+<PRE>
+g/old-stuff/s//new-stuff/g
+</PRE>
+which makes the change in all appropriate lines.
+(Technical note: there is a difference between
+&#145;<TT>1,$s/old-stuff/new-stuff/g</TT>&#146;
+and
+&#145;<TT>g/old-stuff/s//new-stuff/g</TT>&#146;.
+It has to do with the method of pattern-matching, and hence the speed.)                   
+Another example;
+deleting all lines that begin with an asterisk could be done this way:
+<PRE>
+g/^\*/d
+</PRE>
+<P>
+&#145;<TT>G</TT>&#146; has a companion command &#145;<TT>x</TT>&#146;
+(for &#147;eXclude&#148;)
+that performs an operation on all lines in the buffer that do
+<U>not</U> match a given pattern.
+For example, to delete all lines that do <U>not</U> begin
+with an asterisk, use
+<PRE>
+x/^\*/d
+</PRE>
+<P>
+&#145;<TT>G</TT>&#146; and &#145;<TT>x</TT>&#146; are very powerful commands
+that are essential for advanced usage,
+but are usually not necessary for beginners.
+Concentrate on other aspects of
+<B>se</B>
+before you move on to tackle global commands.
+<!--  -->
+<!--  Mark Names -->
+<!--  -->
+<H2>Marking Lines</H2>
+During some types of editing, especially when moving blocks of text,
+it is often necessary to refer to a line in the buffer that is
+far away from the current line.
+For instance, say you want to move
+a subroutine near the beginning of a file to somewhere near the
+end, but you aren't sure that you can specify patterns to properly
+locate the subroutine.
+One way to solve this problem
+is to find the first line of the subroutine, then use the command
+&#145;<TT>.=</TT>&#146;:
+<PRE>
+<B>/subroutine/</B>
+   subroutine think
+<B>.=</B>
+47
+</PRE>
+and write down (or remember) line 47.
+Then find the end of the subroutine and do the same thing:
+<PRE>
+<B>/end/</B>
+   end
+<B>.=</B>
+71
+</PRE>
+Now you move to where you want to place the subroutine and
+enter the command
+<PRE>
+<B>47,71m.</B>
+</PRE>
+which does exactly what you want.
+<P>
+The problem here is that absolute line numbers are easily forgotten,
+easily mistyped, and difficult to find in the first place.
+It is much easier to have
+<B>se</B>
+remember a short &#147;name&#148; along with
+each line, and allow you to reference a line by its name.
+In practice, it seems convenient to restrict names to a single
+character, such as &#145;<TT>b</TT>&#146; or &#145;<TT>e</TT>&#146;
+(for &#147;beginning&#148; or &#147;end&#148;).
+It is not necessary for a given name to be uniquely associated
+with one line;
+many lines may bear the same name.
+In fact, at the beginning of the editing session, all lines are
+marked with the same name: a single space.
+<P>
+To return to our example, using the &#145;<TT>k</TT>&#146; command,
+we can mark the beginning and ending lines of the
+subroutine quite easily:
+<PRE>
+<B>/subroutine/</B>
+   subroutine think
+<B>kb</B>
+<B>/end/</B>
+   end
+<B>ke</B>
+</PRE>
+We have now marked the first line in the subroutine with
+&#145;<TT>b</TT>&#146; and the second line with &#145;<TT>e</TT>&#146;.
+<P>
+To refer to names, we need more line number expression elements:
+&#145;<TT>&gt;</TT>&#146; and &#145;<TT>&lt;</TT>&#146;.
+Both work in line number expressions just like &#145;<TT>$</TT>&#146; or
+&#145;<TT>/pattern/</TT>&#146;.
+The symbol &#145;<TT>&gt;</TT>&#146; followed by a single character mark name means
+&#147;the line number of the first line with this name when you search <U>forward</U>&#148;.
+The symbol &#145;<TT>&lt;</TT>&#146; followed by a single character
+mark name means
+&#147;the line number of the first line with this name when you search <U>backward</U>&#148;.
+(Just remember that &#145;<TT>&lt;</TT>&#146; points backward and &#145;<TT>&gt;</TT>&#146;
+points forward.)
+<P>
+Now in our example, once we locate the new destination of
+the subroutine, we can use &#145;<TT>&lt;b</TT>&#146; and &#145;<TT>&lt;e</TT>&#146; to
+refer to lines 47 and 71, respectively (remember, we marked them).
+The &#147;move&#148; command would then be
+<PRE>
+<B>&lt;b,&lt;em.</B>
+</PRE>
+<P>
+Several other features pertaining to mark names are important.
+First, the &#145;<TT>k</TT>&#146; command <U>does not change</U>
+the current line &#145;<TT>.</TT>&#146;.
+You can say
+<PRE>
+<B>$kx</B>
+</PRE>
+(which marks the last line with &#145;<TT>x</TT>&#146;)
+and &#145;<TT>.</TT>&#146; will not be changed.
+If you want to mark a range of lines, the &#145;<TT>k</TT>&#146; command accepts
+two line numbers.
+For instance,
+<PRE>
+<B>5,10ka</B>
+</PRE>
+marks lines 5 through 10 with &#145;<TT>a</TT>&#146;
+(i.e., gives each of lines 5 through 10 the markname &#145;<TT>a</TT>&#146;).
+<P>
+The &#145;<TT>n</TT>&#146;,
+&#145;<TT>~</TT>&#146;
+and apostrophe commands also deal with marks.
+The &#145;<TT>n</TT>&#146; command by itself erases the mark of the current line.
+If the &#145;<TT>n</TT>&#146; command is followed by a mark name, like
+<PRE>
+<B>4nq</B>
+</PRE>
+it marks the line with that mark name, and erases the marks
+on any other lines with that name.
+In this case, line 4
+is marked with &#145;<TT>q</TT>&#146; and it is guaranteed that no other line
+in the file is marked with &#145;<TT>q</TT>&#146;.
+<P>
+The
+&#145;<TT>~</TT>&#146;
+and apostrophe commands are both global commands
+that deal with mark names.
+The apostrophe command works very much like the &#145;<TT>g</TT>&#146; command:
+the apostrophe is followed by a mark name and another command;
+the command is performed on every line marked with that name.
+For instance,
+<PRE>
+<B>'as/fox/rabbit/</B>
+</PRE>
+changes the first &#145;<TT>fox</TT>&#146; to &#145;<TT>rabbit</TT>&#146; on every line that
+is named &#145;<TT>a</TT>&#146;.
+The
+&#145;<TT>~</TT>&#146;
+command works in the same manner,
+except that it performs the command on those lines that
+<U>are not</U> marked with the specified name.
+For example, to delete all lines not named &#145;<TT>k</TT>&#146;, you could type
+<PRE>
+<B>~kd</B>
+</PRE>
+<!--  -->
+<!--  Undo -->
+<!--  -->
+<H2>Undoing Things - the Undo Command</H2>
+Unfortunately, Murphy's Law guarantees that if you make a mistake,
+it will happen at the worst possible time and cause the greatest
+possible amount of damage.
+<B>Se</B>
+attempts to prevent mistakes by doing such things as working
+with a copy of your file (rather than the file itself) and checking
+commands for their plausibility.
+However, if you type
+<PRE>
+<B>d</B>
+</PRE>
+when you really meant to type
+<PRE>
+<B>a</B>
+</PRE>
+<B>se</B>
+must take its input at face value and do what you say.
+It is at this point that the &#147;undo&#148;
+command &#145;<TT>u</TT>&#146; becomes useful.
+&#147;Undo&#148; allows you to &#147;undelete&#148; the last group of
+lines that was deleted from the buffer.
+In the last example, some inconvenience could be avoided by typing
+<PRE>
+<B>^ud</B>
+</PRE>
+which restores the deleted line.
+(By default &#147;undo&#148; <U>replaces</U>
+the specified line by the last group of lines deleted.
+Specifying the &#145;<TT>d</TT>&#146;, as in &#145;<TT>ud</TT>&#146;, causes the group
+to be inserted <U>after</U> the specified line instead.)
+<P>
+The problem that arises with &#147;undo&#148; is the answer to the
+question: &#147;What was the last group of lines deleted?&#148;
+This answer is very dependent on the implementation of
+<B>se</B>
+and in some cases is subject to change.
+After many commands, the last group of lines deleted is well-defined,
+but unspecified.
+It is not a good idea to use the &#147;undo&#148; command
+after anything other than &#145;<TT>c</TT>&#146;, &#145;<TT>d</TT>&#146;, or &#145;<TT>s</TT>&#146;.
+After a &#145;<TT>c</TT>&#146; or &#145;<TT>d</TT>&#146; command,
+<PRE>
+<B>ud</B>
+</PRE>
+places the last group of deleted lines
+.ul
+after the current line.
+After an &#145;<TT>s</TT>&#146; command (which by the way, deletes the old line,
+replacing it with the changed line),
+<PRE>
+<B>u</B>
+</PRE>
+deletes the current line and replaces it with the last
+line deleted&nbsp;&#151;&nbsp;it exactly undoes the effects of
+the &#145;<TT>s</TT>&#146; command.
+But beware!
+If the &#145;<TT>s</TT>&#146; command covered a range of lines,
+&#145;<TT>u</TT>&#146; can only restore
+the last of the lines in which a substitution was made;
+the others are gone forever.
+<P>
+You should be warned that while &#147;undo&#148; works nicely for repairing
+a single &#145;<TT>c</TT>&#146;, &#145;<TT>d</TT>&#146;, or &#145;<TT>s</TT>&#146; command,
+it cannot repair the
+damage done by one of these commands under the control
+of a global prefix (&#145;<TT>g</TT>&#146;, &#145;<TT>x</TT>&#146;,
+&#145;<TT>~</TT>&#146;
+and apostrophe).
+Since the global prefixes cause their command to be performed many times,
+only the very last command performed by a global prefix can be repaired.
+<!--  -->
+<!--  Line Numbers (again) -->
+<!--  -->
+<H2>More Line Number Syntax</H2>
+So far, the commands that you have seen can be given either no line
+numbers elements (the command tries to make an intelligent
+assumption about the line(s) on which to perform an operation), one line
+number element (the command acts only on that line),
+or two line numbers separated by a comma (the command acts on the given
+range of lines).
+There is one more way to specify line number elements,
+and that is to separate them by a semicolon.
+When line number elements
+are separated by semicolons, each line number element encountered sets
+the &#147;current&nbsp;line&#148; marker before the next
+line number element is evaluated.
+This is especially useful when using patterns as line
+number elements; some examples will illustrate what we mean.
+<P>
+Suppose that you wanted to change all the lines which lie between
+two lines, each containing the string &#145;<TT>fred</TT>&#146;.
+An initial effort might yield the following command line:
+<PRE>
+/fred/,/fred/s/sam/bill         
+</PRE>
+This, however, will only change the first line which contains
+&#145;<TT>fred</TT>&#146; after the current line.
+This is because both patterns
+will start their search after the current line where the command was
+executed, instead of the second one starting where the first pattern
+was found.
+To correct this, we would issue the following:
+<PRE>
+/fred/;/fred/s/sam/bill
+</PRE>
+When the first occurrence of &#145;<TT>fred</TT>&#146; is found,
+the &#147;current&nbsp;line&#148; is set to that line,
+and the second occurrence of &#145;<TT>fred</TT>&#146; will be found
+starting at this new line.
+This will change the lines between two
+succeeding occurrences of &#145;<TT>fred</TT>&#146; from the current line.
+<P>
+As a final example, suppose that we wanted to change the lines
+between the second and third occurrence of &#145;<TT>fred</TT>&#146;
+after the current line; to do this, we would do:
+<PRE>
+/fred/;//;//s/sam/bill
+</PRE>
+The first pattern search would find &#145;<TT>fred</TT>&#146;, the next two null
+strings will cause the previous pattern (&#145;<TT>fred</TT>&#146;) to be searched
+for again, each time resetting the &#147;current&nbsp;line&#148; marker.
+<P>
+For both comma-separated and semicolon-separated line number
+elements, you may specify more than two such elements, as the above
+example shows; only the last two such elements will be used as the
+range for the given command.  In general, using more than two line
+number elements separated by commas is not too useful, because the
+&#147;current&nbsp;line&#148; is not modified for any of the line number
+expression evaluations.  Also, using integer line numbers means that
+multiple expressions (more than two) are not useful, since the
+equivalent behavior can be obtained by specifying only the last two
+line numbers.
+<!--  -->
+<!--  Shell escape -->
+<!--  -->
+<H2>Escaping to the Shell</H2>
+It is often useful to be able to temporarily stop editing
+and return to the operating system.
+Sometimes you want to execute just a single command,
+sometimes several.
+<B>Se</B>
+has a command,
+&#145;<TT>!</TT>&#146;
+that does exactly that.
+<P>
+If you type the following command:
+<PRE>
+!
+</PRE>
+<B>se</B>
+will start up a &#147;subshell&#148;.
+You can type commands just as you would do normally,
+but all the time
+<B>se</B>
+is ready to restart exactly where you left off.
+To tell the subshell that you want to get back into
+<B>se</B>,
+type the command:
+<PRE>
+exit
+</PRE>
+<B>Se</B>
+will the redraw the editing screen and carry on.
+<P>
+If you just want to run a single command, put it
+on the command line after the
+&#145;<TT>!</TT>&#146;.
+For instance,
+<PRE>
+<B>!ls</B>
+</PRE>
+would give you a directory listing.
+After command is finished,
+<B>se</B>
+displays
+&#145;<TT>type return to continue:</TT>&#146;
+to indicate that the shell escape has completed and to
+allow the user time to read the output.
+<P>
+If the first character of the shell command is a &#145;<TT>!</TT>&#146;,
+then the &#145;<TT>!</TT>&#146; is replaced with the text of the
+previous shell command.
+In other words, typing
+<PRE>
+<B>!!</B>
+</PRE>
+will repeat the last shell command.
+Try it, and see how the remembered shell command is put
+back on the 
+<B>se</B>
+command line for re-editing.
+Pressing return again will cause the command to be executed.
+<P>
+An unescaped &#145;<TT>%</TT>&#146; in the shell command will be replaced
+with the current saved file name.
+If the shell command is expanded in this way,
+<B>se</B>
+will echo it first, and then execute it.
+In the following example, the shell escape is used with a &#145;<TT>%</TT>&#146;
+in order to examine the current file:
+<PRE>
+<!--  First the command line... -->
+<B>!ls -l %</B>
+<!--  Now the echo from 'se'... -->
+ls -l file
+<!--  Finally, the output from the command... -->
+-rw-r--r--  1 tom     19463 Jun 17 16:25 file
+<!--  ...and back to 'se' again -->
+type return to continue:
+</PRE>
+Remember when using &#145;<TT>%</TT>&#146; to write the buffer out
+first&nbsp;&#151;&nbsp;you should notice a warning on the
+<B>se</B>
+status line if you forget.
+<!--  -->
+<!--  Summary -->
+<!--  -->
+<H2>Summary</H2>
+This concludes our tour through the world of text editing.
+You should now know enough about
+<B>se</B>
+to use it for most editing tasks.
+If you want to know more, refer to one of the documents mentioned below.
+<P>
+The
+<B>Se</B>
+Applications Note describes some typical cases of using
+<B>se</B>
+to edit files.
+Commonly used commands are explained together with handy hints to
+get more out of
+<B>se</B>.
+Configuring
+<B>se</B>
+is also mentioned.
+<P>
+The
+<B>Se</B>
+Technical Reference lists all available
+<B>se</B>
+commands, options, control characters, line number elements and
+pattern-matching metacharacters.
+It the definitive reference for the more technically minded reader.
+<P>
+The
+<B>Se</B>
+Developer's Guide describes the internals of
+<B>se</B>
+from the point of view of a programmer.
+It details how to port
+<B>se</B>
+onto new hardware,
+how to add commands and how to alter
+<B>se</B>'s
+default configuration.
+<P>
+For those interested in copying
+<B>se</B>,
+the Licence gives all the details.
+<P>
+All the above documents are available either on a computer
+or in printed form.
+The printed form is useful if you wish to run
+<B>se</B>
+on the computer and read the manual alongside;
+the computerised version can, however, be searched more easily
+and is useful as a reference.
+If you need printed copies, see your local guru.
+<!--  We have included for your convenience a short summary -->
+<!--  of all available line editing commands supported by -->
+<!--  .se -->
+<!--  many of which were not discussed in this introduction, but which -->
+<!--  you will undoubtedly find useful. -->
+</BODY></HTML>

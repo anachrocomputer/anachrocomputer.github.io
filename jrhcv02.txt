@@ -1,0 +1,86 @@
+John Roy Honniball
+5 Richmond Avenue, Stoke Gifford, Bristol BS34 8XB
+(0117) 976 3343
+coredump@gifford.co.uk
+Profile
+A graduate in computer science with 12 years' experience of using a variety of computers, operating systems and programming languages.
+Key Skills and Experience
+• Skilled in design, coding and testing of applications and system programs.
+• Experienced UNIX network System Administrator and Webmaster
+• Skilled in design and construction of electronic circuits.
+• Experienced in advising and instructing users on a wide range of computing matters.
+• Ability to work on own initiative to complete complicated design projects.
+Achievements
+2001	Eurologic iSCSI project. Working on software for a RAID disk array suitable for Storage Area Networks (SANs). Code written in ANSI C under the Linux operating system.
+
+1998	Submetrix 2000 Series sonar. Re-implementation of the interferometric sonar using PC-compatible hardware and Windows NT operating system.  Embedded real-time programming in C++ with MFC; hardware interface built around QuickLogic FPGA chips.
+
+1996	Submetrix ISIS 100 sonar.  Improved shallow-water version of ISIS 300; major hardware and software changes to make the system more compact, reliable and cheaper to manufacture. Worked on embedded real-time software running on transputers and Sun UNIX workstation. Transputer software written in ANSI C; Sun software written in K&R C.
+
+1994	INMOS 'Inquest' debugger.  Wrote interrupt-driven device driver running under Microsoft Windows for INMOS transputer motherboard. Code written in 80386 assembler as well as Watcom C.
+
+1992	INMOS S720 X server software.  Ported standard MIT X Window System server to the transputer. Also assisted with hardware design and testing for INMOS B020 graphics frame buffer card.
+
+1990	INMOS S514 B016 device driver.  Wrote Sun UNIX device driver for INMOS VME transputer board. Flash ROM-based transputer code written in occam, Sun kernel programming in C.
+
+1989	TMI Key Results.  Personal Information Manager program for IBM PC running MS-DOS.  Software written in Borland Turbo Pascal.
+
+1988	Sharp 'Projector'.  Built graphics library in 80x86 assembler for monochrome presentation graphics package.  Code ran on IBM PC with CGA and displayed on LCD panel for overhead projection.
+
+1988	Polaroid 'Shoot'.  Wrote film recorder driver in Microsoft C for IBM PC with EGA card. Assisted with design of composite video converter board.
+
+1987	Enhanced Personal Presentation System.  Presentation graphics package for IBM PC with EGA card.  Most of code in Microsoft BASIC, but also worked on 8086 assembler routines for video special effects and for the image capture TSR.
+Employment History
+Eurologic Development (UK) Ltd, Bristol 	Senior Software Engineer		2001
+
+Module design, code review and debugging work on an iSCSI disk array project. Working with Linux, Fibre Channel, SCSI and TCP/IP. 
+
+Submetrix Ltd, Bath		 	Senior Software Design Engineer 		1995-1998
+(now acquired by S.E.A. Ltd)
+
+• Major improvements to performance and reliability of ISIS interferometric sonar software.
+• Completed hardware design and prototype construction for ISIS 100 sonar system.
+• Took part in sea trials and customer demonstrations.
+• Responsible for hardware/software interface on PC-based 2000 Series.
+
+INMOS Ltd, Bristol			Senior Design Engineer			 1989-1994
+(now SGS-Thomson Microelectronics Ltd.)
+
+• Worked on numerous low-level programming projects such as UNIX device drivers.
+• Member of team porting X server to transputer.
+• Participated in the creation of the INMOS Software Engineering Manual.
+• Performed System Administration duties on Sun UNIX machines.
+
+Time Manager International, near Colchester					1989
+
+• Responsible for development work, testing and support of TMI Key Results software.
+• Programming in Turbo Pascal for MS-DOS.
+• Installed hardware and software for Novell network at the TMI offices.
+
+London Software Studio Ltd, London	Senior Programmer 			1986-1989
+
+Performed many varied programming and support duties. Used Microsoft BASIC, 8086 assembler and C on several presentation graphics software packages for the IBM PC and MS-DOS.
+Publications
+Honniball, J.R. and Thomas, P.J. (1999) Medical Image Libraries: The ICoS Project. In Proceedings of SPIE Conference "Multimedia Storage and Archiving Systems", SPIE, Boston, Massachusetts. 
+
+Honniball, J.R. and Thomas, P.J. (1999) Medical Image Databases: The ICoS Project. In the Proceedings of the IEE Colloquium "Multimedia Databases and MPEG-7", IEE, Savoy Place, London. 
+Education and Training
+University Of The West Of England, Bristol					1998-2001
+Research Student in Faculty of Computer Studies and Mathematics
+
+Westfield College, University of London						1981-1985
+BSc. Lower Second Honours in Computer Science with Electronics
+
+Colchester Institute 								1980-1981
+'A' levels in Computer Science and Physics.
+
+Colchester Royal Grammar School 						1973-1980
+Eight 'O' levels. 'A' levels in Electronic Systems and Physics.
+
+Personal Information
+Date of Birth: 	19th December 1961				Status:	Single
+Driving:		Full, clean, current UK driving licence
+Interests
+Photography (former President of UWE Photographic Society)
+Reading, especially on subjects such as architecture, engineering, computer science and psychology.
+Collecting and preserving old computers (member of Computer Conservation Society).
