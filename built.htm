@@ -1,20 +1,25 @@
 <HTML>
 <HEAD> 
 <TITLE>Computers I Have Built</TITLE>
+<LINK HREF="index.htm" REL="home" TITLE="BeeJay's Home Page">
+<LINK HREF="index.htm" REL="top" TITLE="BeeJay's Home Page">
+<LINK HREF="comp.htm" REL="up" TITLE="BeeJay's Computer Page">
+</HEAD>
 <BODY BGCOLOR="#ffffff">
 <H1 ALIGN=CENTER>Computers I Have Built</H1>
 <H2>1979: Acorn System One</H2>
 <P>
 <IMG SRC="acorn1.jpg" WIDTH=200 HEIGHT=114 ALT="Acorn System One" ALIGN=RIGHT>
-A 6502-based machine, built when I was electronics lab technician
-at school.
+A <A HREF="http://www.6502.org">6502</A>-based machine, built when I was
+electronics lab technician at school.
 </P>
 <BR CLEAR=RIGHT>
 <H2>1980: Compukit UK101</H2>
 <P>
-Another 6502-based machine, built from a kit.
-Still working nearly 25 years later.
+Another <A HREF="http://www.6502.org">6502</A>-based machine, built from a kit.
+Still working 27 years later.
 </P>
+<BR CLEAR=RIGHT>
 <H2>1984: Z80 Board</H2>
 <P>
 A college course project, based on the Z80 and built using wire-wrap.
@@ -22,7 +27,11 @@ I never really got enthusiastic about it, largely because of the
 Z80 processor.
 All project work at the time was required to be based on the Z80,
 but I'm a Sixer, so I never liked it.
+It was supposed to be initially just a Z80 with some memory and a
+serial port, then you could add a matrix keyboard and a video
+circuit to make a terminal.
 </P>
+<BR CLEAR=RIGHT>
 <H2>1992: 386SX-25 PC</H2>
 <P>
 Oh how dull, a 386 PC clone.
@@ -30,33 +39,122 @@ I put a motherboard in a box; how can that count as building a
 computer?
 Anyway, it's junked now, having never run a single byte of
 true 32-bit code in its life.
+I still have the motherboard, in the loft, and an AT-style mini tower case
+that I
+<A HREF="casemod.htm">painted black</A>.
 </P>
+<BR CLEAR=RIGHT>
 <H2>1994: Transputer Board</H2>
 <P>
 <IMG SRC="m212f.jpg" WIDTH=200 HEIGHT=123 ALT="M212 board front" ALIGN=RIGHT>
 <IMG SRC="m212r.jpg" WIDTH=200 HEIGHT=122 ALT="M212 board rear" ALIGN=RIGHT>
 I've always liked the M212, it's my favourite transputer.
-So, I used an M212 to build a QIC-02 tape drive interface.
+So, I used an M212 to build a
+<ACRONYM TITLE="Quarter-Inch Committee">QIC</ACRONYM>-02
+tape drive interface.
+The M212 was a transputer with a built-in MFM disk drive controller.
+But it had a mode switch that could change the disk controller into simply
+a pair of parallel ports, right on the CPU chip.
+I used it in that parallel port mode with one port used as the QIC-02
+data bus and the other for all the handshaking and control signals.
+I wrote an occam program to drive it all, which booted over a transputer
+link (from an Atari ST) and ran in the M212's internal 2k memory.
+That 2k included a 512-byte tape block buffer!
 </P>
+<BR CLEAR=RIGHT>
 <H2>1997: Transputer Serial Interface</H2>
 <P>
+<IMG SRC="t225.jpg" WIDTH=200 HEIGHT=120 ALT="T225 Serial TRAM" ALIGN=RIGHT>
 For Submetrix, I put together a design for a T225-based four-port
 serial
 <ACRONYM TITLE="TRAnsputer Module">TRAM</ACRONYM>.
 We used them for a while in the sonar systems as interfaces to
 the <ACRONYM TITLE="Global Positioning System">GPS</ACRONYM>
 navigation receiver and the motion reference unit.
+I chose a Philips four-channel
+<ACRONYM TITLE="Universal Asynchronous Receiver/Transmitter">UART</ACRONYM>
+chip connected to the T225's external bus, along with some
+<ACRONYM TITLE="Static Random-Access Memory">SRAM</ACRONYM>.
+The driver software booted the transputer via a link, and then sent the
+serial data in and out via the same link.
 </P>
+<BR CLEAR=RIGHT>
 <H2>2002: PIC-based Prototype</H2>
 <P>
 For <A HREF="http://www.mobilebristol.com">Mobile Bristol</A>,
 I worked on some prototype PIC 16F876 designs.
 They were built as plug-together wearable computers as part of the
 research project.
+The master PIC was connected to the host (an HP iPaq) via a serial port,
+and slave CPUs were attached to it via an I2C bus.
+Having done that, I've decided that the PIC must be an "Eight" processor,
+because I didn't like it.
 </P>
+<BR CLEAR=RIGHT>
+<H2>2005: Atmel AVR Prototypes</H2>
+<P>
+In my new job, I was asked to build a small embedded system around a
+microcontroller chip.
+After using the PIC previously, I decided to use an Atmel AVR chip
+this time.
+The little circuit went together pretty well, and connected up
+nicely to a PC's serial port.
+I have loaded it with code written in assembler as well as code
+compiled from C (with the
+<A HREF="http://winavr.sourceforge.net/">WinAVR</A> package, a version of GCC).
+I also built an AVR-based kit from <A HREF="http://www.edtp.com">EDTP</A>
+which combines an ATmega16 microcontroller with an ethernet chip.
+</P>
+<BR CLEAR=RIGHT>
+<H2>2005: Atmel AVR Robot Controller</H2>
+<P>
+<IMG SRC="atmega8.jpg" WIDTH=200 HEIGHT=133 ALT="ATmega8 with LED display" ALIGN=RIGHT>
+Just for fun, I bought a ready-made Atmel AVR board that was designed
+for use as a robot controller.
+It has an ATmega8 chip, plus a clock crystal, reset button and
+programming connector.
+So far, it's just been plugged into a solderless breadboard, but I've
+managed to get it doing some whacky things (entirely in assembler).
+I've connected an
+<ACRONYM TITLE="Hewlett-Packard">HP</ACRONYM>
+four-digit alphanumeric display (HPDL-1414),
+a <A HREF="gpad.htm">Super Nintendo joypad</A>,
+a radio-control servo, a DC motor and an
+<ACRONYM TITLE="Liquid Crystal Display">LCD</ACRONYM> module.
+I think the next things to add will be an analog voltage-divider
+for push-button control and an
+<ACRONYM TITLE="Multi Media Card">MMC</ACRONYM> interface.
+Well, after all that, I think the AVR chip is definately a "Six".
+</P>
+<BR CLEAR=RIGHT>
+<H2>2006: Atmel AVR Prototyping Board</H2>
+<P>
+<IMG SRC="atmega8b.jpg" WIDTH=150 HEIGHT=225 ALT="ATmega8 on perfboard" ALIGN=RIGHT>
+<IMG SRC="atmega8c.jpg" WIDTH=150 HEIGHT=225 ALT="ATmega8 with LEDs" ALIGN=RIGHT>
+Another fun project, again using an Atmel AVR microcontroller chip.
+This board is loosely based on the
+<A HREF="http://www.arduino.cc">Arduino</A>.
+I've arranged the board so that I can plug in small daughterboards
+with LEDs, switches, motor drivers, and so on.
+The connectors also supply power (12, 5, 3.3 and -12 volts).
+Future plans are for a dual
+<ACRONYM TITLE="Digital to Analog Convertor">DAC</ACRONYM>
+board and an LCD board.
+</P>
+<BR CLEAR=RIGHT>
+<H2>2007?: Another Atmel AVR Prototyping Board</H2>
+<P>
+When I got the parts for the ATmega8 board, I also got an ATmega32,
+which is a rather more powerful AVR chip.
+It has four 8-bit I/O ports, and it's in a 40-pin DIL package.
+The plan is to build another prototyping board with the ATmega32.
+Watch this space...
+</P>
+<BR CLEAR=RIGHT>
 <H2>The Ones That Got Away</H2>
 <P>
-I've always wanted to design and build a 6809-based machine.
+I've always wanted to design and build a
+<A HREF="about6809.htm">6809</A>-based machine.
 I now have a fair number of 6809 chips (2MHz bus versions) as
 well as the support chips.  Maybe this one'll get built after all...
 </P>
@@ -68,5 +166,17 @@ I have a career in the computer industry.
 I still have the chip, though, and modern CAD might just
 make a 68020 design feasible.
 </P>
+<HR>
+<DIV ALIGN=CENTER>
+<P>Return to <A HREF="index.htm">John Honniball's home page</A></P>
+<FONT SIZE="-1">
+<NOBR>
+Copyright &copy; 2007
+by <A HREF="eee.htm">John Honniball</A>.<WBR>
+All rights reserved.
+</NOBR>
+</FONT>
+</DIV>
+<HR>
 </BODY>
 </HTML>

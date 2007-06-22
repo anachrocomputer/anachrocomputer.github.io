@@ -1,0 +1,198 @@
+<HTML>
+<HEAD> 
+<TITLE>Building the Six Adaptor</TITLE>
+<LINK HREF="index.htm" REL="home" TITLE="BeeJay's Home Page">
+<LINK HREF="index.htm" REL="top" TITLE="BeeJay's Home Page">
+<LINK HREF="comp.htm" REL="up" TITLE="BeeJay's Computer Page">
+<LINK HREF="eee.htm" REL="made" TITLE="BeeJay's Contact Page">
+<META NAME="DC.title" CONTENT="Building the Six Adaptor">
+<META NAME="DC.creator" CONTENT="John Honniball">
+<META NAME="DC.language" CONTENT="en-GB">
+<META NAME="geo.placename" CONTENT="Stoke Gifford, South Gloucestershire, United Kingdom">
+<META NAME="geo.region" CONTENT="GB-SGC">
+<META NAME="geo.position" CONTENT="51.521483;-2.542500">
+<META NAME="ICBM" CONTENT="51.521483, -2.542500">
+<META NAME="keywords" CONTENT="6502, 6809, software, assembler, UK101, Compukit">
+<META NAME="author" CONTENT="John Honniball">
+<META NAME="description" CONTENT="How to build an adaptor board to put a 6809 CPU in a 6502 computer.">
+</HEAD>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<FONT FACE="Arial,Helvetica,sans-serif">
+<H1 ALIGN=CENTER>Building the Six Adaptor</H1>
+</FONT>
+<CENTER>
+<A HREF="sixlog.htm">Read the software progress log</A>
+<P>
+<A HREF="sixadapt1.jpg"><IMG SRC="sixadapt2.jpg" WIDTH=100 HEIGHT=121></A><BR>
+Click image for larger version
+</CENTER>
+<H2>The 6809</H2>
+As I've mentioned
+<A HREF="built.htm">elsewhere</A>,
+I've always wanted to build a
+<A HREF="about6809.htm">6809</A> machine.
+After all, I'm a
+Sixer,
+and the 6809 is the ultimate
+<A HREF="http://www.motorola.com">Motorola</A> 8-bit CPU.
+I had a plan to wire-wrap one way back in 1984, but never did it.
+However, I did buy a 68B09 CPU chip, capable of clocking at 8MHz.
+</P>
+<P>
+Much more recently, I discovered that several companies offer
+small-scale
+<ACRONYM TITLE="Printed Circuit Board">PCB</ACRONYM>
+production services on-line, directly from
+<ACRONYM TITLE="Computer Aided Design">CAD</ACRONYM> files.
+You send them a CAD file, they send you back a PCB (for a reasonble
+fee).
+Good electronic and PCB CAD programs are available for Windows,
+Linux and MacOS.
+With a PCB, I could add much more interesting I/O devices without
+making the construction too daunting.
+</P>
+<P>
+With the arrival of
+<A HREF="http://www.ebay.co.uk">eBay</A>,
+unusual and obsolete chips are once again available, at least
+in small quantities.
+I was able to find a few more 68B09s (made by
+<A HREF="http://www.st.com">ST Microelectronics</A>) and some
+6551 serial port chips (made by
+<A HREF="http://www.rockwell.com/">Rockwell</A>, whose chip division is now called
+<A HREF="http://www.conexant.com/">Conexant</A>).
+</P>
+<H2>First take a 6502 Machine</H2>
+<P>
+But another short-cut occurred to me: convert an existing 6502 machine to
+a 6809 CPU.
+I happened to have a non-working
+<A HREF="uk101.htm">UK101</A> which seemed like a good choice.
+I'd been given the machine a few years ago by a work colleague who had
+built it from a kit, but it now had a dead mains transformer.
+So, first of all, I had to fix the power supply; the easiest option
+was to replace it with a modern switch-mode version.
+</P>
+<P>
+I fixed up a few other parts of the UK101, like the video output
+cable.
+That had snapped off, so I soldered in a new one so that I could avoid
+the rather naff <ACRONYM TITLE="Radio Frequency">RF</ACRONYM> modulator.
+I also took each of the
+<ACRONYM TITLE="Erasible Programmable Read-Only Memory">EPROM</ACRONYM>
+chips out of the UK101 and saved its contents into a file, via
+my trusty old
+<A HREF="inst.htm#PPZ">Stag PPZ</A>
+EPROM programmer.
+I didn't want to make any irreversible changes to the UK101, and a
+backup of the EPROMs seemed like a good idea.
+The UK101 worked fine as a 1MHz 6502 machine once the power supply was
+sorted out.
+</P>
+<H2>The Cunning Plan</H2>
+<P>
+If you place a 6502 pinout and a 6809 pinout side-by-side, you'll notice
+that they have more than a few similarities.
+</P>
+<H2>Software Always Lets You Down</H2>
+<P>
+So now I had a 6809 processor, but the UK101 still had 6502 EPROMs.
+Time to get out the 6809 assembler and write a little test program
+to just display "Hello, World" or something, and then get it into
+a 2716 EPROM.
+Should be easy, right?
+Well, first of all, the 6809 assembler generates a hex file in
+<A HREF="http://www.cs.net/lucid/intel.htm">Intel hex</A> format.
+I'd got the EPROM programmer set to accept
+<A HREF="mosptp.htm">MOS Technology</A> format,
+which is what a 6502 assembler would generate.
+Proper 6809 assemblers would generate
+<A HREF="http://www.amelek.gda.pl/avr/uisp/srecord.htm">Motorola S-Records</A>,
+but no, this one's giving me Intel format.
+OK, reconfigure the EPROM programmer.
+</P>
+<P>
+But the programmer still won't accept the hex file.
+It gives me an error message about "not a hex character".
+A quick glance at the Intel format hex file revealed that the
+assembler was generating all the hex digits A-F in lower case.
+The Stag PPZ didn't like that, and wanted upper case.
+A quick pass through the traditional Unix 'tr' program fixed
+that one (for now; maybe fix the assembler one day).
+</P>
+<P>
+To actually send the file to the EPROM programmer, via a serial cable,
+I'd been using the Linux terminal program
+'<A HREF="http://alioth.debian.org/projects/minicom/">minicom</A>'.
+This is an interactive program that does various things like
+setting up a modem and transferring files.
+I was getting a bit fed up with setting the line speed to 9600 baud
+and turning off hardware handshake each time I sent a new hex
+file, so I thought I'd write a little Bash shell script to configure
+the serial line and send the file automatically.
+Setting the serial line is done with 'stty' and that worked OK, but
+the PPZ was now ignoring my hex file, when it worked fine via
+'minicom'.
+The trouble was that Linux, like Unix, stores text files with a
+single character (line feed,
+<A HREF="http://www.asciitable.com/">ASCII</A>
+value 10) as end-of-line.
+The programmer was expecting a carriage return at the end of
+each line (ASCII value 13).
+So, it's back to 'tr' again to fix that one.
+</P>
+<H2>Hardware Lets You Down, Too</H2>
+One difference between the 6502 and the 6809 is the way they use the
+clock signal.
+A 6502 will accept a clock input and generate two non-overlapping
+clock outputs, Phase 1 and Phase 2.
+Phase 2 is equivalent to the 6800 and 6809's 'E' signal, but the 6809
+generates 'E' by dividing the master clock by four.
+The 6502 doesn't divide the clock frequency, so Phase 2 is the same
+frequency as the input clock.
+Which means, to get a 1MHz 'E' signal, the same as the original 6502
+Phase 2, I'd need to give the 6809 a 4MHz master clock.
+</P>
+<P>
+Easy!
+Just connect the 6809 clock input to a pin on the UK101's clock
+divider chip.
+Pick a 4MHz output and we're done, right?
+Not exactly.
+The particular UK101 I'm using has a defective chip in that part
+of the circuit (it's a 7493, IC29) and the 4MHz output isn't
+working.
+I didn't know that at first, of course.
+Fortunately, I have a big pile of test gear right next to the UK101
+and the
+<A HREF="scope.htm#1980B">'scope</A>
+soon sorted out the trouble.
+I'd fitted a 68B09 chip, which can accept an 8MHz master clock and
+produce a 2MHz 'E' signal, so I just used the UK101's 8MHz clock
+directly.
+</P>
+<H2>Success!</H2>
+<P>
+It worked!
+I got my "Hello, World" on the UK101's VDU as soon as the clock was
+sorted out.
+I sat there for a while, pressing reset on the UK101, and seeing the
+message appear on the VDU.
+OK, so I'm easily amused.
+</P>
+<HR>
+<CENTER>
+<P>Return to the <A HREF="comp.htm">Computers</A> page</P>
+<P>Return to <A HREF="index.htm">BeeJay's home page</A></P>
+<FONT SIZE="-1">
+<NOBR>
+Copyright &copy; 2004
+by <A HREF="eee.htm">BeeJay</A>.<WBR>
+All rights reserved.
+</NOBR>
+</FONT>
+</CENTER>
+<HR>
+</BODY>
+</HTML>

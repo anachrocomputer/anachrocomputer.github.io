@@ -1,0 +1,71 @@
+<HTML>
+<HEAD> 
+<TITLE>USB Power Control</TITLE>
+<LINK HREF="index.htm" REL="home" TITLE="John Honniball's Home Page">
+<LINK HREF="index.htm" REL="top" TITLE="John Honniball's Home Page">
+<LINK HREF="comp.htm" REL="up" TITLE="John Honniball's Computer Page">
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<FONT FACE="Arial,Helvetica,sans-serif">
+<H1 ALIGN=CENTER>USB Power Control</H1>
+</FONT>
+<DIV ALIGN=CENTER>
+<A HREF="usbledb.jpg"><IMG SRC="usbled.jpg" WIDTH=150 HEIGHT=87 ALT="USB LED"></A>
+<BR>
+<B>USB LED</B>
+<BR>
+John Honniball, 2006, lead and tin on copper with found components, 31mm&nbsp;x&nbsp;12mm
+</DIV>
+<HR>
+So where does that get me?
+Well, I now know that most
+<ACRONYM TITLE="Universal Serial Bus">USB</ACRONYM>
+ports are powered from standby
+power, which means that they stay powered up even when the PC
+is switched off&mdash;so that the PC can be powered up by
+the keyboard, or by a mouse click.
+Which means that my simple approach to USB-controlled power
+isn't going to work, because it will simply be switched on
+all the time.
+A proper solution would require a microcontroller in the
+USB device, to interact with the USB controller and sense
+when the PC is switched from standby to fully on.
+</P>
+<P>
+But I have a simple solution: plug the switch into an internal
+USB hub, which does not supply standby power.
+</P>
+<HR>
+Now for the mains (240V AC, 50Hz, 13A) switching part of the design.
+Introducing an inexpensive timer switch:
+<BR>
+<IMG SRC="timesw1.jpg" WIDTH=100 HEIGHT=200 ALT="Time switch">
+<BR>
+So, what's inside the mains timer switch?
+It turns out to be very easily modifiable, with two internal
+<ACRONYM TITLE="Printed Circuit Boards">PCBs</ACRONYM>,
+one for the clock/timer chip, display and buttons, and the
+other for the power switching.
+There's a little three-wire ribbon cable between them,
+with two wires to supply power to the clock/timer,
+and one to signal to the mains board to switch on the relay.
+Both boards are connected directly to the live mains, and
+are therefore not safe to connect to a USB port.
+To isolate the USB port from the live mains, I use an
+optocoupler that I desoldered from a scrap switch-mode
+power supply (SMPSU).
+<HR>
+<CENTER>
+<P>Return to the <A HREF="comp.htm">Computers</A> page</P>
+<P>Return to <A HREF="index.htm">John Honniball's home page</A></P>
+<FONT SIZE="-1">
+<NOBR>
+Copyright &copy; 2006
+by <A HREF="eee.htm">John Honniball</A>.<WBR>
+All rights reserved.
+</NOBR>
+</FONT>
+</CENTER>
+<HR>
+</BODY>
+</HTML>

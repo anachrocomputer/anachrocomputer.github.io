@@ -1,0 +1,443 @@
+<HTML>
+<HEAD> 
+<TITLE>Linux on the Beige G3</TITLE>
+<META NAME="keywords" CONTENT="Linux, Ubuntu, Apple, Macintosh, Mac, G3, Beige G3">
+<META NAME="author" CONTENT="John Honniball">
+<META NAME="description" CONTENT="How to install Ubuntu Linux on a Beige G3 Macintosh.">
+<LINK HREF="index.htm" REL="home" TITLE="BeeJay's Home Page">
+<LINK HREF="index.htm" REL="top" TITLE="BeeJay's Home Page">
+<LINK HREF="comp.htm" REL="up" TITLE="BeeJay's Computer Page">
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1 ALIGN=CENTER>Installing Ubuntu Linux on the Beige G3 Mac</H1>
+<H2>About the machine</H2>
+<P>
+<IMG SRC="beigeg3.jpg" WIDTH=200 HEIGHT=285 ALT="Beige G3 Mac" ALIGN=RIGHT>
+The Beige G3 Mac is a desktop computer with a 300MHz PowerPC processor.
+It was the last of the so-called "Old World" Macs,
+designed to run older MacOS versions but not MacOS&nbsp;X.
+It was available in either a flat desktop case or a mini-tower case,
+both of which were in beige plastic, hence the name.
+The <A HREF="http://www.lowendmac.com">LowEndMac</A> write-up for
+it is <A HREF="http://www.lowendmac.com/ppc/g3b.shtml">here</A>.
+Later G3 Macs were capable of running MacOS&nbsp;X and became
+known as "New World" Macs.
+They also had brightly coloured plastic cases.
+</P>
+<P>
+PowerPC Mac systems use Open Firmware, a FORTH-based command line
+system for loading and booting an operating system.
+However, older Mac implementations of Open Firmware are
+notoriously buggy and limited in functionality.
+</P>
+<P>
+The disks in the Beige G3 can be either
+<ACRONYM TITLE="Integrated Drive Electronics">IDE</ACRONYM> or
+<ACRONYM TITLE="Small Computer System Interface">SCSI</ACRONYM>.
+My machine arrived without a disk, so I had to install a new
+one and ask a friend to help me reinstall MacOS 9.1 on it.
+This went OK, but of course the real challenge would be to
+get a Unix system installed &mdash; either
+<A HREF="http://www.linux.org">Linux</A> or
+<A HREF="http://www.netbsd.org">NetBSD</A>.
+To begin with, I chose a Linux distribution that supported
+the PowerPC Mac: <A HREF="http://www.ubuntulinux.org">Ubuntu</A>.
+I happened to already have the Ubuntu 5.04 "Hoary Hedgehog" CD set,
+from a local Linux User Group meeting.
+</P>
+<H2>Installing Linux</H2>
+<P>
+In general, one can install Linux from floppy disk, CD-ROM, or via
+a network.
+Ubuntu Linux comes on a CD-ROM, and the Mac has a functioning
+CD-ROM drive on the IDE bus.
+But, Old World Macs cannot boot from the Ubuntu CD, so I had
+to work out a way around that limitation.
+Fortunately, the newly installed MacOS could happily read the
+Ubuntu CD, even if it could not be booted.
+<!-- http://translate.google.com/translate?u=http%3A%2F%2Fwww.linux-france.org%2Fmacintosh%2Fubuntu504_G3.html&langpair=fr%7Cen&hl=en&ie=UTF-8&oe=UTF-8&prev=%2Flanguage_tools -->
+<!-- http://www.linux-france.org/macintosh/ubuntu504_G3.html -->
+</P>
+<P>
+I read about the methods that NetBSD uses to boot on PowerPC
+Mac hardware, directly from the disk using Open Firmware.
+After a while, I realised that I didn't need to do any complex
+messing about with Open Firmware, because I had a functioning
+MacOS 9.1 system, and there's a handy program called BootX.
+BootX is a MacOS program that can be run either as an application
+or as an <EM>extension</EM>, that is, as an add-on to the MacOS
+that loads into memory at boot-up time.
+BootX works by loading a Linux kernel and RAMdisk just as if they
+had been loaded on a New World Mac.
+The kernel file and the RAMdisk file must be located in a folder
+on the MacOS disk.
+There's a GUI with a few controls that we can use to specify which
+kernel image and which RAMdisk to boot, as well as to supply Linux
+kernel command-line options.
+</P>
+<P>
+I had a number of resources available, including other Linux
+machines and spare hard disks.
+So, I chose to install a second disk to put Linux on,
+which would hopefully allow me to make the machine dual-boot.
+I also connected up the ethernet, although I didn't
+attempt to boot the Mac from the network.
+<H2>Getting Ubuntu onto the G3</H2>
+<P>
+First, I grabbed a copy of BootX from
+<A HREF="http://penguinppc.org/historical/benh/">here</A>
+(scroll right down to the bottom).
+But that put it on a Windows PC, so I transferred it to a
+handy Linux machine (on my local network) with FTP,
+then to the Mac with FTP.
+For this second step, I used the FTP
+capability of the Internet Explorer browser.
+</P>
+<P>
+A quick perusal of the Ubuntu installation CD revealed both
+a Linux kernel and a RAMdisk file.
+I copied both of those onto the MacOS disk, in the System
+Folder, in a sub-folder called Linux Kernels (BootX needs
+them to be in that folder).
+The kernel was called <TT>vmlinux</TT> and the RAMdisk
+was called <TT>initrd.img</TT>.
+I ran BootX as an application and selected the kernel
+that I'd just copied and then clicked on the "Options..."
+button to select the RAMdisk file.
+Pressing the "Linux" button on the main BootX window gave
+me a text-mode display with the familiar Linux boot-up
+sequence.
+Success!
+Or so I thought.
+</P>
+<P>
+The Ubuntu installer worked normally and I was able to
+partition and format a spare drive (SCSI in my case),
+set up a Linux file system and install all the software
+from the CD.
+The only step that didn't work normally was the installation
+of the Linux boot code.
+As usual with Linux installations, the install CD rebooted the
+machine at the end of its sequence of operations.
+This should have rebooted into the newly-installed Linux system,
+but couldn't because boot code hadn't been installed.
+No problem, I thought, just tell BootX to boot up the same
+kernel as before, but this time leave out the initial RAMdisk
+and specify the SCSI hard disk as the Linux root filesystem
+(<TT>/dev/sda2</TT> in my case).
+</P>
+<P>
+Didn't work.
+The kernel booted, but could not mount the hard disk as the
+root filesystem, which caused a kernel panic.
+Now, at this point I wondered what could be wrong with the
+installation, but after a bit of web searching, I found that
+Ubuntu uses a 2.6 kernel, and that requires a RAMdisk at
+all times (just for startup).
+But the RAMdisk I had on the MacOS disk was an installation
+disk, which would start up the installer and so on.
+I needed the actual kernel and RAMdisk files that had been
+put on the Linux disk by the Ubuntu installer.
+So, how to get those files off the Linux filesystem and
+onto the MacOS filesystem?
+</P>
+<P>
+FTP again.
+I re-ran the Ubuntu installer until I had the network
+configuration set up, but I stopped before the step
+where the disk is partitioned and formatted.
+I dropped out of the installer into a shell (this is
+one of the options provided by the installer's menu).
+Now, I had a shell running on the Mac Linux system
+with just a tiny RAMdisk and almost no utilities
+&mdash; certainly no FTP program.
+I made a mount point and mounted the already-installed
+Linux disk:
+<PRE>
+mkdir /mnt
+mount /dev/sda2 /mnt
+</PRE>
+All the usual files and directories of Linux were there,
+including of course, the FTP program (<TT>netkit-ftp</TT>).
+But it wouldn't run because it needed all sorts of shared
+libraries that weren't in <TT>/lib</TT> on the tiny RAMdisk.
+Time for some subterfuge.
+<PRE>
+cd /mnt
+chroot .
+</PRE>
+By running <TT>chroot</TT>, I had a new sub-shell running with
+its root directory set to the old <TT>/mnt</TT>.
+Now, all the shared libararies were in (apparantly) the right
+place, and the FTP program would run:
+<PRE>
+netkit-ftp 192.168.1.99
+</PRE>
+The two files I wanted were in <TT>/boot</TT>, so I FTPed
+them onto that handy Linux machine again.
+They were <TT>vmlinux-2.6.10-5-powerpc</TT> and
+<TT>initrd.img-2.6.10-5-powerpc</TT>.
+Be sure to transfer them in binary mode!
+Then, I dropped out of the <TT>chroot</TT>ed sub-shell with
+control-D and unmounted the SCSI disk:
+<PRE>
+^D
+cd /
+umount /mnt
+</PRE>
+Now, back to MacOS by rebooting the Mac and selecting the other
+option in BootX.
+I used Internet Explorer again to FTP the two files back onto
+the Mac, this time onto the MacOS disk.
+I re-set the options in BootX to select the two new files
+and added a Linux kernel command-line argument to tell it
+where to mount the root file system:
+<PRE>
+root=/dev/sda2
+</PRE>
+Once again, BootX booted the Linux kernel and RAMdisk,
+but this time we were in the normal running kernel with
+the normal start-up RAMdisk.
+The kernel mounted <TT>/dev/sda2</TT> as the root filesystem
+and then everything worked!
+The Ubuntu system took about 45 minutes to finalise the
+installation of all the packages that were on the hard disk.
+Then, I got a graphical login screen and was able to log in with
+the username and password that I'd set up way back in the
+install phase.
+</P>
+<H2>The Result</H2>
+<P>
+I have a handy Linux machine running on a PowerPC processor.
+I was more than a little disconcerted to find that there's
+no C complier on the Ubuntu system!
+But, GCC is available as a package that you can select and
+install, so I suppose that's a good compromise to get the
+installer down to a single CD.
+After all, programmers will know where to find GCC,
+whereas non-programmers would never need it and the disk space
+could be better used for other things.
+</P>
+<P>
+The machine runs at 598
+<A HREF="http://www.tldp.org/HOWTO/BogoMips">BogoMIPS</A>, which is about right
+for a 300MHz PowerPC.
+Here are the results of <TT>cat&nbsp;cpuinfo</TT> and <TT>dmesg</TT>:
+<HR>
+<PRE>
+processor	: 0
+cpu		: 740/750
+temperature 	: 43-45 C (uncalibrated)
+clock		: 300MHz
+revision	: 2.2 (pvr 0008 0202)
+bogomips	: 598.01
+machine		: Power Macintosh
+motherboard	: AAPL,PowerMac G3 MacRISC
+detected as	: 49 (PowerMac G3 (Silk))
+pmac flags	: 00000000
+L2 cache	: 1024K unified pipelined-syncro-burst
+memory		: 384MB
+pmac-generation	: OldWorld
+</PRE>
+<HR>
+<PRE>
+mem_pieces_remove: [31d000,771000) not in any region
+Total memory = 384MB; using 1024kB for hash table (at c0800000)
+Linux version 2.6.10-5-powerpc (buildd@adare) (gcc version 3.3.5 (Debian 1:3.3.5-8ubuntu2)) #1 Tue Apr 5 12:44:32 UTC 2005
+Found a Heathrow mac-io controller, rev: 1, mapped at 0xfddff000
+PowerMac motherboard: PowerMac G3 (Silk)
+Found Grackle (MPC106) PCI host bridge at 0x80000000. Firmware bus number: 0->0
+nvram: OF partition at 0x1800
+nvram: XP partition at 0x1300
+nvram: NR partition at 0x1400
+On node 0 totalpages: 98304
+  DMA zone: 98304 pages, LIFO batch:16
+  Normal zone: 0 pages, LIFO batch:1
+  HighMem zone: 0 pages, LIFO batch:1
+Built 1 zonelists
+Kernel command line: ramdisk_size=8192 root=/dev/sda2
+System has 64 possible interrupts
+PID hash table entries: 2048 (order: 11, 32768 bytes)
+GMT Delta read from XPRAM: 0 minutes, DST: off
+via_calibrate_decr: ticks per jiffy = 16708 (1002505 ticks)
+Console: colour dummy device 80x25
+serial8250_console_init: nothing to do on PowerMac
+Dentry cache hash table entries: 65536 (order: 6, 262144 bytes)
+Inode-cache hash table entries: 32768 (order: 5, 131072 bytes)
+Memory: 380800k available (1820k kernel code, 1200k data, 184k init, 0k highmem)
+Calibrating delay loop... 598.01 BogoMIPS (lpj=299008)
+Mount-cache hash table entries: 512 (order: 0, 4096 bytes)
+checking if image is initramfs...it isn't (bad gzip magic numbers); looks like an initrd
+Freeing initrd memory: 4432k freed
+NET: Registered protocol family 16
+PCI: Probing PCI hardware
+Registering pmac pic with sysfs...
+Thermal assist unit using timers, shrink_timer: 2000 jiffies
+audit: initializing netlink socket (disabled)
+audit(1135029234.158:0): initialized
+devfs: 2004-01-31 Richard Gooch (rgooch@atnf.csiro.au)
+devfs: boot_options: 0x0
+Initializing Cryptographic API
+PCI: Enabling device 0000:00:12.0 (0086 -> 0087)
+atyfb: using auxiliary register aperture
+atyfb: 3D RAGE PRO (Mach64 GP, PQFP, PCI) [0x4750 rev 0x7c]
+atyfb: 6M SGRAM (1:1), 14.31818 MHz XTAL, 230 MHz PLL, 100 Mhz MCLK, 100 MHz XCLK
+atyfb: monitor sense=73f, mode 6
+atyfb: setting up CRTC
+atyfb: set primary CRT to 640x480 PP composite N
+atyfb: CRTC_H_TOTAL_DISP: 4f006b
+atyfb: CRTC_H_SYNC_STRT_WID: 80059
+atyfb: CRTC_V_TOTAL_DISP: 1df020c
+atyfb: CRTC_V_SYNC_STRT_WID: 301e2
+atyfb: CRTC_OFF_PITCH: 14000000
+atyfb: CRTC_VLINE_CRNT_VLINE: 0
+atyfb: CRTC_GEN_CNTL: b000200
+atyfb: atyfb_set_par
+atyfb:  Set Visible Mode to 640x480-8
+atyfb:  Virtual resolution 640x9804, pixclock_in_ps 33566 (calculated 33566)
+atyfb:  Dot clock:           29 MHz
+atyfb:  Horizontal sync:     34 kHz
+atyfb:  Vertical refresh:    64 Hz
+atyfb:  x  style: 29.26586 640 720 784 864   480 483 486 525
+atyfb:  fb style: 33566  80 640 80 64 39 480 3 3
+debug atyfb: Mach64 non-shadow register values:
+debug atyfb: 0x2000:  004F006B 00080059 01DF020C 000301E2
+debug atyfb: 0x2010:  01F90000 14000000 00000023 0B000200
+debug atyfb: 0x2020:  005806B3 00780675 00000000 00102848
+debug atyfb: 0x2030:  00000000 00000000 00000000 0000C000
+debug atyfb: 0x2040:  00000000 00000000 00000000 00000000
+debug atyfb: 0x2050:  00000000 00000000 00000000 00000000
+debug atyfb: 0x2060:  FFFFFF00 00000001 00000008 07FF07FF
+debug atyfb: 0x2070:  00000000 00000000 0000377C 00000800
+debug atyfb: 0x2080:  00001F30 00000000 00000000 00000000
+debug atyfb: 0x2090:  00A63003 40000000 02008000 00000000
+debug atyfb: 0x20A0:  7B23A050 00000000 00000000 65130C01
+debug atyfb: 0x20B0:  00751A79 00010000 00010000 00000000
+debug atyfb: 0x20C0:  00FFEE00 86010182 00000000 00000000
+debug atyfb: 0x20D0:  00000188 00200170 00000000 00002042
+debug atyfb: 0x20E0:  7C004750 0080001D 00000000 800384B0
+debug atyfb: 0x20F0:  00008387 00000000 000001FC 00000000
+
+debug atyfb: Mach64 PLL register values:
+debug atyfb: 0x00:  ADD51F14 D80381B8 8E9E8101 A61B0000
+debug atyfb: 0x10:  00008000 10ABCC10 00000000 00000000
+debug atyfb: 0x20:  ADD51F14 D80381B8 8E9E8101 A61B0000
+debug atyfb: 0x30:  00008000 10ABCC10 00000000 00000000
+
+Console: switching to colour frame buffer device 80x30
+atyfb: fb0: ATY Mach64 frame buffer device on PCI
+MacOS display is /pci/ATY,mach64_3DUPro
+Generic RTC Driver v1.07
+Macintosh non-volatile memory driver v1.1
+serial8250_init: nothing to do on PowerMac
+pmac_zilog: 0.6 (Benjamin Herrenschmidt <benh@kernel.crashing.org>)
+ttyS0 at MMIO 0xf3013020 (irq = 15) is a Z85c30 ESCC - Serial port
+ttyS1 at MMIO 0xf3013000 (irq = 16) is a Z85c30 ESCC - Serial port
+io scheduler noop registered
+io scheduler anticipatory registered
+io scheduler deadline registered
+io scheduler cfq registered
+fd0: SWIM3 floppy controller 
+elevator: using anticipatory as default io scheduler
+RAMDISK driver initialized: 16 RAM disks of 8192K size 1024 blocksize
+divert: not allocating divert_blk for non-ethernet device lo
+MacIO PCI driver attached to Heathrow chipset
+input: Macintosh mouse button emulation
+Macintosh CUDA driver v0.5 for Unified ADB.
+Uniform Multi-Platform E-IDE driver Revision: 7.00alpha2
+ide: Assuming 33MHz system bus speed for PIO modes; override with idebus=xx
+adb: starting probe task...
+adb devices: [2]: 2 5 [3]: 3 1 [14]: 14 c0
+ADB keyboard at 2, handler set to 3
+Detected ADB keyboard, type ISO, swapping keys.
+input: ADB keyboard on adb2:2.05/input
+ADB mouse at 3, handler set to 4
+input: ADB mouse on adb3:3.01/input
+adb: finished probe task...
+ide0: Found Apple Heathrow ATA controller, bus ID 0, irq 13
+Probing IDE interface ide0...
+hda: QUANTUM FIREBALL SE4.3A, ATA DISK drive
+hda: MDMA, cycleTime: 120, accessTime: 75, recTime: 45
+hda: Set MDMA timing for mode 2, reg: 0x00211526
+hda: Enabling MultiWord DMA 2
+ide0 at 0xd9016000-0xd9016007,0xd9016160 on irq 13
+ide1: Found Apple Heathrow ATA controller, bus ID 1, irq 14
+Probing IDE interface ide1...
+hdc: ST34311A, ATA DISK drive
+hdd: MATSHITA CR-587, ATAPI CD/DVD-ROM drive
+hdc: MDMA, cycleTime: 120, accessTime: 75, recTime: 45
+hdc: Set MDMA timing for mode 2, reg: 0x00211526
+hdc: Enabling MultiWord DMA 2
+ide1 at 0xd901c000-0xd901c007,0xd901c160 on irq 14
+mice: PS/2 mouse device common for all mice
+NET: Registered protocol family 2
+IP: routing cache hash table of 4096 buckets, 32Kbytes
+TCP: Hash tables configured (established 32768 bind 65536)
+Restarting tasks...<6> Strange, kswapd0 not stopped
+ done
+RAMDISK: cramfs filesystem found at block 0
+RAMDISK: Loading 4432KiB [1 disk] into ram disk... done.
+VFS: Mounted root (cramfs filesystem) readonly.
+Freeing unused kernel memory: 184k init 4k chrp 32k prep
+NET: Registered protocol family 1
+SCSI subsystem initialized
+mesh: configured for synchronous 5 MB/s
+mesh: performing initial bus reset...
+scsi0 : MESH
+mesh: target 0 synchronous at 5.0 MB/s
+  Vendor: QUANTUM   Model: XP34550S          Rev: LXY1
+  Type:   Direct-Access                      ANSI SCSI revision: 02
+SCSI device sda: 8890760 512-byte hdwr sectors (4552 MB)
+SCSI device sda: drive cache: write back
+SCSI device sda: 8890760 512-byte hdwr sectors (4552 MB)
+SCSI device sda: drive cache: write back
+ /dev/scsi/host0/bus0/target0/lun0: [mac] p1 p2 p3
+Attached scsi disk sda at scsi0, channel 0, id 0, lun 0
+Stopping tasks: =|
+Freeing memory... done (338 pages freed)
+Restarting tasks... done
+kjournald starting.  Commit interval 5 seconds
+EXT3-fs: mounted filesystem with ordered data mode.
+Adding 220728k swap on /dev/sda3.  Priority:-1 extents:1
+EXT3 FS on sda2, internal journal
+divert: allocating divert_blk for eth0
+eth0: BMAC at 00:05:02:0b:9e:da
+hdd: ATAPI 24X CD-ROM drive, 128kB Cache
+Uniform CD-ROM driver Revision: 3.20
+hda: max request size: 128KiB
+hda: 8418816 sectors (4310 MB) w/80KiB Cache, CHS=14848/9/63, (U)DMA
+hda: cache flushes not supported
+ /dev/ide/host0/bus0/target0/lun0: [mac] p1 p2 p3
+hdc: max request size: 128KiB
+hdc: 8452080 sectors (4327 MB) w/256KiB Cache, CHS=8944/15/63, (U)DMA
+hdc: cache flushes not supported
+ /dev/ide/host1/bus0/target0/lun0: [mac] p1 p2 p3 p4 p5 p6
+device-mapper: 4.3.0-ioctl (2004-09-30) initialised: dm-devel@redhat.com
+md: md driver 0.90.1 MAX_MD_DEVS=256, MD_SB_DISKS=27
+cdrom: open failed.
+ts: Compaq touchscreen protocol output
+usbcore: registered new driver usbfs
+usbcore: registered new driver hub
+ohci_hcd: 2004 Nov 08 USB 1.1 'Open' Host Controller (OHCI) Driver (PCI)
+USB Universal Host Controller Interface driver v2.2
+NET: Registered protocol family 10
+Disabled Privacy Extensions on device c025bf5c(lo)
+IPv6 over IPv4 tunneling driver
+divert: not allocating divert_blk for non-ethernet device sit0
+</PRE>
+</P>
+<HR>
+<CENTER>
+<P>Return to <A HREF="comp.htm">BeeJay's Computer page</A></P>
+<P>Return to <A HREF="index.htm">BeeJay's home page</A></P>
+<FONT SIZE="-1">
+<NOBR>
+Copyright &copy; 2005
+by <A HREF="eee.htm">BeeJay</A>.<WBR>
+All rights reserved.
+</NOBR>
+</FONT>
+</CENTER>
+<HR>
+</BODY>
+</HTML>

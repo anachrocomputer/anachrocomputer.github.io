@@ -1,0 +1,58 @@
+<HTML>
+<HEAD>
+<TITLE>SNES Game Pad Interface</TITLE>
+<META NAME="DC.title" CONTENT="SNES Game Pad Interface">
+<META NAME="DC.creator" CONTENT="John Honniball">
+<META NAME="DC.language" CONTENT="en-GB">
+<META NAME="geo.placename" CONTENT="Stoke Gifford, South Gloucestershire, United Kingdom">
+<META NAME="geo.region" CONTENT="GB-SGC">
+<META NAME="geo.position" CONTENT="51.521483;-2.542500">
+<META NAME="ICBM" CONTENT="51.521483, -2.542500">
+<META NAME="keywords" CONTENT="SNES, AVR, game pad, shift register">
+<META NAME="author" CONTENT="John Honniball">
+<META NAME="description" CONTENT="SNES Game Pad Interface based on Atmel AVR chip">
+<LINK HREF="index.htm" REL="home" TITLE="John Honniball's Home Page">
+<LINK HREF="index.htm" REL="top" TITLE="John Honniball's Home Page">
+<LINK HREF="make.htm" REL="up" TITLE="Creative Technology">
+<!-- LINK HREF="photo.htm" REL="next" TITLE="Photography" -->
+<!-- LINK HREF="uk101.htm" REL="prev" TITLE="UK101 Home Page" -->
+<!-- LINK HREF="about.htm" REL="first" TITLE="About Me" -->
+<!-- LINK HREF="links.htm" REL="last" TITLE="Links" -->
+<LINK HREF="eee.htm" REL="made" TITLE="John Honniball's Contact Page">
+</HEAD>
+<BODY BGCOLOR="#ffffcc">
+<FONT FACE="Arial,Helvetica,sans-serif">
+<H1 ALIGN=CENTER>SNES Game Pad Interface</H1>
+</FONT>
+I wanted to connect a game control pad to a microcontroller, so I started
+by finding an old Super Nintendo (SNES) controller.
+The controller is interfaced to the game console by a five-wire
+connection.
+The pad itself contains a 16-bit shift register, of which only
+12 bits are used.
+The photo shows the scope trace when a single button is pressed on the
+game pad.
+The upper trace shows the data, and the lower trace shows the clock.
+The data signal goes low for one bit-time of the clock, corresponding
+to the button that has been pressed.
+<DIV ALIGN=CENTER>
+<P>
+<IMG SRC="snestrace.jpg" ALT="Scope trace of SNES interface" WIDTH=200 HEIGHT=124>
+</P>
+</DIV>
+The scope is a fine old <A HREF="scope.htm#1980B">HP 1980B</A>.
+<HR>
+<DIV ALIGN=CENTER>
+<P>Return to <A HREF="make.htm">Creative Technology page</A></P>
+<P>Return to <A HREF="index.htm">John Honniball's home page</A></P>
+<FONT SIZE="-1">
+<NOBR>
+Copyright &copy; 2006
+by <A HREF="eee.htm">John Honniball</A>.<WBR>
+All rights reserved.
+</NOBR>
+</FONT>
+</DIV>
+<HR>
+</BODY>
+</HTML>

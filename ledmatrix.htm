@@ -1,0 +1,69 @@
+<HTML>
+<HEAD>
+<TITLE>LED Matrix</TITLE>
+<META NAME="DC.title" CONTENT="LED Matrix">
+<META NAME="DC.creator" CONTENT="John Honniball">
+<META NAME="DC.language" CONTENT="en-GB">
+<META NAME="geo.placename" CONTENT="Stoke Gifford, South Gloucestershire, United Kingdom">
+<META NAME="geo.region" CONTENT="GB-SGC">
+<META NAME="geo.position" CONTENT="51.521483;-2.542500">
+<META NAME="ICBM" CONTENT="51.521483, -2.542500">
+<META NAME="keywords" CONTENT="6502, 6809, 68000, PDP-11, Linux, Ambra">
+<META NAME="author" CONTENT="John Honniball">
+<META NAME="description" CONTENT="LED Matrix based on Atmel AVR chip">
+<LINK HREF="index.htm" REL="home" TITLE="John Honniball's Home Page">
+<LINK HREF="index.htm" REL="top" TITLE="John Honniball's Home Page">
+<LINK HREF="make.htm" REL="up" TITLE="Creative Technology">
+<!-- LINK HREF="photo.htm" REL="next" TITLE="Photography" -->
+<!-- LINK HREF="uk101.htm" REL="prev" TITLE="UK101 Home Page" -->
+<!-- LINK HREF="about.htm" REL="first" TITLE="About Me" -->
+<!-- LINK HREF="links.htm" REL="last" TITLE="Links" -->
+<LINK HREF="eee.htm" REL="made" TITLE="John Honniball's Contact Page">
+</HEAD>
+<BODY BGCOLOR="#ffffcc">
+<FONT FACE="Arial,Helvetica,sans-serif">
+<H1 ALIGN=CENTER>LED Matrix</H1>
+</FONT>
+<DIV ALIGN=CENTER>
+<P>
+<IMG SRC="matrix1.jpg" ALT="LED Matrix" WIDTH=300 HEIGHT=200>
+</P>
+</DIV>
+<P>
+I've been keen on these LED matrix displays for many years, but was
+pleasantly surprised at how cheap they are nowadays.
+I got a few with green LEDs and made two of them up into a display
+unit, with five driver transistors.
+The LED matrix displays are made by Kingbright, part number TA12-11GWA.
+The five PNP driver transistors are 2N3703 types, with 680&Omega;
+base resistors.
+The ribbon cable connects them to the same Atmel ATmega8 microcontroller
+that I used for the
+<A HREF="povwand.htm">POV Wand</A>.
+The driver transistors connect the LED anodes to the 5V power supply,
+while the 74LS373 chips on the breadboard connect the cathodes to ground,
+via 220&Omega; resistors.
+Software on the ATmega8 chip drives the whole thing, providing the
+multiplexing signals.
+</P>
+<P>
+My plan is to write simple games (maybe Pong) for the 10x7 pixel display.
+Rather like the
+<A HREF="http://www.olafval.de/mignon/english/index.htm">Mignon Game Kit</A>,
+only with more pixels.
+</P>
+<HR>
+<DIV ALIGN=CENTER>
+<P>Return to <A HREF="make.htm">Creative Technology page</A></P>
+<P>Return to <A HREF="index.htm">John Honniball's home page</A></P>
+<FONT SIZE="-1">
+<NOBR>
+Copyright &copy; 2006
+by <A HREF="eee.htm">John Honniball</A>.<WBR>
+All rights reserved.
+</NOBR>
+</FONT>
+</DIV>
+<HR>
+</BODY>
+</HTML>

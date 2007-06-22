@@ -1,0 +1,71 @@
+<HTML>
+<HEAD>
+<TITLE>POV Wand</TITLE>
+<META NAME="DC.title" CONTENT="POV Wand">
+<META NAME="DC.creator" CONTENT="John Honniball">
+<META NAME="DC.language" CONTENT="en-GB">
+<META NAME="geo.placename" CONTENT="Stoke Gifford, South Gloucestershire, United Kingdom">
+<META NAME="geo.region" CONTENT="GB-SGC">
+<META NAME="geo.position" CONTENT="51.521483;-2.542500">
+<META NAME="ICBM" CONTENT="51.521483, -2.542500">
+<META NAME="keywords" CONTENT="6502, 6809, 68000, PDP-11, Linux, Ambra">
+<META NAME="author" CONTENT="John Honniball">
+<META NAME="description" CONTENT="POV Wand based on Atmel AVR chip">
+<LINK HREF="index.htm" REL="home" TITLE="John Honniball's Home Page">
+<LINK HREF="index.htm" REL="top" TITLE="John Honniball's Home Page">
+<LINK HREF="make.htm" REL="up" TITLE="Creative Technology">
+<!-- LINK HREF="photo.htm" REL="next" TITLE="Photography" -->
+<!-- LINK HREF="uk101.htm" REL="prev" TITLE="UK101 Home Page" -->
+<!-- LINK HREF="about.htm" REL="first" TITLE="About Me" -->
+<!-- LINK HREF="links.htm" REL="last" TITLE="Links" -->
+<LINK HREF="eee.htm" REL="made" TITLE="John Honniball's Contact Page">
+</HEAD>
+<BODY BGCOLOR="#ffffcc">
+<FONT FACE="Arial,Helvetica,sans-serif">
+<H1 ALIGN=CENTER>POV Wand</H1>
+</FONT>
+<DIV ALIGN=CENTER>
+<IMG SRC="povwand.jpg" ALT="John with the POV Wand" WIDTH=200 HEIGHT=308>
+<IMG SRC="povboard.jpg" ALT="Solderless Breadboard for POV Wand" WIDTH=300 HEIGHT=200>
+</DIV>
+<P>
+There are lots of designs on the web for persistence-of-vision LED displays,
+some with motors and some hand-operated.
+I happened to have a lot of green LEDs and some 18-core cable, so I make
+one up with 16 LEDs on some square-pad prototyping board.
+The LEDs are driven through 220&Omega; resistors from a pair of
+74LS373 latch chips.
+The resistors (which I got from the Bristol
+<A HREF="http://www.freecycle.org">FreeCycle</A> list) are on the
+upper left in the photo.
+The two chips under the wiring on the solderless breadboard are the 74LS373s,
+and the little green PCB module caries the Atmel ATmega8 CPU.
+The brown connectors on the far left of the breadboard go to the wand
+itself, via the 18-core cable.
+There are a few extraneous LEDs and transistors on the far side of the
+breadboard, where I was experimenting with
+<ACRONYM TITLE="Pulse-Width Modulation">PWM</ACRONYM> for controlling the
+brightness of some blue LEDs.
+</P>
+<P>
+The software in the Atmel AVR chip is entirely written in assembler.
+I rushed it a bit to get it ready for a friend's birthday party;
+note the missing pixel on the bottom row!
+Also, note the four unused LEDs at the top of the pattern.
+I have 16 LEDs, but I'm only using 12 of them for this pattern.
+</P>
+<HR>
+<DIV ALIGN=CENTER>
+<P>Return to <A HREF="make.htm">Creative Technology page</A></P>
+<P>Return to <A HREF="index.htm">John Honniball's home page</A></P>
+<FONT SIZE="-1">
+<NOBR>
+Copyright &copy; 2006-2007
+by <A HREF="eee.htm">John Honniball</A>.<WBR>
+All rights reserved.
+</NOBR>
+</FONT>
+</DIV>
+<HR>
+</BODY>
+</HTML>

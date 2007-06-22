@@ -22,11 +22,11 @@ names = new Array ("Ageing Audio", "Ancient AVOs",
                    "Time-Warp Telephones", "Vintage Video",
                    "");
 function over (n) {
-window.status = window.newstatus = names[n - 1];
+window.status = window.defaultStatus = names[n - 1];
 return true;
 }
 function out () {
-status = newstatus = "Old Sad Things";
+window.status = window.defaultStatus = "Old Sad Things";
 }
 // -->
 </SCRIPT>

@@ -1,0 +1,71 @@
+<HTML>
+<HEAD>
+<TITLE>Brushless DC Motor Control</TITLE>
+<META NAME="DC.title" CONTENT="Brushless DC Motor Control">
+<META NAME="DC.creator" CONTENT="John Honniball">
+<META NAME="DC.language" CONTENT="en-GB">
+<META NAME="geo.placename" CONTENT="Stoke Gifford, South Gloucestershire, United Kingdom">
+<META NAME="geo.region" CONTENT="GB-SGC">
+<META NAME="geo.position" CONTENT="51.521483;-2.542500">
+<META NAME="ICBM" CONTENT="51.521483, -2.542500">
+<META NAME="keywords" CONTENT="Atmel, AVR, ATmega8, brushless, DC, motor">
+<META NAME="author" CONTENT="John Honniball">
+<META NAME="description" CONTENT="Brushless DC Motor Control based on Atmel AVR chip">
+<LINK HREF="index.htm" REL="home" TITLE="John Honniball's Home Page">
+<LINK HREF="index.htm" REL="top" TITLE="John Honniball's Home Page">
+<LINK HREF="index.htm" REL="up" TITLE="Creative Technology">
+<!-- LINK HREF="photo.htm" REL="next" TITLE="Photography" -->
+<!-- LINK HREF="uk101.htm" REL="prev" TITLE="UK101 Home Page" -->
+<!-- LINK HREF="about.htm" REL="first" TITLE="About Me" -->
+<!-- LINK HREF="links.htm" REL="last" TITLE="Links" -->
+<LINK HREF="eee.htm" REL="made" TITLE="John Honniball's Contact Page">
+</HEAD>
+<BODY BGCOLOR="#ffffcc">
+<FONT FACE="Arial,Helvetica,sans-serif">
+<H1 ALIGN=CENTER>Brushless DC Motor Control</H1>
+</FONT>
+<P>
+Brushless DC motors are use in all sorts of devices nowadays.
+You'll find them in CD-ROM drives (spindle motor), video recorders
+(head drum motor and capstan motor), floppy disk drives (spindle motor),
+laser printers (mirror drum motor)
+and even in computer cooling fans.
+They're popular because, without brushes to wear out, they can be very
+reliable, with the usual failure mode being wear to the bearings.
+They also generate no electrical noise, unlike DC motors with brushes and
+a commutator, and they don't make sparks.
+</P>
+<P>
+These motors work by having three sets of windings and three position sensing
+Hall-effect devices.
+They're driven by a three-phase power supply, just like large AC motors,
+but in this case the power is switched by a controller chip and the operating
+frequency is not limited to 50Hz.
+In fact, the frequency of operation is derived from the Hall-effect devices that
+detect the position of the rotor and act as an electronic commutator.
+There must be extra driver electronics to deal with reading the three position-sensing
+inputs and switching the currents throught the stator coils.
+I have a head drum motor from a 1989 video recorder that uses a Toshiba TA7736
+chip to generate the three-phase drive.
+</P>
+<P>
+My goal is to generate the three-phase drive with the Atmel AVR chip.
+Then, I'll have accurate speed control.
+One possible driver chip is the L298 that I originally planned to use for
+bipolar stepper motor control.
+One possible use is to spin a mirror drum for the laser message display.
+<HR>
+<DIV ALIGN=CENTER>
+<P>Return to <A HREF="make.htm">Creative Technology page</A></P>
+<P>Return to <A HREF="index.htm">John Honniball's home page</A></P>
+<FONT SIZE="-1">
+<NOBR>
+Copyright &copy; 2006
+by <A HREF="eee.htm">John Honniball</A>.<WBR>
+All rights reserved.
+</NOBR>
+</FONT>
+</DIV>
+<HR>
+</BODY>
+</HTML>

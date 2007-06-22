@@ -1,0 +1,139 @@
+<HTML>
+<HEAD> 
+<TITLE>MOSFET PWM DC Motor Controller</TITLE>
+<META NAME="DC.title" CONTENT="MOSFET PWM DC Motor Controller">
+<META NAME="DC.creator" CONTENT="John Honniball">
+<META NAME="DC.language" CONTENT="en-GB">
+<META NAME="geo.placename" CONTENT="Stoke Gifford, South Gloucestershire, United Kingdom">
+<META NAME="geo.region" CONTENT="GB-SGC">
+<META NAME="geo.position" CONTENT="51.521483;-2.542500">
+<META NAME="ICBM" CONTENT="51.521483, -2.542500">
+<META NAME="keywords" CONTENT="MOSFET, PWM, DC motor, controller, throttle, electric vehicle">
+<META NAME="author" CONTENT="John Honniball">
+<META NAME="description" CONTENT="MOSFET PWM DC Motor Controller using quad comparator chip">
+<LINK HREF="index.htm" REL="home" TITLE="John Honniball's Home Page">
+<LINK HREF="index.htm" REL="top" TITLE="John Honniball's Home Page">
+<LINK HREF="make.htm" REL="up" TITLE="Creative Technology">
+<!-- LINK HREF="photo.htm" REL="next" TITLE="Photography" -->
+<!-- LINK HREF="uk101.htm" REL="prev" TITLE="UK101 Home Page" -->
+<!-- LINK HREF="about.htm" REL="first" TITLE="About Me" -->
+<!-- LINK HREF="links.htm" REL="last" TITLE="Links" -->
+<LINK HREF="eee.htm" REL="made" TITLE="John Honniball's Contact Page">
+</HEAD>
+<BODY BGCOLOR="#ffffcc">
+<FONT FACE="Arial,Helvetica,sans-serif">
+<H1 ALIGN=CENTER>MOSFET PWM DC Motor Controller</H1>
+</FONT>
+<P>
+In connection with my interest in electric vehicles, I've been looking at the
+technology of DC motor control.
+The usual way (nowadays) to do this is by
+<A HREF="http://en.wikipedia.org/wiki/Pulse-width_modulation">PWM</A>
+(Pulse-Width Modulation).
+However, in earlier designs, such as found in
+<A HREF="http://en.wikipedia.org/wiki/Tram_controls">trams</A>
+and trolleybuses, simple resistor controllers were used.
+They have some disadvantages for battery vehicles, but are easy to build and
+understand.
+<H2>The Resistor Controller</H2>
+Just to show how it was done, and to demonstrate some of the disadvantages of
+the resistor controller, I built one with three switches and two resistors.
+The resistors are 3.3&Omega; and work well with a motor that runs on 12V and
+draws about 1Amp with no mechanical load.
+I found the high-power resistors in some scrap electronic devices (ink-jet printers,
+if I remember correctly).
+Note that the switches must all be capable of carrying the full motor current.
+</P>
+<DIV ALIGN=CENTER>
+<A HREF="rescont1b.png"><IMG SRC="rescont1.png" WIDTH=150 HEIGHT=109 ALT="Resistor controller schematic"></A>
+<A HREF="rescont2b.jpg"><IMG SRC="rescont2.jpg" WIDTH=150 HEIGHT=100 ALT="Resistor controller"></A>
+<A HREF="rescont3b.jpg"><IMG SRC="rescont3.jpg" WIDTH=150 HEIGHT=100 ALT="Resistor controller"></A>
+</DIV>
+<P>
+The result is a controller that works, but only has three steps instead of
+continuously-variable control.
+<A HREF="http://en.wikipedia.org/wiki/Tram_controls">Tram</A> and trolleybus
+controllers were built with many more steps, but still
+suffered from the problem of heat dissipation in the resistors.
+In a battery vehicle, this heat must come from the energy stored in the
+battery, and is therefore a symptom of wasted energy.
+Another snag with this design is that the resistors need to be located
+somewhere where the heat can be dissipated, but the switches need to
+be located at the driving position.
+This can lead to very complicated wiring and remote-control problems.
+</P>
+<HR>
+<H2>The MOSFET PWM Controller</H2>
+<P>
+A much better solution is to rapidly switch the power supply to the motor
+on and off.
+If the "on" periods are equal to the "off" periods, one could think of
+the average motor current being half (50%) of the full "on" current.
+If the "on" periods are much smaller than the "off" periods, then we get a
+lower average current.
+Longer "on" periods and shorter "off" periods will give us higher average
+current, up to the normal level when the motor is directly connected to
+the battery.
+By varying the ratio of "on" time to "off" time, we can get continuously
+variable control.
+</P>
+<P>
+So, we need a switch that can be switched on and off many thousands of
+times per second, a speed which rules out the practical use of a
+mechanical switch.
+Fully electronic switches can, of course, be made.
+An ordinary bipolar transistor may be used as a switch, for instance.
+But at high current levels, a more efficient switch can be made using
+a
+<A HREF="http://en.wikipedia.org/wiki/Power_MOSFET">MOSFET</A>
+(Metal Oxide Semiconductor Field-Effect Transistor).
+This transistor can be switched on and off very rapidly (millions of
+times per second), has a very low resistance when "on" and can handle
+the large currents required for big motors.
+</P>
+<DIV ALIGN=CENTER>
+<A HREF="mosfetpwm1b.jpg"><IMG SRC="mosfetpwm1.jpg" WIDTH=150 HEIGHT=100 ALT="MOSFET PWM breadboard"></A>
+<A HREF="mosfetpwm2b.jpg"><IMG SRC="mosfetpwm2.jpg" WIDTH=150 HEIGHT=100 ALT="MOSFET PWM construction"></A>
+<A HREF="mosfetpwm3b.jpg"><IMG SRC="mosfetpwm3.jpg" WIDTH=150 HEIGHT=100 ALT="MOSFET PWM complete"></A>
+</DIV>
+<P>
+To generate the variable mark/space ratio square wave, I used a Texas Instruments
+<A HREF="http://focus.ti.com/docs/prod/folders/print/tlc3704.html">TLC3704</A>
+comparator chip (actually four comparators in one 14-pin package).
+The data sheet for this chip includes a circuit diagram (schematic) for a PWM motor controller.
+I used this circuit almost directly, but had to correct a mistake where the two inputs to one comparator
+were swapped, which meant that the original circuit didn't oscillate.
+Another factor in my choice was that I had a bag full of these chips that I'd got from
+<A HREF="http://www.freecycle.org/">FreeCycle</A> a little while ago.
+For the output switching MOSFET, I used the Fairchild
+<A HREF="http://www.fairchildsemi.com/pf/HU/HUF75337P3.html">HUF75337</A>.
+This MOSFET is rated at 75A, 55V and 0.014&Omega; on-resistance; it's also available
+from <A HREF="http://www.maplin.co.uk">Maplin's</A>.
+There's also an
+<A HREF="http://www.vishay.com/product?docid=88679&query=MBR4045">MBR4045</A> diode
+for back-EMF protection; this was salvaged from a dead
+PC power supply, along with a handy heatsink.
+I added a 5k&Omega; linear pot in a box to act as a throttle control.
+When powered from a 12V lead-acid battery, the circuit can control a 400W Bosch GPA
+motor, without the heatsink getting hot.
+</P>
+<P>
+The two controllers were used to demonstrate motor control for a talk at the
+<A HREF="http://www.bevob.org.uk/wordpress/">Battery Electric Vehicles of Bristol</A>
+group meeting.
+</P>
+<HR>
+<CENTER>
+<P>Return to the <A HREF="make.htm">Creative Technology</A> page</P>
+<P>Return to <A HREF="index.htm">John Honniball's home page</A></P>
+<FONT SIZE="-1">
+<NOBR>
+Copyright &copy; 2007
+by <A HREF="eee.htm">John Honniball</A>.<WBR>
+All rights reserved.
+</NOBR>
+</FONT>
+</CENTER>
+<HR>
+</BODY>
+</HTML>

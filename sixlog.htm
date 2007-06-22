@@ -1,0 +1,330 @@
+<HTML>
+<HEAD> 
+<TITLE>Software for a 6809 in a 6502 machine</TITLE>
+<LINK HREF="index.htm" REL="home" TITLE="BeeJay's Home Page">
+<LINK HREF="index.htm" REL="top" TITLE="BeeJay's Home Page">
+<LINK HREF="sixadapt.htm" REL="up" TITLE="Building the Six Adaptor">
+<LINK HREF="eee.htm" REL="made" TITLE="BeeJay's Contact Page">
+<META NAME="DC.title" CONTENT="Software for a 6809 in a 6502 machine">
+<META NAME="DC.creator" CONTENT="John Honniball">
+<META NAME="DC.language" CONTENT="en-GB">
+<META NAME="geo.placename" CONTENT="Stoke Gifford, South Gloucestershire, United Kingdom">
+<META NAME="geo.region" CONTENT="GB-SGC">
+<META NAME="geo.position" CONTENT="51.521483;-2.542500">
+<META NAME="ICBM" CONTENT="51.521483, -2.542500">
+<META NAME="keywords" CONTENT="6502, 6809, software, assembler, UK101, Compukit">
+<META NAME="author" CONTENT="John Honniball">
+<META NAME="description" CONTENT="Infrequently updated log of software development for the 6809 CPU in a 6502 computer.">
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<FONT FACE="Arial,Helvetica,sans-serif">
+<H1 ALIGN=CENTER>Software for a 6809 in a 6502 machine</H1>
+</FONT>
+<H2>9th April 2006</H2>
+<P>
+As a first step towards implementing the frame flyback interrupt,
+I've installed a Hitachi HD63B09P chip in the socket on the
+Six&nbsp;Adaptor.
+This is a rare chip, originally built as an enhanced 6809 but
+sold as simply a clone of the 6809.
+Hitachi never fully documented the enhanced features of the chip,
+but most of the improvements have been deduced and written up
+by enthusiasts.
+The big feature that I need for the frame flyback interrupt is
+the 6309's block transfer instruction, known as TFM for <B>T</B>rans<B>F</B>er <B>M</B>ultiple.
+Without TFM, the original 6809 just isn't fast enough to copy the
+entire 768-byte screen buffer to video RAM during the frame blanking period.
+</P>
+<H2>20th February 2006</H2>
+<P>
+Been reading Andy Hertzfield's "Revolution In the Valley -- How The Mac Was Made", which
+mentions the early 6809-based Mac prototype.
+It also talks about the regular frame flyback interrupt that the machine used to
+synchronise with the display refresh cycle.
+Now, I've never done any programming with a system like that, and I began wondering
+if there'd be any benefit to using a frame flyback interrupt on the 6809 machine.
+One of the flaws of the original 6502-based UK101 was that it produced video "snow"
+whenever the CPU accessed the video RAM.
+I started thinking about a scheme where the 6809 would copy the entire text screen
+from RAM into video memory on every frame flyback (during the 3.6ms blanking period).
+This would make all display updates synchronous with the display refresh, as well
+as eliminating "snow" by having all video RAM accesses happen during frame blanking.
+I'd need a source of interrupts, of course, as well as the software to handle them.
+Might be worth trying though, just to see how it looks.
+</P>
+<H2>1st January 2006</H2>
+<P>
+Doing a bit more with the Frankenstein Assembler, to give it
+its full name.
+It was posted to the comp.sources newsgroup in 1990, in many
+separate 'shar' archives.
+I now have all those archives from an FTP site and I'm
+putting them together again.
+My plan is to put together a proper release of a new version,
+with bug fixes, removal of compiler/linker warnings and
+portability to NetBSD on both 32 and 64-bit hosts.
+I have an Alpha and an UltraSparc to test it on.
+Will probably do the same things with the 6809
+simulator, too.
+</P>
+<HR>
+<H2>22nd December 2005</H2>
+<P>
+Ignore everything I said about 'printf' yesterday.
+The assembler doesn't even use 'printf' to generate hex
+digits in the object code and only uses it occasionally
+in the listing file.
+I'd already fixed the assembler by changing an array
+of ASCII codes in the source, but I have absolutely
+no recollection of doing that.
+I hadn't installed the fixed version on my development
+machine (but I have now).
+And I've fixed the 'Makefile' so that the options come
+before the filename arguments, as they should do.
+</P>
+<H2>21st December 2005</H2>
+<P>
+Messing about with the 6809 assembler today.
+Decided to try compiling it on the 64-bit Alpha machine
+that I happen to have, running the NetBSD operating system.
+I get a few niggling differences from the Linux-compiled
+version of the assembler.
+First of all, I get a warning about the use of 'mktemp'
+to create a temporary file.
+Next, the command-line parsing doesn't work the same
+as it did on Linux (all the options must come before the
+filenames).
+And finally, the output files are different!
+Exactly the same size, but the NetBSD versions have the
+hex numbers in upper case (as they should be) instead
+of in lower case (which caused the problem I described
+in the original notes about the EPROM programmer).
+</P>
+<P>
+So, I recompiled the assembler on Linux, just to make sure.
+And I get the same warning about 'mktemp'!
+Looks like I really do need to fix that.
+And now the Linux version has upper-case hex, too!
+Well, the Linux 'printf' was obviously the source
+of the trouble, and in between Slackware 8.0 and Slackware
+10.1, they've fixed it.
+And I hadn't recompiled since I did the upgrade.
+</P>
+<H2>17th December 2005</H2>
+<P>
+Ran the Matrix display hack again.
+Really must do more with the machine than this!
+</P>
+<H2>4th December 2005</H2>
+<P>
+Over a year since the last log entry here and no real
+progress with the 6809 software.
+I run the machine occasionally to impress visitors
+with the Matrix display hack, though.
+I now have a few of the rare-as-hen's-teeth
+Hitachi 6309 chips, as well as a board to run them in.
+In principle, they'd work in the Six Adaptor, but
+I've not actually tried it yet.
+</P>
+<HR>
+<H2>1st December 2004</H2>
+<P>
+Starting a new job today, with Linux on the ARM.
+May not have much time to work on 6809 code.
+</P>
+<H2>31st October</H2>
+<P>
+Playing tetris on the Game Boy is making me think about writing
+games for this machine.
+There's no way to connect a game controller, though, so I'd only
+have keyboard controls.
+And there's no sound and no colour apart from green.
+</P>
+<H2>30th October</H2>
+<P>
+Visitors most impressed with retro text-mode Matrix.
+</P>
+<H2>29th October</H2>
+<P>
+Plugged in a real green-screen monitor for the full effect.
+My usual UK101 monitor is a nice Philips amber one,
+but I have a couple of BMC monitors in the loft with green
+phosphor.
+The contrast control is a bit noisy, but it works.
+</P>
+<H2>28th October</H2>
+<P>
+More work on the Matrix display.
+Made the startup look right, with a random number (0-15) of blanks
+preceeding the random symbols.
+This allows the faster-scrolling columns to reach the bottom of the
+screen before the slower ones have got started.
+But as yet, no fresh blanks are introduced to make gaps in the
+display.
+Nor do columns occasionally stop and restart.
+</P>
+<H2>27th October</H2>
+<P>
+The Matrix
+was shown on TV the other day, and inspired me to write a green-screen
+display hack.
+So, first of all I'll need a video memory save/restore routine -- not
+too hard in 6809 assembler with proper 16-bit index registers.
+Next, a random number generator (24 bit shift register with exclusive-OR
+feedback, as shown in Horowitz & Hill).
+Finally, some tricky timing code to allow each column of the video
+screen to trickle down at different speeds.
+Use the random number generator to produce new characters at the top,
+but limit the choice to 64 non-alphabetic characters.
+The UK101's tile graphics turn out to be quite good for this sort
+of display!
+</P>
+<H2>26th October</H2>
+<P>
+No progress.
+</P>
+<H2>25th October</H2>
+<P>
+Coded a new version of the UK101's '@' command to read a memory
+address and then display the contents of that address.
+Then, allow the user to edit the contents in hex and/or move
+on to the next (or previous) address.
+</P>
+<H2>24th October</H2>
+<P>
+Decided to implement a very simple machine-code monitor just so that
+I can get some software running on the 6809 without getting bogged down
+in the details of the design.
+</P>
+<H2>23rd October</H2>
+<P>
+Linux User Group meeting.
+Back at the 6809, thinking about ways to improve the UK101 machine-code
+monitor to allow for such luxuries as a backspace key.
+There are quite a few ways of doing that, all with their good
+and bad points.
+</P>
+<P>
+Deciphering the 6502 disassembler code seems to have done my head in.
+</P>
+<H2>22nd October</H2>
+<P>
+No progress on the 6809 code today, because I've been distracted by
+looking at the original 6502 code on the
+<A HREF="uk101.htm">UK101</A>.
+I'll probably implement a 6809 machine-code monitor next, which will
+most likely be very similar to the 6502 monitor in the UK101.
+So, I'd better remind myself how that works.
+It's been 20 years since I last had a look at that code, and there
+are plenty of parts that I never understood in the first place.
+In particular, the 6502 disassembler was always a complete mystery
+to me.
+There are no ASCII codes in the EPROM for any of the 6502 mnemonics,
+nor are there visible ASCII codes for addressing mode syntax like
+',X)' or '),Y'.
+</P>
+<H2>21st October</H2>
+<P>
+Decided to implement the cursor today, as well as fix the bug I introduced
+yesterday.
+The cursor on the original UK101 wasn't very exciting, just a blob (half
+as tall as a character cell).
+My improved UK101 monitor EPROM had two cursor styles, one for input
+from the keyboard and another for input from the cassette (both a full
+character cell in height).
+Might as well do the same thing for the 6809 version.
+No need for the cassette input yet, although I'll leave a place in the
+code to add it in later.
+</P>
+<P>
+Having fixed the shift-key code, and made the keyboard polling routine
+into a proper subroutine with register save and restore, I quite rapidly
+fill the screen with text and have to reset.
+I can't keep going because there's no scrolling routine yet.
+But how hard can it be?
+This is a 6809, after all, with 16-bit index registers and a 16-bit
+accumulator.
+Ended up with VDU scrolling working after one duff version.
+</P>
+<H2>20th October</H2>
+<P>
+Went to the lecture at HP Labs about the Airbus A380.
+Got the keyboard and auto-repeat working.
+Messed up the shift-key code.
+</P>
+<H2>19th October</H2>
+<P>
+No progress today, due to an unprecedented amount of social life for
+a Tuesday evening.
+</P>
+<H2>18th October</H2>
+<P>
+First thing to do this evening is to write a reasonably accurate delay
+routine.
+I'll need delays for the keyboard polling, debouncing and auto-repeat code.
+
+Single keyboard poll, then timing loop with 100us delay on scope.
+</P>
+<H2>17th October</H2>
+<P>
+Initial RAM test.
+Keyboard self-test shows that at least I can read and write the
+keyboard port.
+Finally understood UK101's original keyboard poller.
+It's just three different delays, and a simple decision on which
+delay to use.
+</P>
+<H2>16th October</H2>
+<P>
+ROM checksum.
+Messing about with 6850
+ACIA,
+but got initialisation code wrong.
+Finally able to send ASCII to ACIA at 300 baud, but still can't
+use the keyboard.
+</P>
+<H2>15th October</H2>
+<P>
+No progress.
+</P>
+<H2>14th October</H2>
+<P>
+Rudimentary code to send
+ASCII
+codes to the
+VDU
+as if it were a terminal.
+Simple cursor position and cursor motion code but no scrolling yet.
+No visible cursor, either.
+Simple Bash script to send
+<ABBREV TITLE="hexadecimal">hex</ABBREV>
+files to the
+<A HREF="inst.htm#PPZ">Stag PPZ</A>
+EPROM programmer.
+</P>
+<H2>13th October</H2>
+<P>
+Initial version with very basic clear-screen followed by placing "Hello,
+World" message in VDU RAM, then hang.
+This works first time (once I get a working CPU clock) and proves
+that I've got the hardware wired up OK.
+It also proves that the
+<ACRONYM TITLE="Erasible Programmable Read-Only Memory">EPROM</ACRONYM>
+programming is OK, and the 6809 assembler
+on the Linux machine is generating good code.
+</P>
+<HR>
+<CENTER>
+<P>Return to the <A HREF="comp.htm">Computers</A> page</P>
+<P>Return to <A HREF="index.htm">BeeJay's home page</A></P>
+<FONT SIZE="-1">
+<NOBR>
+Copyright &copy; 2004-2005
+by <A HREF="eee.htm">BeeJay</A>.<WBR>
+All rights reserved.
+</NOBR>
+</FONT>
+</CENTER>
+<HR>
+</BODY>
+</HTML>

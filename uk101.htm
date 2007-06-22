@@ -4,6 +4,15 @@
 <META NAME="keywords" CONTENT="Compukit, UK101, Compukit UK101, 6502, museum, Comp Shop, Practical Electronics, 8-bit, computer kit">
 <META NAME="author" CONTENT="John Honniball">
 <META NAME="description" CONTENT="Home page for the Compukit UK101, an 8-bit micro of 1979 with 6502 CPU, ROM BASIC and data storage on cassette.  Contains links to several other pages of UK101 information including software.">
+<LINK REL="icon" HREF="favicon.png" TYPE="image/png" />
+<LINK HREF="index.htm" REL="home" TITLE="John Honniball's Home Page">
+<LINK HREF="index.htm" REL="top" TITLE="John Honniball's Home Page">
+<LINK HREF="index.htm" REL="up" TITLE="John Honniball's Home Page">
+<LINK HREF="arch.htm" REL="next" TITLE="Architectural Features">
+<LINK HREF="oldsad.htm" REL="prev" TITLE="Old Sad Things">
+<LINK HREF="about.htm" REL="first" TITLE="About Me">
+<LINK HREF="links.htm" REL="last" TITLE="Links">
+<LINK HREF="eee.htm" REL="made" TITLE="John Honniball's Contact Page">
 <SCRIPT LANGUAGE="JavaScript">
 <!--
 msgs = new Array ("What's a UK101?", "My UK101 Story",
@@ -34,9 +43,9 @@ function over (name, f) {
    }
 
    if (f)
-      status = slist[name];
+      window.status = window.defaultStatus = slist[name];
    else
-      status = "Compukit UK101 Home Page";
+      window.status = window.defaultStatus = "Compukit UK101 Home Page";
       
    return true;
 }
@@ -132,7 +141,7 @@ in the UK101.
 <P>Return to <A HREF="index.htm">BeeJay's home page</A></P>
 <FONT SIZE="-1">
 <NOBR>
-Copyright &copy; 1998-2003
+Copyright &copy; 1998-2006
 by <A HREF="eee.htm">BeeJay</A>.<WBR>
 All rights reserved.
 </NOBR>
