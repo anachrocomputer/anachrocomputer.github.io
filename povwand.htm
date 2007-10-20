@@ -1,7 +1,7 @@
 <HTML>
 <HEAD>
-<TITLE>POV Wand</TITLE>
-<META NAME="DC.title" CONTENT="POV Wand">
+<TITLE>POV Light Wand</TITLE>
+<META NAME="DC.title" CONTENT="POV Light Wand">
 <META NAME="DC.creator" CONTENT="John Honniball">
 <META NAME="DC.language" CONTENT="en-GB">
 <META NAME="geo.placename" CONTENT="Stoke Gifford, South Gloucestershire, United Kingdom">
@@ -22,24 +22,31 @@
 </HEAD>
 <BODY BGCOLOR="#ffffcc">
 <FONT FACE="Arial,Helvetica,sans-serif">
-<H1 ALIGN=CENTER>POV Wand</H1>
+<H1 ALIGN=CENTER>POV Light Wand</H1>
 </FONT>
 <DIV ALIGN=CENTER>
-<IMG SRC="povwand.jpg" ALT="John with the POV Wand" WIDTH=200 HEIGHT=308>
-<IMG SRC="povboard.jpg" ALT="Solderless Breadboard for POV Wand" WIDTH=300 HEIGHT=200>
+<IMG SRC="povwand.jpg" ALT="John with the POV Light Wand" WIDTH=200 HEIGHT=308>
+<IMG SRC="povboard.jpg" ALT="Solderless Breadboard for POV Light Wand" WIDTH=300 HEIGHT=200>
 </DIV>
 <P>
-There are lots of designs on the web for persistence-of-vision LED displays,
+There are lots of designs on the web for persistence-of-vision
+<ACRONYM TITLE="Light-Emitting Diode">LED</ACRONYM>
+displays,
 some with motors and some hand-operated.
-I happened to have a lot of green LEDs and some 18-core cable, so I make
-one up with 16 LEDs on some square-pad prototyping board.
+I happened to have a lot of green LEDs and some 18-core cable, so I made
+one up in the form of a hand-held wand.
+It has 16 LEDs soldered onto some square-pad prototyping board.
 The LEDs are driven through 220&Omega; resistors from a pair of
 74LS373 latch chips.
 The resistors (which I got from the Bristol
 <A HREF="http://www.freecycle.org">FreeCycle</A> list) are on the
 upper left in the photo.
-The two chips under the wiring on the solderless breadboard are the 74LS373s,
-and the little green PCB module caries the Atmel ATmega8 CPU.
+The two chips underneath the blue wiring on the
+<A HREF="http://en.wikipedia.org/wiki/Breadboard">solderless breadboard</A>
+are the 74LS373s,
+and the little green PCB module caries the
+<A HREF="http://www.atmel.com">Atmel</A> ATmega8
+<A HREF="http://en.wikipedia.org/wiki/Microcontroller">microcontroller</A>.
 The brown connectors on the far left of the breadboard go to the wand
 itself, via the 18-core cable.
 There are a few extraneous LEDs and transistors on the far side of the
@@ -49,8 +56,26 @@ brightness of some blue LEDs.
 </P>
 <P>
 The software in the Atmel AVR chip is entirely written in assembler.
-I rushed it a bit to get it ready for a friend's birthday party;
+The AVR is, like many microcontrollers, a
+<A HREF="http://en.wikipedia.org/wiki/Harvard_architecture">Harvard Architecture</A>
+machine, which means that it has separate memories for program and data.
+The program code is stored into the Flash memory by the AVRISP
+programming tool,
+while run-time data is stored into
+<ACRONYM TITLE="Random-Access Memory">RAM</ACRONYM>
+by the processor itself.
+There's also some
+<ACRONYM TITLE="Electrically Eraseable Programmable Read-Only Memory">EEPROM</ACRONYM>
+on the chip, but this little program doesn't use it.
+The source code is
+<A HREF="pov.asm">here</A> (ASCII text format, 8kbytes).
+</P>
+<P>
+I rushed the software a bit to get it ready for a friend's birthday party;
 note the missing pixel on the bottom row!
+I fixed it shortly afterwards, and the photos taken at
+<A HREF="http://www.dorkbot.org/dorkbotbristol/">Dorkbot Bristol</A>
+show the corrected version.
 Also, note the four unused LEDs at the top of the pattern.
 I have 16 LEDs, but I'm only using 12 of them for this pattern.
 </P>
