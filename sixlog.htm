@@ -20,6 +20,70 @@
 <FONT FACE="Arial,Helvetica,sans-serif">
 <H1 ALIGN=CENTER>Software for a 6809 in a 6502 machine</H1>
 </FONT>
+<H2>29th January 2008</H2>
+<P>
+Having been distracted by work for over a year, I'm now back at
+university, which means I have a little more time and enthusiasm
+to work on 6809 code.
+I've added a few things, like a visual bell function that responds
+to the CTRL-G character by flashing the video screen (no audio
+output hardware on this machine).
+There's also a VDU test function that displays the whole 256-character
+set so that I can fully test the character generator EPROM
+(it's fine).
+Looking at the character set, I remembered that I wanted to add
+a one-pixel border around the entire screen at start-up, to help
+with lining up the video monitor.
+The code to do that is a bit awkward, but it works.
+I've also had an idea to do 48x32 pixel block graphics using the
+UK101's character set.
+Then again, I might change the character generator EPROM from a
+2716 to a 2732 so that I can get 16x8 pixel characters, which
+will make for much nicer lower-case.
+</P>
+<P>
+On the hardware front, I've fixed the flaky brightness control
+pot on the BMC green-screen monitor that I use with the 6809 machine.
+This makes it a bit easier to just switch on and go, without having
+to mess about getting a good picture on the monitor.
+I've also fixed up the Stag PPZ EPROM programmer which I use for
+all my development work.
+It was built in 1984, and needed a bit of repair to the keyboard
+(photos here).
+Wish I knew why it won't accept hex files at 19200 baud, though.
+Maybe a few carefully-chosen delays will make it work properly.
+</P>
+<P>
+One benefit of my previous job was that I learned about
+Subversion, an open source version control system.
+I've now got all the assembler, simulator and 6809 code
+sources under Subversion.
+This means I can easily work on them on any of the machines
+that I connect to the home network, and keep the master version
+up-to-date.
+</P>
+<P>
+But now I've run out of room in the 2k byte EPROM (2716) that holds
+the machine-language start-up and monitor routines.
+No amount of byte-saving seems to have helped, and I'm now
+down to the last 64 bytes.
+That's 64 bytes with all the temporary test code removed from
+the machine-code monitor, which means that I've actually got
+fewer functions in there.
+And all the functions I want to add next are bigger than 64 bytes,
+most of them by a large margin.
+I think I'll have to split the code into stuff that works and I
+can leave alone (the Matrix display hack, the VDU scrolling code
+and keyboard polling code)
+and stuff that I want to change frequently (machine-code monitor
+functions and start-up self-tests).
+Then, I can put the two sections into two separate 2716 EPROMs
+and put one in the ZIF socket and the other in one of the
+non-ZIF sockets on the main board.
+But that'll mean messing about with the addresses of stuff so
+that it'll work in the other socket, which may get a bit messy.
+</P>
+<HR>
 <H2>9th April 2006</H2>
 <P>
 As a first step towards implementing the frame flyback interrupt,
@@ -302,7 +366,7 @@ files to the
 <A HREF="inst.htm#PPZ">Stag PPZ</A>
 EPROM programmer.
 </P>
-<H2>13th October</H2>
+<H2>13th October 2004</H2>
 <P>
 Initial version with very basic clear-screen followed by placing "Hello,
 World" message in VDU RAM, then hang.
@@ -318,7 +382,7 @@ on the Linux machine is generating good code.
 <P>Return to the <A HREF="comp.htm">Computers</A> page</P>
 <P>Return to <A HREF="index.htm">John Honniball's home page</A></P>
 <FONT SIZE="-1">
-Copyright &copy; 2004-2005
+Copyright &copy; 2004-2008
 by <A HREF="eee.htm">John Honniball</A>.
 All rights reserved.
 </FONT>
