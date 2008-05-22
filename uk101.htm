@@ -18,14 +18,14 @@
 <LINK HREF="eee.htm" REL="made" TITLE="John Honniball's Contact Page">
 <SCRIPT LANGUAGE="JavaScript">
 <!--
-msgs = new Array ("What's a UK101?", "My UK101 Story",
-                  "UK101 Architecture and Design", "The UK101 Museum",
-                  "UK101 Links", "Feedback Page");
+//msgs = new Array ("What's a UK101?", "My UK101 Story",
+//                  "UK101 Architecture and Design", "The UK101 Museum",
+//                  "UK101 Links", "Feedback Page");
 // Script to do link highlighting
 names = new Array("ukwhat", "ukbj", "ukarch", "ukmusm", "uklink", "ukback");
 wlist = new Array(names.length);
 glist = new Array(names.length);
-slist = new Array(names.length);
+//slist = new Array(names.length);
    
 if (document.images) {
    for (var i = 0; i < names.length; i++) {
@@ -33,7 +33,7 @@ if (document.images) {
       wlist[names[i]].src = names[i] + ".gif";
       glist[names[i]] = new Image();
       glist[names[i]].src = names[i] + "2.gif";
-      slist[names[i]] = msgs[i];
+//      slist[names[i]] = msgs[i];
    }
 }
 
@@ -45,10 +45,10 @@ function over (name, f) {
          document[name].src = wlist[name].src;
    }
 
-   if (f)
-      window.status = window.defaultStatus = slist[name];
-   else
-      window.status = window.defaultStatus = "Compukit UK101 Home Page";
+//   if (f)
+//      window.status = window.defaultStatus = slist[name];
+//   else
+//      window.status = window.defaultStatus = "Compukit UK101 Home Page";
       
    return true;
 }
