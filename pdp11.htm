@@ -11,7 +11,10 @@
 <LINK HREF="eee.htm" REL="made" TITLE="John Honniball's Contact Page">
 </HEAD>
 <BODY BGCOLOR="#ffffff">
+<FONT FACE="Arial,Helvetica,sans-serif">
 <H1 ALIGN=CENTER>Repairing The PDP-11/34 To Component Level</H1>
+</FONT>
+<A HREF="index.htm">HOME</A>&nbsp;&gt;&nbsp;<A HREF="comp.htm">Computers</A>&nbsp;&gt;&nbsp;<B>PDP-11</B>
 <H2>About the machine</H2>
 <P>
 <IMG SRC="pdp1134.jpg" WIDTH=250 HEIGHT=262 ALT="PDP-11/34" ALIGN=RIGHT>
@@ -31,13 +34,22 @@ The disks in the PDP-11 are two 5Mb RL-01 removable cartridge drives.
 <P>
 <IMG SRC="rl01.jpg" WIDTH=200 HEIGHT=108 ALT="RL-01" ALIGN=RIGHT>
 Symptom: RL-01 fault light on.
+Cause: Failed read amlifier chip, preventing servo pulses from
+reaching controller.
+Remedy: Replace failed amplifier chip.
 </P>
 <H2>The Second RL-01 Fault</H2>
 <P>
 Symptom: RL-01 fault light on.
+Cause: Failed voice-coil driver transistor, preventing head from being
+moved into tracks on disk.
+Remedy: Replace failed transistor.
 </P>
 <H2>The Control-Panel Fault</H2>
 <P>
+Symptom: PDP-11 fails when warmed up.
+Cause: Defective biploar PROM chip on control-panel card.
+Remedy: Replace failed chip.
 </P>
 <HR>
 <DIV ALIGN=CENTER>
