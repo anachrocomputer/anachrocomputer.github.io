@@ -18,14 +18,17 @@
 <H2>1979: Acorn System One</H2>
 <P>
 <IMG SRC="acorn1.jpg" WIDTH=200 HEIGHT=114 ALT="Acorn System One" ALIGN=RIGHT>
-A <A HREF="http://www.6502.org">6502</A>-based machine, built when I was
-electronics lab technician at school.
+A <A HREF="http://www.6502.org">6502</A>-based machine, built from a kit
+when I was electronics lab technician at school.
+Must have been about 1979, shortly after the school acquired a Commodore PET.
 </P>
 <BR CLEAR=RIGHT>
 <H2>1980: Compukit UK101</H2>
 <P>
 Another <A HREF="http://www.6502.org">6502</A>-based machine, built from a kit.
 Still working 28 years later.
+This machine is the basis of my own <A HREF="uk101.htm">Compukit UK101</A>
+web site.
 </P>
 <BR CLEAR=RIGHT>
 <H2>1984: Z80 Board</H2>
@@ -69,6 +72,15 @@ I wrote an occam program to drive it all, which booted over a transputer
 link (from an Atari ST) and ran in the M212's internal 2k memory.
 That 2k included a 512-byte tape block buffer!
 </P>
+<P>
+Looking at that chip and the tape drive interface design today,
+the M212 looks rather like a microcontroller.
+At least, it could be used in a microcontroller mode (it has features
+such as an external data and address bus, which make it unlike a
+microcontroller).
+If I were to design a QIC-02 interface today, I'd probably use a microcontroller
+like the Atmel AVR ATmega8 or Atmega32.
+</P>
 <BR CLEAR=RIGHT>
 <H2>1997: Transputer Serial Interface</H2>
 <P>
@@ -95,18 +107,18 @@ They were built as plug-together wearable computers as part of the
 research project.
 The master PIC was connected to the host (an HP iPaq) via a serial port,
 and slave CPUs were attached to it via an I2C bus.
-Having done that, I've decided that the PIC must be an "Eight" processor,
-because I didn't like it.
+Having done that, I've decided that the PIC must be an &ldquo;Eight&rdquo;
+processor, because I didn't like it.
 </P>
 <BR CLEAR=RIGHT>
 <H2>2005: Atmel AVR Prototypes</H2>
 <P>
 In my new job, I was asked to build a small embedded system around a
 microcontroller chip.
-After using the PIC previously, I decided to use an Atmel AVR chip
-this time.
-The little circuit went together pretty well, and connected up
-nicely to a PC's serial port.
+After using the PIC previously,
+I decided to use an Atmel AVR chip this time.
+The little circuit went together pretty well,
+and connected up nicely to a PC's serial port.
 I have loaded it with code written in assembler as well as code
 compiled from C (with the
 <A HREF="http://winavr.sourceforge.net/">WinAVR</A> package, a version of GCC).
@@ -167,14 +179,47 @@ so I made a version of my own,
 and that's what you see in the photos here.
 </P>
 <BR CLEAR=RIGHT>
-<H2>2008?: Another Atmel AVR Prototyping Board</H2>
+<H2>2008: Another Atmel AVR Prototyping Board</H2>
 <P>
+<IMG SRC="avrpcbc.jpg" WIDTH=200 HEIGHT=133 ALT="ATmega32 PCB empty" ALIGN=RIGHT>
+<IMG SRC="avrpcbd.jpg" WIDTH=200 HEIGHT=133 ALT="ATmega32 PCB populated" ALIGN=RIGHT>
 When I got the parts for the ATmega8 boards, I also got an ATmega32,
 which is a rather more powerful AVR chip.
 It has four 8-bit I/O ports, and it's in a 40-pin DIL package.
-The plan is to build another prototyping board with the ATmega32,
-probably with another toner transfer PCB.
-Watch this space...
+I went ahead and built another prototyping board for the ATmega32,
+again using a toner transfer PCB.
+This board is currently in use on a small mobile robot that I'm working on
+(I just needed to add an H-bridge motor controller).
+</P>
+<BR CLEAR=RIGHT>
+<H2>2008: Atmel AVR Persistence-Of-Vision Board</H2>
+<P>
+<IMG SRC="avrpcbe.jpg" WIDTH=200 HEIGHT=133 ALT="ATmega8 POV PCB" ALIGN=RIGHT>
+Not satisfied with just one more toner transfer PCB, I made two.
+The second board is for a persistence-of-vision (POV) wand,
+basically just 16 green LEDs that are controlled by the ATmega8.
+To use fewer I/O pins on the ATmega8, I used a pair of 74LS595
+shift register chips to actually drive the LEDs.
+I also used surface-mount (SMT) resistors to make the PCB smaller,
+although the chips are still in
+<ACRONYM TITLE="dual-in-line">DIL</ACRONYM> form.
+There's also a low-dropout 5V regulator on the board, based on the
+LM2941CT chip.
+But having read a bit more about the AVR chips, and the 74HC595, I think
+it should be possible to eliminate the 5V regulator and run the circuit
+directly off two 1.5V AA batteries.
+Maybe I'll try that one day, but I'd need to change all those 220&Omega;
+SMT resistors...
+</P>
+<BR CLEAR=RIGHT>
+<H2>2009?: Atmel AVR ATmega324 Board</H2>
+<P>
+Atmel keeps on coming out with new chips, and I keep on buying 'em.
+This one is an upgraded ATmega32, with lots of news features, 
+including pin-change interrupts, another USART and more PWM channels.
+But I'm not sure yet how to make the prototyping board for this
+one&nbsp;&mdash;&nbsp;do I make another copy of the toner transfer PCB, or do I use
+Veroboard?
 </P>
 <BR CLEAR=RIGHT>
 <H2>The Ones That Got Away</H2>
