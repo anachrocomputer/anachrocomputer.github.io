@@ -135,6 +135,9 @@ An analog joystick with four buttons.
 The <B>Vectrex</B> was an 8-bit, vector-scan console introduced in 1982.
 It had two controller ports, and each controller had an analog
 joystick (sprung to centre) and four buttons.
+The analog-to-digital converter (ADC) for the joystick was located in
+the console itself, not in the controller, and two wires carry the analog
+signals through the cable to the 9-pin plug.
 The function of the buttons was shown on the screen overlay.
 Games were started from the controller using the normal fire buttons.
 The four buttons are labelled &lsquo;1&rsquo; to &lsquo;4&rsquo;.
@@ -279,8 +282,13 @@ The controller has a spring-loaded twisting joint in the middle,
 which lets the player twist the two halves of the controller in
 opposite directions.
 This controls the steering in a driving game, while the two red
-buttons are analog sensors and can control throttle and brake.
-The two shoulder buttons are also analog.
+buttons are analog sensors (8-bit resolution) and can control throttle and
+brake in the game.
+The left-hand shoulder button is also analog, but the right-hand one
+is simply a digital switch.
+Some controllers in the form of steering wheel and pedals seem to emulate
+the NeoCon, so it's possible that Sony originally specified a generic
+&lsquo;driving controller&rsquo; for games that require it.
 <BR CLEAR=RIGHT>
 </P>
 <H2>The Atari Jaguar Joypad</H2>
@@ -328,7 +336,10 @@ A bizarre three-handled controller, available in several bright colours
 in addition to the standard grey.
 Introduced in 1996 and featuring both a digital direction pad and
 an analogue joystick.
+The analog-to-digital converter (ADC) for the joystick is loacted within
+the controller, and only digital signals are sent over the interface.
 Again, a complex signalling protocol between console and controller.
+The plug has just three pins, two for power and one signal pin.
 An optional vibration pack was available that clipped onto the back
 of the controller.
 Power for the vibration effect was supplied by a battery in the pack,
@@ -354,8 +365,12 @@ underneath the controller and labelled &lsquo;Z&rsquo;.
 <IMG ALIGN=RIGHT SRC="jpps2.jpg" WIDTH=200 HEIGHT=131 ALT="Sony PlayStation II joypad">
 An update to the PlayStation I controller that adds
 analog controls and a pair of vibration motors.
-The two motors are fitted with eccentic weights of different
+Once again, the analog-to-digital converter (ADC) is in the controller
+and the interface is digital.
+The two motors are fitted with eccentric weights of different
 sizes, and can be independently controlled by the game.
+The motor with the smaller weight can only be switched on and off,
+but the larger one can operate at a variable speed as well.
 For a great example of this, try the game &lsquo;Rez&rsquo;.
 <BR CLEAR=RIGHT>
 </P>
