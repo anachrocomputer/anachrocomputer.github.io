@@ -21,6 +21,32 @@
 <H1 ALIGN=CENTER>Software for a 6809 in a 6502 machine</H1>
 </FONT>
 <A HREF="index.htm">HOME</A>&nbsp;&gt;&nbsp;<A HREF="comp.htm">Computers</A>&nbsp;&gt;&nbsp;<A HREF="sixadapt.htm">Six Adaptor</A>&nbsp;&gt;&nbsp;<B>Log</B>
+<H2>10th January 2009</H2>
+<P>
+I now have two 2716 EPROMs with 6809 code in them, in two of the
+ROM sockets on the UK101 motherboard.
+The split seems to have gone OK, although I now realise that there
+are locations in RAM that are referred to by both "halves" of the
+ROM code.
+This means that I can't just modify the RAM addresses willy-nilly,
+becuse if I do, one EPROM will have the new versio while the other
+EPROM will still have the old version.
+The EPROM at $A000, the old UK101 BASIC location, is in an
+ordinary 24-pin DIL socket, and I don't want to keep changing it.
+The other EPROM at $F800, the old UK101 monitor ROM address,
+is in a ZIF socket, and that's the one I change for each new
+version of the code.
+</P>
+<P>
+Meanwhile, I've had an idea about replacing the 6850 UART chip with
+a 24-pin DIL header and wiring up a small circuit with a couple of
+74LS244 buffer chips to emulate it.
+Then, I can supply data to the '244 chips from another source,
+such as an Arduino board, or a plain ATmega168 chip, or even
+a PC with a parallel printer port.
+The result: a very fast program loader to replace the 300 baud
+cassette tapes.
+</P>
 <H2>5th January 2009</H2>
 <P>
 Today, I fixed the flaky hardware.
