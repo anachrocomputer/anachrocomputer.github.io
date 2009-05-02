@@ -1,0 +1,147 @@
+<HTML>
+<HEAD> 
+<TITLE>ATmega32 Prototyping PCB</TITLE>
+<META NAME="DC.title" CONTENT="ATmega32 Prototyping PCB">
+<META NAME="DC.creator" CONTENT="John Honniball">
+<META NAME="DC.language" CONTENT="en-GB">
+<META NAME="geo.placename" CONTENT="Stoke Gifford, South Gloucestershire, United Kingdom">
+<META NAME="geo.region" CONTENT="GB-SGC">
+<META NAME="geo.position" CONTENT="51.521483;-2.542500">
+<META NAME="ICBM" CONTENT="51.521483, -2.542500">
+<META NAME="keywords" CONTENT="Atmel, ATmega32, AVR, Sanguino, prototyping, LED, microcontroller, toner transfer, PCB, printed circuit">
+<META NAME="author" CONTENT="John Honniball">
+<META NAME="description" CONTENT="Homebrew ATmega32 prototyping PCB made using Toner Transfer method">
+<LINK HREF="index.htm" REL="home" TITLE="John Honniball's Home Page">
+<LINK HREF="index.htm" REL="top" TITLE="John Honniball's Home Page">
+<LINK HREF="make.htm" REL="up" TITLE="Creative Technology">
+<!-- LINK HREF="photo.htm" REL="next" TITLE="Photography" -->
+<!-- LINK HREF="uk101.htm" REL="prev" TITLE="UK101 Home Page" -->
+<!-- LINK HREF="about.htm" REL="first" TITLE="About Me" -->
+<!-- LINK HREF="links.htm" REL="last" TITLE="Links" -->
+<LINK HREF="eee.htm" REL="made" TITLE="John Honniball's Contact Page">
+</HEAD>
+<BODY BGCOLOR="#ffffcc">
+<FONT FACE="Arial,Helvetica,sans-serif">
+<H1 ALIGN=CENTER>ATmega32 Prototyping PCB</H1>
+</FONT>
+<A HREF="index.htm">HOME</A>&nbsp;&gt;&nbsp;<A HREF="make.htm">Creative Technology</A>&nbsp;&gt;&nbsp;<B>AVR Mega32 PCB</B>
+<P>
+In <A HREF="mega8card.htm">another page</A>, I described a
+<ACRONYM TITLE="Printed Circuit Board">PCB</ACRONYM> that I made
+to hold an Atmel AVR microcontroller chip, the ATmega8.
+Having done that, and having learnt about the ATmega8, some of the limitations
+of that chip became apparant.
+But the ATmega8 is not the only AVR chip!
+There are many others, and the one that looked like a good choice for a second
+PCB was the ATmega32.
+This chip comes in a 40-pin DIL package (as well as in surface-mount packages)
+and has four 8-bit parallel I/O ports.
+</P>
+<P>
+Another advantage of using the larger AVR chip is that there are still more
+devices to choose from that fit the same basic chip pinout.
+Going up the scale from the ATmega32, there's the ATmega644, which has more
+memory as well as extra I/O devices.
+The pinout is much the same, for all these 40-pin DIL chips, so one PCB should
+work for all of them.
+Another advantage of the new chips is that they have two serial ports, which makes
+applications like serial protocol convertors possible.
+</P>
+<P>
+This list summarises the design goals for this board, in no particular order:
+<UL>
+<LI>Make the PCB with Toner Transfer</LI>
+<LI>Stick to a single sided board</LI>
+<LI>Use an Atmel AVR chip, the ATmega32</LI>
+<LI>In future, use a larger AVR chip, the ATmega644</LI>
+<LI>Use up another spare piece of copper-clad board I've had since the 1970s</LI>
+<LI>Maximise the usefulness of the PCB for breadboarding/prototyping</LI>
+<LI>Like the Arduino, fit sockets for I/O connections</LI>
+<LI>Place all I/O connectors on a 0.1&nbsp;inch grid for compatibility with stripboard</LI>
+<LI>Include power and ground pins on the I/O sockets</LI>
+<LI>Allow for four 16-pin I/O sockets, one for each eight-bit port on the AVR</LI>
+<LI>All I/O sockets to share a common pinout</LI>
+<LI>Fit a dual RS-232 level shifter chip (MAX232 or MAX220)</LI>
+<LI>Fit a six-pin programming header, with polarisation keyway</LI>
+<LI>Fit a reset button</LI>
+<LI>Make PCB tracks wide enough for easy toner transfer</LI>
+<LI>Install a power-on LED</LI>
+<LI>Minimise area of copper etched away, to make ferric chloride last longer</LI>
+<LI>Stick to business card or ISO credit card size</LI>
+<LI>Use a ground track all around outside edges</LI>
+<LI>Use free and open source tools, e.g. GNU PCB</LI>
+</UL>
+In order to achieve the proper pinout on the I/O connectors, I had to reverse the
+sequence of the connections to the Port&nbsp;A pins, pins 33 to 40 on the DIL chip.
+This made all of the I/O connectors identical, with one connector for each of the
+ATmega32's four I/O ports: Ports A, B, C and D.
+This is what leads to the track pattern that you can see in the lower left-hand
+corner of the photo of the PCB, below.
+Four pins on each connector were set aside for ground, and four pins for 5V power.
+I would have liked to have added additional power supply voltages, but the constraint
+of using a single-sided PCB made that too difficult.
+</P>
+<P>
+One thing I didn't do was add the dual RS-232 buffer chip.
+The reason was rather silly: my offcut of copper-clad PCB material was too small to
+build the complete board!
+I left off about a fifth of the design, which meant that I had to omit the MAX232
+or MAX220 chip.
+Of course, the Atmel AVR chip still has the serial ports in it, so I can add an
+off-board level shifter if and when required.
+I could even build a level shifter chip into a 9-pin "D" connector.
+</P>
+<P>
+The final design was done using the free GNU PCB program and then printed onto
+junk-mail paper with an HP LaserJet 4+ printer.
+The toner from that printing was then transferred to the copper-clad board with
+a hot domestic smoothiing iron and the paper was soaked in warm water to remove it,
+leaviing the board ready to etch.
+Etching was done with ferric chloride in the usual way, and then the
+toner was removed with acetone, leaving the board ready to drill.
+I drilled most of the holes to 0.8mm diameter, but some of them needed
+to be a little larger, 1.0mm.
+The larger size was needed for the I/O connectors, the two-pin power connector,
+the reset switch and the six-pin programming header.
+</P>
+<P>
+<IMG SRC="avrpcbc.jpg" ALT="AVR prototyping PCB" WIDTH=200 HEIGHT=133>
+<IMG SRC="avrpcbd.jpg" ALT="AVR prototyping PCB" WIDTH=200 HEIGHT=133>
+</P>
+<P>
+Having completed the board, of course I have found a number of mistakes in the design.
+The main problems are with clearances; I just didn't leave enough room around the
+16-pin I/O connectors.
+The placement of one of the wire links ended up underneath the six-pin programming header,
+which requires a little care in assembly to fit that wire first.
+The four I/O connectors look good, but if I was to build a board that used all of them
+and plugged in on top of the AVR board, all sorts of things would get in the way.
+It would be much better to keep the area clear for plug-ins and move the power connector,
+programming header and power-on LED out to the ends of the board.
+</P>
+<P>
+The 15mil (15 thousandths of an inch) tracks have worked perfectly, connecting the
+six-pin programming header to the proper pins on the AVR chip.
+I didn't need to use the wire links to make those connections.
+The pull-up resistor for RESET fits OK under the AVR chip's socket, even if
+it is a bit of a kludge.
+</P>
+<P>
+More photos of the PCB and the etching process are in this
+<A HREF="http://www.flickr.com/photos/anachrocomputer/sets/72157607701477131">Flickr set</A>,
+and photos of the final board are in this
+<A HREF="http://www.flickr.com/photos/anachrocomputer/sets/72157607702255015">Flick set</A>.
+</P>
+<HR>
+<CENTER>
+<P>Return to the <A HREF="make.htm">Creative Technology</A> page</P>
+<P>Return to <A HREF="index.htm">John Honniball's home page</A></P>
+<FONT SIZE="-1">
+Copyright &copy; 2008
+by <A HREF="eee.htm">John Honniball</A>.
+All rights reserved.
+</FONT>
+</CENTER>
+<HR>
+</BODY>
+</HTML>

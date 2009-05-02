@@ -1,0 +1,89 @@
+<html>
+<head> 
+<title>Making a Spinner Control from a CD-ROM Motor</title>
+<meta name="DC.title" content="Making a Spinner Control from a CD-ROM Motor">
+<meta name="DC.creator" content="John Honniball">
+<meta name="DC.language" content="en-GB">
+<meta name="geo.placename" content="Stoke Gifford, South Gloucestershire, United Kingdom">
+<meta name="geo.region" content="GB-SGC">
+<meta name="geo.position"content="51.521483;-2.542500">
+<meta name="ICBM" content="51.521483, -2.542500">
+<meta name="keywords" content="Dragon 32, joystick, analog, resistive, modification">
+<meta name="author" content="John Honniball">
+<meta name="description" content="How to convert a PC-compatible analog joystick for use with the Dragon 32">
+<link href="index.htm" rel="home" title="John Honniball's Home Page">
+<link href="index.htm" rel="top" title="John Honniball's Home Page">
+<link href="make.htm" rel="up" title="Creative Technology">
+<!-- link href="photo.htm" rel="next" title="Photography" -->
+<!-- link href="uk101.htm" rel="prev" title="UK101 Home Page" -->
+<!-- link href="about.htm" rel="first" title="About Me" -->
+<!-- link href="links.htm" rel="last" title="Links" -->
+<link href="eee.htm" rel="made" title="John Honniball's Contact Page">
+</head>
+<body bgcolor="#ffffcc">
+<font face="Arial,Helvetica,sans-serif">
+<h1 align=center>Making a Spinner Control from a CD-ROM Motor</h1>
+</font>
+<a href="index.htm">HOME</a>&nbsp;&gt;&nbsp;<a href="make.htm">Creative Technology</a>&nbsp;&gt;&nbsp;<b>Spinner Control</b>
+<div align=center>
+<a href="hallspin1l.png"><img src="hallspin1.png" alt="Spinner control" width=141 height=200 /></a>
+</div>
+<p>
+Nearly all CD-ROM drives have a brushless DC motor to spin the CD.
+This type of motor is used because a CD-ROM drive requires accurate
+speed control (for fast reading speed) and high torque (for fast start-up).
+These brushless DC motors are generally a three-phase design, with three
+<a href="http://en.wikipedia.org/wiki/Hall_effect" title="Wikipedia: Hall Effect">Hall-effect</a>
+sensors for commutation.
+A Hall-effect sensor has four terminals; two terminals are used to pass a
+small current through the device, while two more are used to sense the
+voltage output of the device.
+This output voltage is usually very small, a few millivolts, and in the
+CD-ROM drive, this output is connected to the motor driver chip.
+The driver chip then uses the sensor data to energise the three coils of
+the motor in the proper sequence.
+</p>
+<p>
+My plan was to utilise the three hall-effect sensors to sense rotation of
+the motor, but not rotation under power.
+Instead, I wanted to sense manual rotation of the CD-ROM hub.
+The voltage produced by a Hall-effect sensor is proportional to the
+strength of the magnetic field, but all we
+actually need in this circuit is to know its polarity.
+The polarity reverses each time the magnets in the rotating part of the
+motor go past a sensor.
+So, we can connect a comparator chip to the Hall-effect sensors, and since
+we can get quad comparator chips, one chip will be sufficient for all
+three sensors.
+I used a TLC3704, simply because I have lots of them that I got from
+<a href="http://www.freecycle.org">FreeCycle</a>.
+The comparator outputs will go from TRUE to FALSE and back again as the
+magnets rotate past the sensors.
+The three sensors are arranged by the design of the motor so that they
+go on and off in the following pattern:
+<table align=center border=1>
+<tr><td>FALSE</td><td>FALSE</td><td>FALSE</td></tr>
+<tr><td>TRUE</td><td>FALSE</td><td>FALSE</td></tr>
+<tr><td>TRUE</td><td>TRUE</td><td>FALSE</td></tr>
+<tr><td>TRUE</td><td>TRUE</td><td>TRUE</td></tr>
+<tr><td>FALSE</td><td>TRUE</td><td>TRUE</td></tr>
+<tr><td>FALSE</td><td>FALSE</td><td>TRUE</td></tr>
+</table>
+</p>
+<p>
+<!-- Photos of my Spinner Control are available in this
+<a href="http://www.flickr.com/photos/anachrocomputer/sets/72157602985368011/">Flickr set</a>. -->
+</p>
+<hr />
+<div align=center>
+<p>Return to the <a href="make.htm">Creative Technology</a> page</p>
+<p>Return to <a href="index.htm">John Honniball's home page</a></p>
+<font size="-1">
+Copyright &copy; 2009
+by <a href="eee.htm">John Honniball</a>.
+All rights reserved.
+</font>
+</div>
+<hr />
+</body>
+</html>
