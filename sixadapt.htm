@@ -106,7 +106,9 @@ Time to get out the 6809 assembler and write a little test program
 to just display "Hello, World" or something, and then get it into
 a 2716 EPROM.
 Should be easy, right?
-Well, first of all, the 6809 assembler generates a hex file in
+Well, first of all, the 6809 assembler generates a
+<ABBR TITLE="hexadecimal">hex</ABBR>
+file in
 <A HREF="http://www.cs.net/lucid/intel.htm">Intel hex</A> format.
 I'd got the EPROM programmer set to accept
 <A HREF="mosptp.htm">MOS Technology</A> format,
@@ -121,7 +123,9 @@ But the programmer still won't accept the hex file.
 It gives me an error message about "not a hex character".
 A quick glance at the Intel format hex file revealed that the
 assembler was generating all the hex digits A-F in lower case.
-The Stag PPZ didn't like that, and wanted upper case.
+The
+<A HREF="inst.htm#PPZ">Stag PPZ</A>
+didn't like that, and wanted upper case.
 A quick pass through the traditional Unix 'tr' program fixed
 that one (for now; maybe fix the assembler one day).
 </P>
@@ -132,7 +136,8 @@ I'd been using the Linux terminal program
 This is an interactive program that does various things like
 setting up a modem and transferring files.
 I was getting a bit fed up with setting the line speed to 9600 baud
-and turning off hardware handshake each time I sent a new hex
+and turning off hardware handshake each time I sent a new
+<ABBR TITLE="hexadecimal">hex</ABBR>
 file, so I thought I'd write a little Bash shell script to configure
 the serial line and send the file automatically.
 Setting the serial line is done with 'stty' and that worked OK, but
@@ -179,8 +184,9 @@ directly.
 <H2>Success!</H2>
 <P>
 It worked!
-I got my "Hello, World" on the UK101's VDU as soon as the clock was
-sorted out.
+I got my "Hello, World" on the UK101's
+<ACRONYM TITLE="Visual Display Unit">VDU</ACRONYM>
+as soon as the clock was sorted out.
 I sat there for a while, pressing reset on the UK101, and seeing the
 message appear on the VDU.
 OK, so I'm easily amused.

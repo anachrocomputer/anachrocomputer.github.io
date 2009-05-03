@@ -24,7 +24,8 @@
 <H2>2nd May 2009</H2>
 <P>
 A lot has happened since my last update here.
-Firstly, I took the three UK101s to
+Firstly, I took the three
+<A HREF="uk101.htm">UK101</A>s to
 <A HREF="http://www.techadventure.org">Tech Adventure</A> in Bristol
 (28th February).
 All went well, and we even had another UK101, brought along by a
@@ -41,8 +42,9 @@ The two least modified machines worked flawlessly, but my own highly
 modified UK101 did crash a few times.
 Most disappointing was the failure of the cassette player, which
 prevented me from loading tapes and also began to scarily chew them up.
-At the very end of the weekend, the BBC came over to record a short
-interview about the machines,
+At the very end of the weekend, the
+<ACRONYM TITLE="British Broadcasting Corporation">BBC</ACRONYM>
+came over to record a short interview about the machines,
 <A HREF="http://news.bbc.co.uk/1/hi/technology/7961760.stm">now on-line here</A>
 (other BBC reports from the Faire are
 <a HREF="http://news.bbc.co.uk/1/hi/technology/7946971.stm">in video here</A>
@@ -57,7 +59,9 @@ Once again, my photos of the event are in this
 So now what?
 I have the UK101s back in their usual places at home and reconnected
 to their usual video monitors.
-I have an LCD monitor, designed for an Xbox, that I plan to connect
+I have an
+<ACRONYM TITLE="Liquid Crystal Display">LCD</ACRONYM>
+monitor, designed for an Xbox, that I plan to connect
 up and use as a UK101 display (it's not quite working properly yet,
 though).
 I'm still messing about with the 6809 code now and then, but progress
@@ -67,23 +71,33 @@ August this year, but I'm not sure what to do yet.
 </P>
 <H2>10th January 2009</H2>
 <P>
-I now have two 2716 EPROMs with 6809 code in them, in two of the
+I now have two 2716
+<ACRONYM TITLE="Erasible Programmable Read-Only Memory">EPROM</ACRONYM>s
+with 6809 code in them, in two of the
 ROM sockets on the UK101 motherboard.
 The split seems to have gone OK, although I now realise that there
-are locations in RAM that are referred to by both "halves" of the
+are locations in
+<ACRONYM TITLE="Random Access Memory">RAM</ACRONYM>
+that are referred to by both "halves" of the
 ROM code.
 This means that I can't just modify the RAM addresses willy-nilly,
 becuse if I do, one EPROM will have the new version while the other
 EPROM will still have the old version.
 The EPROM at $A000, the old UK101 BASIC location, is in an
-ordinary 24-pin DIL socket, and I don't want to keep changing it.
+ordinary 24-pin
+<ACRONYM TITLE="Dual In Line">DIL</ACRONYM>
+socket, and I don't want to keep changing it.
 The other EPROM at $F800, the old UK101 monitor ROM address,
-is in a ZIF socket, and that's the one I change for each new
+is in a
+<ACRONYM TITLE="Zero Insertion Force">ZIF</ACRONYM>
+socket, and that's the one I change for each new
 version of the code.
 </P>
 <P>
-Meanwhile, I've had an idea about replacing the 6850 UART chip with
-a 24-pin DIL header and wiring up a small circuit with a couple of
+Meanwhile, I've had an idea about replacing the 6850
+<ACRONYM TITLE="Universal Asynchronous Receiver/Transmitter">UART</ACRONYM>
+chip with a 24-pin DIL
+header and wiring up a small circuit with a couple of
 74LS244 buffer chips to emulate it.
 Then, I can supply data to the '244 chips from another source,
 such as an Arduino board, or a plain ATmega168 chip, or even
@@ -95,7 +109,7 @@ cassette tapes.
 <P>
 Today, I fixed the flaky hardware.
 I cut up and desoldered the old header pins on the bottom of the
-Six Adaptor, and fitted a new 40-pin header and resoldered it.
+Six&nbsp;Adaptor, and fitted a new 40-pin header and resoldered it.
 The machine started up straight away after replacing the 6309 chip in the
 adaptor (and reconnecting the video lead after I'd been using it with
 a Sinclair Spectrum).
@@ -118,23 +132,27 @@ However, I have recently been given another UK101, complete with
 cardboard box and manual.
 That one is absolutely original, and will need little more than
 cleaning up to make it look just like it did in 1982, when it was built.
-The UK101 that I'm using with the Six Adaptor has had a few things soldered
+The UK101 that I'm using with the Six&nbsp;Adaptor has had a few things soldered
 onto it over the years, but nowhere near as much as my own UK101.
 </P>
 <P>
 But one of the frustrations with this project has been reliability of
 the hardware.
 The basic UK101 has been OK, but I've had trouble with the green
-screen video monitor, the EPROM programmer, my own PC and now
-the Six Adaptor itself.
+screen video monitor, the
+<ACRONYM TITLE="Erasible Programmable Read-Only Memory">EPROM</ACRONYM>
+programmer, my own PC and now
+the Six&nbsp;Adaptor itself.
 The other troubles have been fixed, so now it's time to concentrate
 on that little adaptor board that rewires the 6502 socket to accept a
 6809 chip.
 I made it using parts that I had to hand, which worked fine for a while.
 The bottom of the adaptor is a 40-pin header that plugs into the
 6502 socket, just like the original chip did.
-Now, I didn't have a 40-pin DIL header in stock when I built the
-Six Adaptor, so I used some cut-up and patched-together headers that
+Now, I didn't have a 40-pin
+<ACRONYM TITLE="Dual In Line">DIL</ACRONYM>
+header in stock when I built the
+Six&nbsp;Adaptor, so I used some cut-up and patched-together headers that
 I happened to have lots of.
 This may have been foolish, because I have now traced the source of
 the flakiness in the machine to the poor contact between header
@@ -160,7 +178,8 @@ I've added a few things, like a visual bell function that responds
 to the CTRL-G character by flashing the video screen (no audio
 output hardware on this machine).
 There's also a VDU test function that displays the whole 256-character
-set so that I can fully test the character generator EPROM
+set so that I can fully test the character generator
+<ACRONYM TITLE="Erasible Programmable Read-Only Memory">EPROM</ACRONYM>
 (it's fine).
 Looking at the character set, I remembered that I wanted to add
 a one-pixel border around the entire screen at start-up, to help
@@ -177,11 +196,14 @@ On the hardware front, I've fixed the flaky brightness control
 pot on the BMC green-screen monitor that I use with the 6809 machine.
 This makes it a bit easier to just switch on and go, without having
 to mess about getting a good picture on the monitor.
-I've also fixed up the Stag PPZ EPROM programmer which I use for
-all my development work.
+I've also fixed up the
+<A HREF="inst.htm#PPZ">Stag PPZ</A>
+EPROM programmer which I use for all my development work.
 It was built in 1984, and needed a bit of repair to the keyboard
 (<A HREF="http://www.flickr.com/photos/anachrocomputer/sets/72157603795019803/">photos here</A>).
-Wish I knew why it won't accept hex files at 19200 baud, though.
+Wish I knew why it won't accept
+<ABBR TITLE="hexadecimal">hex</ABBR>
+files at 19200 baud, though.
 Maybe a few carefully-chosen delays will make it work properly.
 </P>
 <P>
@@ -209,8 +231,9 @@ and keyboard polling code)
 and stuff that I want to change frequently (machine-code monitor
 functions and start-up self-tests).
 Then, I can put the two sections into two separate 2716 EPROMs
-and put one in the ZIF socket and the other in one of the
-non-ZIF sockets on the main board.
+and put one in the
+<ACRONYM TITLE="Zero Insertion Force">ZIF</ACRONYM>
+socket and the other in one of the non-ZIF sockets on the main board.
 But that'll mean messing about with the addresses of stuff so
 that it'll work in the other socket, which may get a bit messy.
 </P>
@@ -228,7 +251,9 @@ by enthusiasts.
 The big feature that I need for the frame flyback interrupt is
 the 6309's block transfer instruction, known as TFM for <B>T</B>rans<B>F</B>er <B>M</B>ultiple.
 Without TFM, the original 6809 just isn't fast enough to copy the
-entire 768-byte screen buffer to video RAM during the frame blanking period.
+entire 768-byte screen buffer to video
+<ACRONYM TITLE="Random Access Memory">RAM</ACRONYM>
+during the frame blanking period.
 </P>
 <H2>20th February 2006</H2>
 <P>
@@ -239,7 +264,10 @@ synchronise with the display refresh cycle.
 Now, I've never done any programming with a system like that, and I began wondering
 if there'd be any benefit to using a frame flyback interrupt on the 6809 machine.
 One of the flaws of the original 6502-based UK101 was that it produced video "snow"
-whenever the CPU accessed the video RAM.
+whenever the
+<ACRONYM TITLE="Central Processing Unit">CPU</ACRONYM>
+accessed the video
+<ACRONYM TITLE="Random Access Memory">RAM</ACRONYM>.
 I started thinking about a scheme where the 6809 would copy the entire text screen
 from RAM into video memory on every frame flyback (during the 3.6ms blanking period).
 This would make all display updates synchronous with the display refresh, as well
@@ -253,8 +281,9 @@ Doing a bit more with the Frankenstein Assembler, to give it
 its full name.
 It was posted to the comp.sources newsgroup in 1990, in many
 separate 'shar' archives.
-I now have all those archives from an FTP site and I'm
-putting them together again.
+I now have all those archives from an
+<ACRONYM TITLE="File Transfer Protocol">FTP</ACRONYM>
+site and I'm putting them together again.
 My plan is to put together a proper release of a new version,
 with bug fixes, removal of compiler/linker warnings and
 portability to NetBSD on both 32 and 64-bit hosts.
@@ -266,11 +295,13 @@ simulator, too.
 <H2>22nd December 2005</H2>
 <P>
 Ignore everything I said about 'printf' yesterday.
-The assembler doesn't even use 'printf' to generate hex
+The assembler doesn't even use 'printf' to generate
+<ABBR TITLE="hexadecimal">hex</ABBR>
 digits in the object code and only uses it occasionally
 in the listing file.
-I'd already fixed the assembler by changing an array
-of ASCII codes in the source, but I have absolutely
+I'd already fixed the assembler by changing an array of
+<ACRONYM TITLE="American Standard Code for Information Interchange">ASCII</ACRONYM>
+codes in the source, but I have absolutely
 no recollection of doing that.
 I hadn't installed the fixed version on my development
 machine (but I have now).
@@ -291,7 +322,8 @@ as it did on Linux (all the options must come before the
 filenames).
 And finally, the output files are different!
 Exactly the same size, but the NetBSD versions have the
-hex numbers in upper case (as they should be) instead
+<ABBR TITLE="hexadecimal">hex</ABBR>
+numbers in upper case (as they should be) instead
 of in lower case (which caused the problem I described
 in the original notes about the EPROM programmer).
 </P>
@@ -299,7 +331,8 @@ in the original notes about the EPROM programmer).
 So, I recompiled the assembler on Linux, just to make sure.
 And I get the same warning about 'mktemp'!
 Looks like I really do need to fix that.
-And now the Linux version has upper-case hex, too!
+And now the Linux version has upper-case
+<ABBR TITLE="hexadecimal">hex</ABBR>, too!
 Well, the Linux 'printf' was obviously the source
 of the trouble, and in between Slackware 8.0 and Slackware
 10.1, they've fixed it.
@@ -318,7 +351,7 @@ I run the machine occasionally to impress visitors
 with the Matrix display hack, though.
 I now have a few of the rare-as-hen's-teeth
 Hitachi 6309 chips, as well as a board to run them in.
-In principle, they'd work in the Six Adaptor, but
+In principle, they'd work in the Six&nbsp;Adaptor, but
 I've not actually tried it yet.
 </P>
 <HR>
@@ -366,13 +399,15 @@ display hack.
 So, first of all I'll need a video memory save/restore routine -- not
 too hard in 6809 assembler with proper 16-bit index registers.
 Next, a random number generator (24 bit shift register with exclusive-OR
-feedback, as shown in Horowitz & Hill).
+feedback, as shown in
+<A HREF="http://www.artofelectronics.com/">Horowitz & Hill</A>).
 Finally, some tricky timing code to allow each column of the video
 screen to trickle down at different speeds.
 Use the random number generator to produce new characters at the top,
 but limit the choice to 64 non-alphabetic characters.
-The UK101's tile graphics turn out to be quite good for this sort
-of display!
+The
+<A HREF="uk101.htm">UK101</A>'s
+tile graphics turn out to be quite good for this sort of display!
 </P>
 <H2>26th October</H2>
 <P>
@@ -382,8 +417,9 @@ No progress.
 <P>
 Coded a new version of the UK101's '@' command to read a memory
 address and then display the contents of that address.
-Then, allow the user to edit the contents in hex and/or move
-on to the next (or previous) address.
+Then, allow the user to edit the contents in
+<ABBR TITLE="hexadecimal">hex</ABBR>
+and/or move on to the next (or previous) address.
 </P>
 <H2>24th October</H2>
 <P>
@@ -414,7 +450,9 @@ It's been 20 years since I last had a look at that code, and there
 are plenty of parts that I never understood in the first place.
 In particular, the 6502 disassembler was always a complete mystery
 to me.
-There are no ASCII codes in the EPROM for any of the 6502 mnemonics,
+There are no
+<ACRONYM TITLE="American Standard Code for Information Interchange">ASCII</ACRONYM>
+codes in the EPROM for any of the 6502 mnemonics,
 nor are there visible ASCII codes for addressing mode syntax like
 ',X)' or '),Y'.
 </P>
@@ -422,9 +460,12 @@ nor are there visible ASCII codes for addressing mode syntax like
 <P>
 Decided to implement the cursor today, as well as fix the bug I introduced
 yesterday.
-The cursor on the original UK101 wasn't very exciting, just a blob (half
-as tall as a character cell).
-My improved UK101 monitor EPROM had two cursor styles, one for input
+The cursor on the original 
+<A HREF="uk101.htm">UK101</A>
+wasn't very exciting, just a blob (half as tall as a character cell).
+My improved UK101 monitor
+<ACRONYM TITLE="Erasible Programmable Read-Only Memory">EPROM</ACRONYM>
+had two cursor styles, one for input
 from the keyboard and another for input from the cassette (both a full
 character cell in height).
 Might as well do the same thing for the 6809 version.
@@ -462,10 +503,14 @@ Single keyboard poll, then timing loop with 100us delay on scope.
 </P>
 <H2>17th October</H2>
 <P>
-Initial RAM test.
+Initial
+<ACRONYM TITLE="Random Access Memory">RAM</ACRONYM>
+test.
 Keyboard self-test shows that at least I can read and write the
 keyboard port.
-Finally understood UK101's original keyboard poller.
+Finally understood
+<A HREF="uk101.htm">UK101</A>'s
+original keyboard poller.
 It's just three different delays, and a simple decision on which
 delay to use.
 </P>
@@ -473,9 +518,11 @@ delay to use.
 <P>
 ROM checksum.
 Messing about with 6850
-ACIA,
+<ACRONYM TITLE="Asynchronous Communications Interface Adaptor">ACIA</ACRONYM>,
 but got initialisation code wrong.
-Finally able to send ASCII to ACIA at 300 baud, but still can't
+Finally able to send
+<ACRONYM TITLE="American Standard Code for Information Interchange">ASCII</ACRONYM>
+to ACIA at 300 baud, but still can't
 use the keyboard.
 </P>
 <H2>15th October</H2>
@@ -485,14 +532,14 @@ No progress.
 <H2>14th October</H2>
 <P>
 Rudimentary code to send
-ASCII
+<ACRONYM TITLE="American Standard Code for Information Interchange">ASCII</ACRONYM>
 codes to the
-VDU
+<ACRONYM TITLE="Visual Display Unit">VDU</ACRONYM>
 as if it were a terminal.
 Simple cursor position and cursor motion code but no scrolling yet.
 No visible cursor, either.
 Simple Bash script to send
-<ABBREV TITLE="hexadecimal">hex</ABBREV>
+<ABBR TITLE="hexadecimal">hex</ABBR>
 files to the
 <A HREF="inst.htm#PPZ">Stag PPZ</A>
 EPROM programmer.
@@ -500,8 +547,13 @@ EPROM programmer.
 <H2>13th October 2004</H2>
 <P>
 Initial version with very basic clear-screen followed by placing "Hello,
-World" message in VDU RAM, then hang.
-This works first time (once I get a working CPU clock) and proves
+World" message in
+<ACRONYM TITLE="Visual Display Unit">VDU</ACRONYM>
+<ACRONYM TITLE="Random Access Memory">RAM</ACRONYM>,
+then hang.
+This works first time (once I get a working
+<ACRONYM TITLE="Central Processing Unit">CPU</ACRONYM>
+clock) and proves
 that I've got the hardware wired up OK.
 It also proves that the
 <ACRONYM TITLE="Erasible Programmable Read-Only Memory">EPROM</ACRONYM>
