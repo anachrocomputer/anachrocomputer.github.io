@@ -1,0 +1,87 @@
+<HTML>
+<HEAD> 
+<TITLE>Repairing the M-Audio FastTrack</TITLE>
+<META NAME="DC.title" CONTENT="Repairing the M-Audio FastTrack">
+<META NAME="DC.creator" CONTENT="John Honniball">
+<META NAME="DC.language" CONTENT="en-GB">
+<META NAME="author" CONTENT="John Honniball">
+<LINK HREF="index.htm" REL="home" TITLE="John Honniball's Home Page">
+<LINK HREF="index.htm" REL="top" TITLE="John Honniball's Home Page">
+<LINK HREF="comp.htm" REL="up" TITLE="John Honniball's Computer Page">
+<LINK HREF="eee.htm" REL="made" TITLE="John Honniball's Contact Page">
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<FONT FACE="Arial,Helvetica,sans-serif">
+<H1 ALIGN=CENTER>Repairing The M-Audio FastTrack Microphone Pre-Amplifier</H1>
+</FONT>
+<A HREF="index.htm">HOME</A>&nbsp;&gt;&nbsp;<A HREF="make.htm">Creative Technology</A>&nbsp;&gt;&nbsp;<B>FastTrack</B>
+<H2>About the Device</H2>
+<P>
+The M-Audio FastTrack is a microphone preamplifer with a guitar/line input,
+an analog-to-digital converter (ADC) and a USB interface to the host computer.
+</P>
+<H2>The Fault</H2>
+<P>
+My friend's M-Audio FastTrack had developed a fault that made the microphone
+channel pick up hum.
+Now, the microphone input on a preamp like this is balanced, which means
+that it is designed to minimise hum.
+This works by feeding the microphone signals to a differential amplifier,
+so that any hum that is picked up will cancel out, leaving just the audio
+signal to be amplified further.
+</P>
+<P>
+In this case, one side of the differential amplifier had failed, leaving
+the other side to amplify the microphone signal and the hum.
+When testing, one side of the XLR input connector (pin 3) would pick up hum
+when I put my finger near it, but the other side (pin 2) did not.
+This led me to suspect that the operational amplifier chip (op-amp) had
+failed.
+</P>
+<H2>The Fix</H2>
+<P>
+The unit can be opened up by unscrewing five small screws from the
+underside of the case.
+It then opens up into the two case halves and the PCB with front and rear
+panels attached.
+All the connectors and controls are soldered to the PCB.
+</P>
+<a href="http://www.flickr.com/photos/anachrocomputer/4454187000/" title="Defective Op-Amp by anachrocomputer, on Flickr"><img src="http://farm5.static.flickr.com/4048/4454187000_298af99e84_m.jpg" width="240" height="160" alt="Defective Op-Amp" /></a>
+<a href="http://www.flickr.com/photos/anachrocomputer/4454188646/" title="IC Partly Removed by anachrocomputer, on Flickr"><img src="http://farm3.static.flickr.com/2791/4454188646_a93f81139f_m.jpg" width="240" height="160" alt="IC Partly Removed" /></a>
+<a href="http://www.flickr.com/photos/anachrocomputer/4453412477/" title="IC Removed by anachrocomputer, on Flickr"><img src="http://farm5.static.flickr.com/4001/4453412477_09223dedf8_m.jpg" width="240" height="160" alt="IC Removed" /></a>
+<a href="http://www.flickr.com/photos/anachrocomputer/4454190580/" title="Cleaned Up by anachrocomputer, on Flickr"><img src="http://farm3.static.flickr.com/2744/4454190580_693ac48cb5_m.jpg" width="240" height="160" alt="Cleaned Up" /></a>
+<a href="http://www.flickr.com/photos/anachrocomputer/4454191220/" title="Finished Repair by anachrocomputer, on Flickr"><img src="http://farm5.static.flickr.com/4055/4454191220_fe9e86b49c_m.jpg" width="240" height="160" alt="Finished Repair" /></a>
+<P>
+We obtained a replacement op-amp chip, LMV722, from Farnell, order code
+175-4976.
+It's an 8-pin surface-mount chip, but not too difficult to solder with
+a fine tip, good lighting and magnification.
+</P>
+<P>
+Photos of the chip removal and replacement are in this
+<A HREF="http://www.flickr.com/photos/anachrocomputer/sets/72157623545569785/">Flickr set</A>.
+</P>
+<P>
+Reassembly is the reverse of disassembly.
+Note that the case halves will only fit the PCB one way round; the fifth
+bolt is not in the middle, but closer to one side.
+<HR>
+<DIV ALIGN=CENTER>
+<FONT SIZE="-1">
+Copyright &copy; 2010
+by <A HREF="eee.htm">John Honniball</A>.
+All rights reserved.
+</FONT>
+</DIV>
+<HR>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-8655234-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+</BODY>
+</HTML>

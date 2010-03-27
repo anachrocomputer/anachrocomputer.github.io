@@ -1,0 +1,89 @@
+<HTML>
+<HEAD> 
+<TITLE>Repairing the Philips CM8833</TITLE>
+<META NAME="DC.title" CONTENT="Repairing the Philips CM8833">
+<META NAME="DC.creator" CONTENT="John Honniball">
+<META NAME="DC.language" CONTENT="en-GB">
+<META NAME="author" CONTENT="John Honniball">
+<LINK HREF="index.htm" REL="home" TITLE="John Honniball's Home Page">
+<LINK HREF="index.htm" REL="top" TITLE="John Honniball's Home Page">
+<LINK HREF="comp.htm" REL="up" TITLE="John Honniball's Computer Page">
+<LINK HREF="eee.htm" REL="made" TITLE="John Honniball's Contact Page">
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<FONT FACE="Arial,Helvetica,sans-serif">
+<H1 ALIGN=CENTER>Repairing The Philips CM8833 Colour Video Monitor</H1>
+</FONT>
+<A HREF="index.htm">HOME</A>&nbsp;&gt;&nbsp;<A HREF="make.htm">Creative Technology</A>&nbsp;&gt;&nbsp;<B>CM8833</B>
+<H2>About the Device</H2>
+<P>
+<!-- SRC="pdp1134.jpg" WIDTH=250 HEIGHT=262 ALT="PDP-11/34" ALIGN=RIGHT -->
+The Philips CM8833 is a colour video monitor from the late 1980s.
+It was a popular monitor for computers such as the BBC Micro, Commodore
+Amiga and Atari ST.
+It has inputs for RGB (red-green-blue) video signals, as well as PAL inputs
+and stereo audio amplifiers.
+I use my CM8833 with the <A HREF="uk101.htm">Compukit UK101</A> and the
+Acorn Archimedes A310.
+</P>
+<H2>The Fault</H2>
+<P>
+While using the CM8833 with the UK101 at the
+<A HREF="http://www.flickr.com/photos/anachrocomputer/4440972624/in/set-72157623638705774/">Maker Faire in Newcastle</A>,
+the screen suddenly went blank, and the monitor began to whine.
+I switched off at once, although there was no smoke or burning smell.
+I recognised the whine as a switch-mode power supply going into overload.
+</P>
+<P>
+Once I got the monitor home, I began with a visual inspection of the
+internals.
+No signs of burning were found.
+As usual with this type of failure, I suspected the line output stage of
+the monitor.
+But, the first step was to make sure that the power supply was OK.
+In this design, there's a switch-mode power supply in the form of a separate
+module that includes the power on/off switch.
+I unplugged the four-wire connection from the PSU to the main board, and
+carefully switched on.
+The three main voltages, 125V, 25V and 16V were correct at the PSU and no
+whine was produced.
+This convinced me that the PSU was OK and the fault lay in the main PCB.
+</P>
+<P>
+A DC resistance check from the 125V supply rail to ground read about
+28&Omega;, much too low to be reasonable.
+I removed the line output transistor, but it was OK.
+I also removed the 125V smothing capacitor, but that too was OK.
+At this point I wanted to find out whether the short was somewhere in the
+line output transformer, so I removed the 12&Omega; resistor that supplies
+power to it.
+The short on the 125V rail went away, so I knew that the fault must be in
+the line output transformer or one of a few associated components.
+Having removed each in turn and tested them, I was left with the conclusion
+that the short was indeed in the line output transformer.
+</P>
+<H2>The Fix</H2>
+<P>
+The only way to fix it will be to obtain and fit a replacement line output
+transformer.
+</P>
+<HR>
+<DIV ALIGN=CENTER>
+<FONT SIZE="-1">
+Copyright &copy; 2010
+by <A HREF="eee.htm">John Honniball</A>.
+All rights reserved.
+</FONT>
+</DIV>
+<HR>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-8655234-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+</BODY>
+</HTML>
