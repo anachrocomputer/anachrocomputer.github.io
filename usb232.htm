@@ -1,0 +1,82 @@
+<html>
+<head> 
+<title>Making a USB serial to TTL Adaptor</title>
+<meta name="DC.title" content="Making a Usb serial to TTL Adaptor">
+<meta name="DC.creator" content="John Honniball">
+<meta name="DC.language" content="en-GB">
+<meta name="geo.placename" content="Stoke Gifford, South Gloucestershire, United Kingdom">
+<meta name="geo.region" content="GB-SGC">
+<meta name="geo.position"content="51.521483;-2.542500">
+<meta name="ICBM" content="51.521483, -2.542500">
+<meta name="keywords" content="RS-232, serial, adaptor, level shifter">
+<meta name="author" content="John Honniball">
+<meta name="description" content="How to make a USB serial to TTL adaptor from a mobile phone cable">
+<link href="index.htm" rel="home" title="John Honniball's Home Page">
+<link href="index.htm" rel="top" title="John Honniball's Home Page">
+<link href="make.htm" rel="up" title="Creative Technology">
+<!-- link href="photo.htm" rel="next" title="Photography" -->
+<!-- link href="uk101.htm" rel="prev" title="UK101 Home Page" -->
+<!-- link href="about.htm" rel="first" title="About Me" -->
+<!-- link href="links.htm" rel="last" title="Links" -->
+<link href="eee.htm" rel="made" title="John Honniball's Contact Page">
+</head>
+<body bgcolor="#ffffcc">
+<font face="Arial,Helvetica,sans-serif">
+<h1 align=center>Making a USB Serial to TTL Adaptor</h1>
+</font>
+<a href="index.htm">HOME</a>&nbsp;&gt;&nbsp;<a href="make.htm">Creative Technology</a>&nbsp;&gt;&nbsp;<B>USB serial to TTL</B>
+<div align=center>
+<!-- img src="dragonj1.jpg" alt="Dragon joystick" width=133 height=200 / -->
+</div>
+<p>
+It's often useful to connect a microcontroller's serial port to a host
+computer for debugging.
+Years ago, one might even use an actual serial terminal for this sort of work,
+but nowadays a terminal emulator program on a PC is much more commonly used.
+With an older PC or laptop, one could simply connect the microcontroller
+to the serial port via a suitable level shifter.
+Modern PCs, and especially laptops, do not have a serial port, however.
+The usual solution is to use a
+<acronym title="Universal Serial Bus">USB</acronym> port on the PC to
+connect to a USB-to-serial adaptor.
+The microcontroller still requires a level shifter to connect to the RS-232
+port on the adaptor, because the adaptor itself also contains a level shifter.
+So we have this chain of connections: PC -- USB chip -- level shifter -- RS-232 -- level shifter -- microcontroller.
+Surely we can cut out the pair of level shifters and connect directly from
+the USB chip to the microcontroller?
+</p>
+<p>
+This is exactly what some microcontroller boards do, notably the Arduino.
+They contain a built-in USB chip that appears, to the host side, as a serial
+port.
+The chip then connects directly, at
+<acronym TITLE="Transistor-Transistor Logic">TTL</acronym> levels, to the microcontroller's
+<acronym TITLE="Universal Asynchronous Receiver/Transmitter">UART</acronym>.
+But what about microcontroller boards that do not contain a USB interface chip?
+Can we make something similar ourselves?
+</p>
+<p>
+We can indeed make a USB serial to TTL-level microcontroller interface cable,
+by taking advantage of the commonly-available mobile phone interface cables.
+These cables connect a host computer's USB port to the phone via a serial
+connection, just as we want to do with a microcontroller (after all, the phone
+contains a microcontroller of some sort).
+We must cut off the plug on the phone end of the cable and replace it with
+a small circuit of our own.
+</p>
+<p>
+To Be Continued....
+</p>
+<hr />
+<div align=center>
+<p>Return to the <a href="make.htm">Creative Technology</a> page</p>
+<p>Return to <a href="index.htm">John Honniball's home page</a></p>
+<font size="-1">
+Copyright &copy; 2010
+by <a href="eee.htm">John Honniball</a>.
+All rights reserved.
+</font>
+</div>
+<hr />
+</body>
+</html>
