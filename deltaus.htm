@@ -1,0 +1,66 @@
+<HTML>
+<HEAD> 
+<TITLE>Repairing the Delta Ultrasonic Cleaner</TITLE>
+<META NAME="DC.title" CONTENT="Repairing the Delta Ultrasonic Cleaner">
+<META NAME="DC.creator" CONTENT="John Honniball">
+<META NAME="DC.language" CONTENT="en-GB">
+<META NAME="author" CONTENT="John Honniball">
+<LINK HREF="index.htm" REL="home" TITLE="John Honniball's Home Page">
+<LINK HREF="index.htm" REL="top" TITLE="John Honniball's Home Page">
+<LINK HREF="comp.htm" REL="up" TITLE="John Honniball's Computer Page">
+<LINK HREF="eee.htm" REL="made" TITLE="John Honniball's Contact Page">
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<FONT FACE="Arial,Helvetica,sans-serif">
+<H1 ALIGN=CENTER>Repairing The Delta Ultrasonic Cleaner</H1>
+</FONT>
+<A HREF="index.htm">HOME</A>&nbsp;&gt;&nbsp;<A HREF="make.htm">Creative Technology</A>&nbsp;&gt;&nbsp;<B>Ultrasonic Cleaner</B>
+<H2>About the Device</H2>
+<P>
+The Delta Ultrasonic Cleaner is a mains-powered ultrasonic cleaning
+tank.
+It has a stainless steel tank with a plastic lid and on/off controls.
+</P>
+<H2>The Fault</H2>
+<P>
+I was given the cleaning tank as a "fix-it" project.
+The main fuse would blow as soon as the "on" button was pressed.
+</P>
+<P>
+Closer examination of the PCB revealed that the unit is powered by simply
+rectifying and smoothing the 240V AC mains.
+An auxiliary supply operates a relay that connects power to the ultrasonic
+oscillator, driver transistors and transducer.
+At this point, I suspected that the driver transistors were faulty.
+</P>
+<H2>The Fix</H2>
+<P>
+The two driver transistors, BU406 parts in TO-220 packages, were shorted.
+<P>
+I obtained two replacement transistors, from Farnell, order code
+980-1782.
+They were easy to desolder and replace, with just a normal soldering iron.
+The transistors were bolted to two fairly large heat-sinks.
+</P>
+<P>
+Reassembly is the reverse of disassembly.
+<HR>
+<DIV ALIGN=CENTER>
+<FONT SIZE="-1">
+Copyright &copy; 2010
+by <A HREF="eee.htm">John Honniball</A>.
+All rights reserved.
+</FONT>
+</DIV>
+<HR>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-8655234-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+</BODY>
+</HTML>

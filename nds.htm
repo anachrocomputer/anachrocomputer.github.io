@@ -1,0 +1,78 @@
+<HTML>
+<HEAD> 
+<TITLE>Repairing the Nintendo DS Game Machine</TITLE>
+<META NAME="DC.title" CONTENT="Repairing the Nintendo DS Game Machine">
+<META NAME="DC.creator" CONTENT="John Honniball">
+<META NAME="DC.language" CONTENT="en-GB">
+<META NAME="author" CONTENT="John Honniball">
+<LINK HREF="index.htm" REL="home" TITLE="John Honniball's Home Page">
+<LINK HREF="index.htm" REL="top" TITLE="John Honniball's Home Page">
+<LINK HREF="comp.htm" REL="up" TITLE="John Honniball's Computer Page">
+<LINK HREF="eee.htm" REL="made" TITLE="John Honniball's Contact Page">
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<FONT FACE="Arial,Helvetica,sans-serif">
+<H1 ALIGN=CENTER>Repairing The Nintendo DS Game Machine</H1>
+</FONT>
+<A HREF="index.htm">HOME</A>&nbsp;&gt;&nbsp;<A HREF="make.htm">Creative Technology</A>&nbsp;&gt;&nbsp;<B>Nintendo DS</B>
+<H2>About the Device</H2>
+<P>
+The Nintendo DS is a portable video game machine with two LCD screens.
+The processor is an ARM chip.
+</P>
+<H2>The Fault</H2>
+<P>
+The DS failed to switch on and failed to respond when connected to a charger.
+At first, I suspected the lithium-ion battery, but that appeared to be OK
+when tested.
+With a bit of searching, I found that a common failure mode is the
+on-board fuse(s).
+These fuses are surface-mount parts, soldered to the main PCB in the machine.
+</P>
+<P>
+Referring to a
+<A HREF="http://www.fixya.com/support/t340808-nintendo_ds_f2_blown">web-page that describes the fault</A>, I tested the fuses.
+Sure enough, one of them had failed.
+</P>
+<H2>The Fix</H2>
+<P>
+The unit can be opened up by unscrewing several tiny screws from the
+case.
+Most of these screws are so-called "tri-wing" screws, intended to thwart
+the repairer.
+I had recently acquired a tri-wing screwdriver from Deal Extreme,
+<A HREF="http://www.dealextreme.com/details.dx/sku.19861">SKU 19861</A>.
+It fitted the screw heads very well.
+Note that two of the screws are hidden under the rubber feet of the machine,
+on the same edge as the screen hinge.
+<P>
+There are two fuses in the DS, but in my case only F2 had blown, a 750mA
+0602 size fuse.
+</P>
+<P>
+I obtained a replacement fuse from Farnell.
+It's a tiny part, but solderable with a very fine tip, good lighting
+and a stereo microscope.
+</P>
+<P>
+Reassembly is the reverse of disassembly.
+<HR>
+<DIV ALIGN=CENTER>
+<FONT SIZE="-1">
+Copyright &copy; 2010
+by <A HREF="eee.htm">John Honniball</A>.
+All rights reserved.
+</FONT>
+</DIV>
+<HR>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-8655234-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+</BODY>
+</HTML>

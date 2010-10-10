@@ -1,0 +1,95 @@
+<HTML>
+<HEAD> 
+<TITLE>Repairing the iRiver H340 Multi-Codec Jukebox</TITLE>
+<META NAME="DC.title" CONTENT="Repairing the iRiver H340 Multi-Codec Jukebox">
+<META NAME="DC.creator" CONTENT="John Honniball">
+<META NAME="DC.language" CONTENT="en-GB">
+<META NAME="author" CONTENT="John Honniball">
+<LINK HREF="index.htm" REL="home" TITLE="John Honniball's Home Page">
+<LINK HREF="index.htm" REL="top" TITLE="John Honniball's Home Page">
+<LINK HREF="comp.htm" REL="up" TITLE="John Honniball's Computer Page">
+<LINK HREF="eee.htm" REL="made" TITLE="John Honniball's Contact Page">
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<FONT FACE="Arial,Helvetica,sans-serif">
+<H1 ALIGN=CENTER>Repairing The iRiver H340 Multi-Codec Jukebox</H1>
+</FONT>
+<A HREF="index.htm">HOME</A>&nbsp;&gt;&nbsp;<A HREF="make.htm">Creative Technology</A>&nbsp;&gt;&nbsp;<B>H340</B>
+<H2>About the Device</H2>
+<P>
+The iRiver H340 is a portable music player with a 40Gb, 2.5-inch hard
+disk drive.
+It has a headphone output, a line level output and both line input and a
+built-in microphone.
+There's a built-in FM radio, which can also be used as a recording
+signal source.
+</P>
+<H2>The Fault</H2>
+<P>
+I acquired the H340 from FreeCycle, without any of the accessories.
+I suspected that the lithium-ion battery had become discharged, so I
+found a 5V power aupply and charged it up.
+The H340 worked just fine, and I was able to use it to test some other
+audio gear that I had also got from FreeCycle.
+</P>
+<P>
+My mistake was to use the H340 to test a 70+70Watt in-car amplifier that
+incorporates a step-up power supply.
+Somehow, I connected the H340 to the amp while a large DC offset was
+present at the input terminal.
+This destroyed the headphone output on one channel.
+Foolishly, I tried again with the line level output before realising
+(with horror) what had happened.
+So I now had an MP3 player with both line and headphone outputs dead on
+the right channel.
+</P>
+<H2>The Fix</H2>
+<P>
+The unit can be opened up by unscrewing several tiny screws from the
+case.
+The H340 opens up to reveal the battery, hard disk drive, PCB and
+some blue rubber shock-absorbing material.
+</P>
+<a href="http://www.flickr.com/photos/anachrocomputer/4875535358/" title="Inside The iRiver H340 by anachrocomputer, on Flickr"><img src="http://farm5.static.flickr.com/4135/4875535358_167f1e80da_m.jpg" width="240" height="160" alt="Inside The iRiver H340" /></a>
+<a href="http://www.flickr.com/photos/anachrocomputer/5035229341/" title="PCB Cleaned Up by anachrocomputer, on Flickr"><img src="http://farm5.static.flickr.com/4087/5035229341_fd4ed977cd_m.jpg" width="240" height="160" alt="PCB Cleaned Up" /></a>
+<a href="http://www.flickr.com/photos/anachrocomputer/5035849064/" title="The Chip, Replaced by anachrocomputer, on Flickr"><img src="http://farm5.static.flickr.com/4150/5035849064_ca5134ac75_m.jpg" width="240" height="160" alt="The Chip, Replaced" /></a>
+<P>
+There's a single chip for all of the digital-to-analog and analog-to-digital
+functions, as well as acting as the headphone amplifier and line output driver.
+Clearly, this is the chip that I'd blown up.
+</P>
+<P>
+I obtained a replacement DAC/ADC chip, UDA1380TT, from RS Components, order code
+484-1007.
+It's a 32-pin surface-mount chip, 0.65mm lead pitch.
+It sounds tiny, but it's not too difficult to solder with
+a fine tip, good lighting and a stereo microscope.
+I removed the defective chip by carefully cutting its leads off with a sharp
+knife, before cleaning up the solder pads on the PCB.
+</P>
+<P>
+Photos of the chip removal and replacement are in this
+<A HREF="http://www.flickr.com/photos/anachrocomputer/sets/72157624562155315/">Flickr set</A>.
+</P>
+<P>
+Reassembly is the reverse of disassembly.
+<HR>
+<DIV ALIGN=CENTER>
+<FONT SIZE="-1">
+Copyright &copy; 2010
+by <A HREF="eee.htm">John Honniball</A>.
+All rights reserved.
+</FONT>
+</DIV>
+<HR>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-8655234-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+</BODY>
+</HTML>
