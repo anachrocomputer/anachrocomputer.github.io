@@ -1,5 +1,5 @@
 <HTML>
-<HEAD> 
+<HEAD>
 <TITLE>Computers I Have Built</TITLE>
 <META NAME="DC.title" CONTENT="Computers I Have Built">
 <META NAME="DC.creator" CONTENT="John Honniball">
@@ -26,7 +26,7 @@ Must have been about 1979, shortly after the school acquired a Commodore PET.
 <H2>1980: Compukit UK101</H2>
 <P>
 Another <A HREF="http://www.6502.org">6502</A>-based machine, built from a kit.
-Still working 28 years later.
+Still working 31 years later.
 This machine is the basis of my own <A HREF="uk101.htm">Compukit UK101</A>
 web site.
 </P>
@@ -78,8 +78,8 @@ the M212 looks rather like a microcontroller.
 At least, it could be used in a microcontroller mode (it has features
 such as an external data and address bus, which make it unlike a
 microcontroller).
-If I were to design a QIC-02 interface today, I'd probably use a microcontroller
-like the Atmel AVR ATmega8 or Atmega32.
+If I were to design a QIC-02 interface today, I'd probably use a
+microcontroller like the Atmel AVR ATmega8 or Atmega32.
 </P>
 <BR CLEAR=RIGHT>
 <H2>1997: Transputer Serial Interface</H2>
@@ -139,7 +139,9 @@ I've connected an
 <ACRONYM TITLE="Hewlett-Packard">HP</ACRONYM>
 four-digit alphanumeric display (HPDL-1414),
 a <A HREF="gpad.htm">Super Nintendo joypad</A>,
-a radio-control servo, a DC motor and an
+a radio-control servo, a
+<ACRONYM TITLE="Direct Current">DC</ACRONYM>
+motor and an
 <ACRONYM TITLE="Liquid Crystal Display">LCD</ACRONYM> module.
 I think the next things to add will be an analog voltage-divider
 for push-button control and an
@@ -155,7 +157,9 @@ Another fun project, again using an Atmel AVR microcontroller chip.
 This board is loosely based on the
 <A HREF="http://www.arduino.cc">Arduino</A>.
 I've arranged the board so that I can plug in small daughterboards
-with LEDs, switches, motor drivers, and so on.
+with
+<ACRONYM TITLE="Light-Emitting Diodes">LEDs</ACRONYM>,
+switches, motor drivers, and so on.
 The connectors also supply power (12, 5, 3.3 and -12 volts).
 Future plans are for a dual
 <ACRONYM TITLE="Digital to Analog Convertor">DAC</ACRONYM>
@@ -166,7 +170,9 @@ board and an LCD board.
 <P>
 <IMG SRC="avrpcba.jpg" WIDTH=200 HEIGHT=133 ALT="ATmega8 on PCB" ALIGN=RIGHT>
 <IMG SRC="avrpcbb.jpg" WIDTH=150 HEIGHT=225 ALT="ATmega8 on PCB close-up" ALIGN=RIGHT>
-I read about the Toner Transfer PCB technique, and I wanted to have a go.
+I read about the Toner Transfer
+<ACRONYM TITLE="Printed Circuit Board">PCB</ACRONYM>
+technique, and I wanted to have a go.
 I have plenty of copper-clad board from way back in the 1970s, I have
 ferric chloride etchant, and I have a laser printer.
 All I needed was a design, and the Atmel AVR seemed like a good chip to base it on.
@@ -185,7 +191,9 @@ and that's what you see in the photos here.
 <IMG SRC="avrpcbd.jpg" WIDTH=200 HEIGHT=133 ALT="ATmega32 PCB populated" ALIGN=RIGHT>
 When I got the parts for the ATmega8 boards, I also got an ATmega32,
 which is a rather more powerful AVR chip.
-It has four 8-bit I/O ports, and it's in a 40-pin DIL package.
+It has four 8-bit I/O ports, and it's in a 40-pin
+<ACRONYM TITLE="Dual In-Line">DIL</ACRONYM>
+package.
 I went ahead and built another prototyping board for the ATmega32,
 again using a toner transfer PCB.
 This board is currently in use on a small mobile robot that I'm working on
@@ -196,13 +204,14 @@ This board is currently in use on a small mobile robot that I'm working on
 <P>
 <IMG SRC="avrpcbe.jpg" WIDTH=200 HEIGHT=133 ALT="ATmega8 POV PCB" ALIGN=RIGHT>
 Not satisfied with just one more toner transfer PCB, I made two.
-The second board is for a persistence-of-vision (POV) wand,
+The second board is for a
+<A HREF="povwand.htm"> persistence-of-vision (POV) wand</A>,
 basically just 16 green LEDs that are controlled by the ATmega8.
 To use fewer I/O pins on the ATmega8, I used a pair of 74LS595
 shift register chips to actually drive the LEDs.
 I also used surface-mount (SMT) resistors to make the PCB smaller,
 although the chips are still in
-<ACRONYM TITLE="dual-in-line">DIL</ACRONYM> form.
+<ACRONYM TITLE="Dual In-Line">DIL</ACRONYM> form.
 There's also a low-dropout 5V regulator on the board, based on the
 LM2941CT chip.
 But having read a bit more about the AVR chips, and the 74HC595, I think
