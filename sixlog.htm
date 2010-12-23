@@ -21,6 +21,39 @@
 <H1 ALIGN=CENTER>Software for a 6809 in a 6502 machine</H1>
 </FONT>
 <A HREF="index.htm">HOME</A>&nbsp;&gt;&nbsp;<A HREF="comp.htm">Computers</A>&nbsp;&gt;&nbsp;<A HREF="sixadapt.htm">Six Adaptor</A>&nbsp;&gt;&nbsp;<B>Log</B>
+<H2>23rd December 2010</H2>
+<P>
+The big event of 2010 was the first UK Vintage Computer Festival
+at Bletchley Park.
+I took all three Compukit UK101 machines to the show, and they
+ran all weekend.
+Photos of the event are in this
+<A HREF="http://www.flickr.com/photos/anachrocomputer/sets/72157624323959472/">Flickr set</A>.
+Earlier in the year, I also took them to Newcastle for the
+second Maker Faire UK.
+Again, photos are in a
+<A HREF="http://www.flickr.com/photos/anachrocomputer/sets/72157623638705774/">Flickr set</A>.
+I had one failure at the Maker Faire, in the Philips CM8833
+colour monitor (some info about the
+<A HREF="cm8833.htm">repair</A>).
+But even with those two shows, the 6809 machine hasn't progressed
+very much.
+I've added some box-drawing routines to the VDU driver, so that
+I can make the display look a bit more fancy, but that's about all.
+</P>
+<P>
+I had an idea to make a 48x32 pixel low-resolution bit-mapped
+graphics mode by drawing two pixels in each text character cell.
+The UK101's block graphics character set allows for that by
+providing blocks with the top and bottom half of the cell
+illuminated.
+By writing a routine to convert from a 48x32 pixel bit-map to
+the 48x16 character video screen, I could display low-res images.
+But the question arose: do I write that routine for the 6809
+machine or for the original 6502 UK101?
+The right answer, I suppose, is to write it into the ROMs of
+both machines.
+</P>
 <H2>2nd May 2009</H2>
 <P>
 A lot has happened since my last update here.
