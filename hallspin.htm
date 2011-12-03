@@ -10,7 +10,7 @@
 <meta name="ICBM" content="51.521483, -2.542500">
 <meta name="keywords" content="Dragon 32, joystick, analog, resistive, modification">
 <meta name="author" content="John Honniball">
-<meta name="description" content="How to convert a PC-compatible analog joystick for use with the Dragon 32">
+<meta name="description" content="How to Make a Spinner Control from a CD-ROM Motor">
 <link href="index.htm" rel="home" title="John Honniball's Home Page">
 <link href="index.htm" rel="top" title="John Honniball's Home Page">
 <link href="make.htm" rel="up" title="Creative Technology">
@@ -29,12 +29,30 @@
 <a href="hallspin1l.png"><img src="hallspin1.png" alt="Spinner control" width=141 height=200 /></a>
 </div>
 <p>
-Nearly all CD-ROM drives have a brushless DC motor to spin the CD.
+Nearly all
+<acronym title="Compact Disk">CD</acronym>-<acronym title="Read-Only Memory">ROM</acronym>
+drives have a
+<a href="http://en.wikipedia.org/wiki/Brushless_DC_electric_motor" title="Wikipedia: Brushless DC electric motor">brushless DC motor</a>
+to spin the CD.
 This type of motor is used because a CD-ROM drive requires accurate
 speed control (for fast reading speed) and high torque (for fast start-up).
-These brushless DC motors are generally a three-phase design, with three
+Brushless
+<acronym title="Direct Current">DC</acronym>
+motors are also used in model aeroplanes and helicopters due
+to their good power-to-weight ratio.
+</p>
+<p>
+These brushless DC motors are generally a three-phase design, but there
+are two different ways to design them, one with a set of
 <a href="http://en.wikipedia.org/wiki/Hall_effect" title="Wikipedia: Hall Effect">Hall-effect</a>
-sensors for commutation.
+sensors for commutation, and the other without.
+This project relies on the use of a recycled motor with Hall-effect sensors
+in it.
+I found one in a scrap CD-ROM drive fairly easily, and also salvaged the
+<acronym title="Flexible Printed Circuit">FPC</acronym>
+ribbon cable and connector from the drive (makes wiring-up a bit easier).
+</p>
+<p>
 A Hall-effect sensor has four terminals; two terminals are used to pass a
 small current through the device, while two more are used to sense the
 voltage output of the device.
@@ -69,7 +87,28 @@ go on and off in the following pattern:
 <tr><td>FALSE</td><td>TRUE</td><td>TRUE</td></tr>
 <tr><td>FALSE</td><td>FALSE</td><td>TRUE</td></tr>
 </table>
+So, we have six combinations of outputs from the sensors, corresponding
+to six stages in the rotation of the (unpowered) motor.
+If we connect these outputs to three digital inputs on a microcontroller
+such as the
+<a href="http://www.arduino.cc">Arduino</a>, we can detect the position
+of the rotor.
+If we compare the previous and current positions, we can detect the
+direction of rotation, and if we look at the timing, we can detect speed
+of rotation.
+Not bad for a free, recycled sensor!
 </p>
+<P>
+But what about the motor?
+So far, it has been turned by the user, not under its own power.
+Can we do anything with the motor to simulate the &lsquo;feel&rsquo;
+of a control?
+Can we make it simulate click-stops, for instance?
+Well, that will need a triple-half-H-bridge driver circuit!
+</P>
+<div align=center>
+<a href="bldc_bb.png"><img src="bldc_bb.png" alt="Spinner control" width=424 height=391 /></a>
+</div>
 <p>
 <!-- Photos of my Spinner Control are available in this
 <a href="http://www.flickr.com/photos/anachrocomputer/sets/72157602985368011/">Flickr set</a>. -->
@@ -79,7 +118,7 @@ go on and off in the following pattern:
 <p>Return to the <a href="make.htm">Creative Technology</a> page</p>
 <p>Return to <a href="index.htm">John Honniball's home page</a></p>
 <font size="-1">
-Copyright &copy; 2009
+Copyright &copy; 2009-2011
 by <a href="eee.htm">John Honniball</a>.
 All rights reserved.
 </font>
