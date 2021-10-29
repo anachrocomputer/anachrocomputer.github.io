@@ -22,6 +22,21 @@
 <H1 ALIGN=CENTER>Software for a 6809 in a 6502 machine</H1>
 </FONT>
 <A HREF="index.htm">HOME</A>&nbsp;&gt;&nbsp;<A HREF="comp.htm">Computers</A>&nbsp;&gt;&nbsp;<A HREF="sixadapt.htm">Six Adaptor</A>&nbsp;&gt;&nbsp;<B>Log</B>
+<H2>29th October 2021</H2>
+<P>
+As part of the 2021-10 <A HREF="https://www.retrochallenge.org/">RetroChallenge</A>,
+I tried to run the 6809 machine again.
+It didn't work.
+</P>
+<P>
+So I've got some diagnosis and repair to do.
+So far, I've verified that the contents of the 2716
+<ACRONYM TITLE="Erasable Programmable Read-Only Memory">EPROM</ACRONYM>
+is OK, and the 6809 clock is OK.
+I have also found that the machine is not accessing video memory at all,
+even though that's just about the first thing it does after reset.
+I suspect a dud address bus line somewhere, but where?
+</P>
 <H2>23rd December 2010</H2>
 <P>
 The big event of 2010 was the first UK Vintage Computer Festival
@@ -67,8 +82,8 @@ member of the Bristol Linux User Group.
 Photos are in this
 <A HREF="http://www.flickr.com/photos/anachrocomputer/sets/72157614673187700">Flickr set</A>.
 But the really big event was the first UK
-<A HREF="http://makerfaire.com/newcastle/2009">Maker Faire</A>,
-in Newcastle (14th-15th March).
+Maker Faire,
+in Newcastle (14th-15th March 2009).
 For that event, all three UK101s (my original one, an unmodified one
 in original cardboard box, and the 6809 modified one) ran all day
 for two days.
@@ -434,7 +449,7 @@ So, first of all I'll need a video memory save/restore routine -- not
 too hard in 6809 assembler with proper 16-bit index registers.
 Next, a random number generator (24 bit shift register with exclusive-OR
 feedback, as shown in
-<A HREF="http://www.artofelectronics.com/">Horowitz & Hill</A>).
+<A HREF="https://www.artofelectronics.net/">Horowitz & Hill</A>).
 Finally, some tricky timing code to allow each column of the video
 screen to trickle down at different speeds.
 Use the random number generator to produce new characters at the top,
@@ -599,7 +614,7 @@ on the Linux machine is generating good code.
 <P>Return to the <A HREF="comp.htm">Computers</A> page</P>
 <P>Return to <A HREF="index.htm">John Honniball's home page</A></P>
 <FONT SIZE="-1">
-Copyright &copy; 2004-2009
+Copyright &copy; 2004-2021
 by <A HREF="eee.htm">John Honniball</A>.
 All rights reserved.
 </FONT>
