@@ -22,6 +22,26 @@
 <H1 ALIGN=CENTER>Software for a 6809 in a 6502 machine</H1>
 </FONT>
 <A HREF="index.htm">HOME</A>&nbsp;&gt;&nbsp;<A HREF="comp.htm">Computers</A>&nbsp;&gt;&nbsp;<A HREF="sixadapt.htm">Six Adaptor</A>&nbsp;&gt;&nbsp;<B>Log</B>
+<H2>30th October 2021</H2>
+<P>
+Well, it wasn't a dud address line, it was a dud data line.
+The data bus going to the 2716 monitor
+<ACRONYM TITLE="Erasable Programmable Read-Only Memory">EPROM</ACRONYM>
+just wasn't making contact at pin 13, data line D3.
+I suspect it's due to the original UK101 socket on the main PCB,
+underneath the ZIF socket that I'm using to hold the frequently-updated monitor EPROM.
+At the moment, if I press down on the pin 13 area of the chip,
+it makes contact and the machine runs.
+</P>
+<P>
+I should really desolder the socket and replace it with a nice turned-pin one.
+But to do that,
+I must remove the big PCB from the wooden case,
+turn it upside-down and desolder the socket without damaging any tracks.
+That sounds like it could be tricky,
+and it's nearly the last day of <A HREF="https://www.retrochallenge.org/">RetroChallenge</A>.
+Maybe I'll bypass pin 13 with a jumper wire, just for the time being.
+</P>
 <H2>29th October 2021</H2>
 <P>
 As part of the 2021-10 <A HREF="https://www.retrochallenge.org/">RetroChallenge</A>,
