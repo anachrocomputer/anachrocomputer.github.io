@@ -22,6 +22,32 @@
 <H1 ALIGN=CENTER>Software for a 6809 in a 6502 machine</H1>
 </FONT>
 <A HREF="index.htm">HOME</A>&nbsp;&gt;&nbsp;<A HREF="comp.htm">Computers</A>&nbsp;&gt;&nbsp;<A HREF="sixadapt.htm">Six Adaptor</A>&nbsp;&gt;&nbsp;<B>Log</B>
+<H2>20th November 2021</H2>
+<P>
+Having read the documentation for the Frankenstein Assembler more closely,
+I found that it has conditional assembly.
+There's an IF directive, as well as ELSE and ENDI.
+Which means I can use EQU to make a symbol called HD6309 and set it to
+1 if I want to include the code for that chip,
+or 0 if I want to just run the standard 6809.
+Just to try it out, I used the directives to assemble-in the existing
+HD6309 code that I'd commented-out some time ago.
+That all worked as expected after I'd burned a new EPROM and installed
+it in the machine.
+</P>
+<P>
+So after doing that and committing the code to the
+<A HREF="https://github.com/anachrocomputer/m6809">GitHub repository</A>,
+I can see the new HD6309 registers in the 'R' command's output.
+I also fixed most of the compiler warnings in the Frankenstein Assembler,
+although it's all in K&R C from the late 1980s.
+I tried out a few HD6309 instructions, like TFR D,V and TFM U,X+.
+The latter will be useful for scrolling and clearing the screen.
+But testing those instructions revealed that I hadn't finished the hex
+entry routines in the machine-code monitor.
+Maybe I should do that, and maybe also add some way to load small test
+programs into RAM from the 6850 ACIA.
+</P>
 <H2>2nd November 2021</H2>
 <P>
 <A HREF="https://www.retrochallenge.org/">RetroChallenge 2021-10</A> is over
