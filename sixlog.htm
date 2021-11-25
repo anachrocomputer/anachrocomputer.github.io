@@ -22,6 +22,29 @@
 <H1 ALIGN=CENTER>Software for a 6809 in a 6502 machine</H1>
 </FONT>
 <A HREF="index.htm">HOME</A>&nbsp;&gt;&nbsp;<A HREF="comp.htm">Computers</A>&nbsp;&gt;&nbsp;<A HREF="sixadapt.htm">Six Adaptor</A>&nbsp;&gt;&nbsp;<B>Log</B>
+<H2>25th November 2021</H2>
+<P>
+While updating links on my web-site,
+I spotted an interesting development on the
+<A HREF="http://www.6809.org.uk/">6809.org.uk</A>
+page.
+There's a new 6809 assembler there,
+as source code in a Git repository.
+And this new assembler supports the HD6309 instructions too!
+Time for an upgrade...
+</P>
+<P>
+Compiling the code required the installation of the
+<A HREF="https://en.wikipedia.org/wiki/Autoconf">Autoconf</A>
+tools,
+but that was a straightforward <TT>apt-get</TT> command.
+Once configured and compiled,
+I had a working HD6309 assembler but with slightly different directives from the old
+Frankenstein Assembler (which is a very old K&R C program).
+With a few <TT>sed</TT> commands in the <TT>Makefile</TT>, I was able to convert on-the-fly
+from one form to the other and assemble the code with the new assembler.
+The two HEX files generated were identical, as verified with <TT>diff</TT>.
+</P>
 <H2>20th November 2021</H2>
 <P>
 Having read the documentation for the Frankenstein Assembler more closely,
