@@ -22,6 +22,38 @@
 <H1 ALIGN=CENTER>Software for a 6809 in a 6502 machine</H1>
 </FONT>
 <A HREF="index.htm">HOME</A>&nbsp;&gt;&nbsp;<A HREF="comp.htm">Computers</A>&nbsp;&gt;&nbsp;<A HREF="sixadapt.htm">Six Adaptor</A>&nbsp;&gt;&nbsp;<B>Log</B>
+<H2>28th November 2021</H2>
+<P>
+I have now completely switched over to using the new 'asm6809' assembler
+by Ciaran Anscomb.
+The source code is set up for that assembler,
+with a <TT>SETDP</TT> directive (which the old
+assembler didn't even support),
+the <TT>ENDIF</TT> keyword,
+and all HD6309 instructions coded as mnemonics instead of being built up from
+<TT>FCB</TT> and <TT>FDB</TT> directives.
+The <TT>Makefile</TT> now uses <TT>sed</TT> to switch the code over to the
+M6809-only form and to convert the directives to suit the Frankenstein
+Assembler.
+So I now get three output files in all: an Intel HEX file from the old
+assembler with M6809-only code, an Intel HEX file from 'asm6809' with
+HD6309 code,
+and a Motorola S-Record file also with HD6309 code.
+</P>
+<P>
+I'm pressing on with adding HD6309 instructions for scrolling,
+clearing the screen and copying the screen buffer to/from RAM.
+I also want to load and save programs via the 6850 ACIA,
+so the first step is to test that with a simple message at 300 baud.
+The new 'T' command does that and I've successfully received the
+message on the Linux development machine in <TT>minicom</TT>.
+And I have a rudimentary
+<A HREF="https://en.wikipedia.org/wiki/SREC_(file_format)">S-Record</A> output routine that has proved that
+I can generate correctly-formatted records with correct checksums.
+I've compared the generated records with the assembler output for the
+same region of the EPROM,
+and they match!
+</P>
 <H2>25th November 2021</H2>
 <P>
 While updating links on my web-site,
@@ -38,6 +70,8 @@ Compiling the code required the installation of the
 <A HREF="https://en.wikipedia.org/wiki/Autoconf">Autoconf</A>
 tools,
 but that was a straightforward <TT>apt-get</TT> command.
+The same goes for the lexical analyser and parser generator tools,
+Bison and Flex.
 Once configured and compiled,
 I had a working HD6309 assembler but with slightly different directives from the old
 Frankenstein Assembler (which is a very old K&R C program).
