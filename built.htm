@@ -26,7 +26,7 @@ Must have been about 1979, shortly after the school acquired a Commodore PET.
 <H2>1980: Compukit UK101</H2>
 <P>
 Another <A HREF="http://www.6502.org">6502</A>-based machine, built from a kit.
-Still working 31 years later.
+Still working 41 years later.
 This machine is the basis of my own <A HREF="uk101.htm">Compukit UK101</A>
 web site.
 </P>
@@ -101,7 +101,7 @@ serial data in and out via the same link.
 <BR CLEAR=RIGHT>
 <H2>2002: PIC-based Prototype</H2>
 <P>
-For <A HREF="http://www.mobilebristol.com">Mobile Bristol</A>,
+For Mobile Bristol,
 I worked on some prototype PIC 16F876 designs.
 They were built as plug-together wearable computers as part of the
 research project.
@@ -122,8 +122,8 @@ and connected up nicely to a PC's serial port.
 I have loaded it with code written in assembler as well as code
 compiled from C (with the
 <A HREF="http://winavr.sourceforge.net/">WinAVR</A> package, a version of GCC).
-I also built an AVR-based kit from <A HREF="http://www.edtp.com">EDTP</A>
-which combines an ATmega16 microcontroller with an ethernet chip.
+I also built an AVR-based kit from EDTP
+which combined an ATmega16 microcontroller with an ethernet chip.
 </P>
 <BR CLEAR=RIGHT>
 <H2>2005: Atmel AVR Robot Controller</H2>
@@ -155,7 +155,7 @@ Well, after all that, I think the AVR chip is definitely a "Six".
 <IMG SRC="atmega8c.jpg" WIDTH=150 HEIGHT=225 ALT="ATmega8 with LEDs" ALIGN=RIGHT>
 Another fun project, again using an Atmel AVR microcontroller chip.
 This board is loosely based on the
-<A HREF="http://www.arduino.cc">Arduino</A>.
+<A HREF="https://www.arduino.cc">Arduino</A>.
 I've arranged the board so that I can plug in small daughterboards
 with
 <ACRONYM TITLE="Light-Emitting Diodes">LEDs</ACRONYM>,
@@ -164,6 +164,8 @@ The connectors also supply power (12, 5, 3.3 and -12 volts).
 Future plans are for a dual
 <ACRONYM TITLE="Digital to Analog Convertor">DAC</ACRONYM>
 board and an LCD board.
+<BR />
+<A HREF="https://www.flickr.com/photos/anachrocomputer/albums/72157594387195783">Photos on Flickr</A>
 </P>
 <BR CLEAR=RIGHT>
 <H2>2008: Atmel AVR Printed Circuit Board</H2>
@@ -177,12 +179,14 @@ I have plenty of copper-clad board from way back in the 1970s, I have
 ferric chloride etchant, and I have a laser printer.
 All I needed was a design, and the Atmel AVR seemed like a good chip to base it on.
 Then, I spotted the
-<A HREF="http://www.evilmadscientist.com/article.php/card">Evil Mad Scientist Labs business card PCB</A>
+<A HREF="https://www.evilmadscientist.com/2008/tiny-portable-avr-projects-business-card-breakout-boards/">Evil Mad Scientist Labs business card PCB</A>
 and I realised that this was what I wanted to build.
 But the original card was not designed for toner transfer,
 and I could see some ways to improve the design,
 so I made a version of my own,
 and that's what you see in the photos here.
+<BR />
+<A HREF="https://www.flickr.com/photos/anachrocomputer/albums/72157607180910289">Photos on Flickr</A>
 </P>
 <BR CLEAR=RIGHT>
 <H2>2008: Another Atmel AVR Prototyping Board</H2>
@@ -196,8 +200,13 @@ It has four 8-bit I/O ports, and it's in a 40-pin
 package.
 I went ahead and built another prototyping board for the ATmega32,
 again using a toner transfer PCB.
-This board is currently in use on a small mobile robot that I'm working on
-(I just needed to add an H-bridge motor controller).
+This board is still in use,
+but fitted with an Atmel ATmega1284P chip.
+I use it to run the ATmega1284P code in my
+<A HREF="https://github.com/anachrocomputer/avrTest">avrTest</A>
+repository.
+<BR />
+<A HREF="https://www.flickr.com/photos/anachrocomputer/albums/72157607702255015">Photos on Flickr</A>
 </P>
 <BR CLEAR=RIGHT>
 <H2>2008: Atmel AVR Persistence-Of-Vision Board</H2>
@@ -219,16 +228,98 @@ it should be possible to eliminate the 5V regulator and run the circuit
 directly off two 1.5V AA batteries.
 Maybe I'll try that one day, but I'd need to change all those 220&Omega;
 SMT resistors...
+<BR />
+<A HREF="https://www.flickr.com/photos/anachrocomputer/albums/72157607702255015">Photos on Flickr</A>
 </P>
 <BR CLEAR=RIGHT>
-<H2>2009?: Atmel AVR ATmega324 Board</H2>
+<H2>2010: AVR ATmega-based Time-Lapse Camera Controller</H2>
 <P>
-Atmel keeps on coming out with new chips, and I keep on buying 'em.
-This one is an upgraded ATmega32, with lots of news features, 
-including pin-change interrupts, another USART and more PWM channels.
-But I'm not sure yet how to make the prototyping board for this
-one&nbsp;&mdash;&nbsp;do I make another copy of the toner transfer PCB, or do I use
-Veroboard?
+While working at Lobster Pictures,
+I designed and built a time-lapse camera controller around first the ATmega328,
+and later the ATmega1284.
+It used a GSM module to send and receive SMS text messages.
+</P>
+<BR CLEAR=RIGHT>
+<H2>2011: LPC2119 Module</H2>
+<P>
+Another ready-made module,
+but this time with a Philips/NXP ARM microcontroller: the LPC2119.
+Mounted on a modified solderless breadboard,
+programmed via the built-in bootloader and a serial cable.
+I connected it up to an ILI9341 colour LCD.
+<BR />
+<A HREF="https://www.flickr.com/photos/anachrocomputer/albums/72157628745849693">Photos on Flickr</A>
+</P>
+<BR CLEAR=RIGHT>
+<H2>2012: TI MSP430 Module</H2>
+<P>
+The very inexpensive LaunchPad evaluation module from Texas Instruments.
+I connected the MSP430G2231 to an LCD from a Nokia 1202 mobile phone.
+The resolution is 96x68,
+which is a little better than the usual 84x48 of a 3110 LCD.
+<BR />
+<A HREF="https://www.flickr.com/photos/anachrocomputer/albums/72157629657084115">Photos on Flickr</A>
+</P>
+<BR CLEAR=RIGHT>
+<H2>2017: The RC2014 Mini, a Z80-based Retrocomputer</H2>
+<P>
+Back to a microprocessor-based machine this time,
+built from a kit as I did with the
+<A HREF="uk101.htm">UK101</A>,
+we have the
+<A HREF="https://rc2014.co.uk/">RC2014</A>.
+I bought just the PCB for this one,
+having all the other parts in stock already.
+I wrote a diagnostic and monitor program for it in Z80 assember,
+<A HREF="https://github.com/anachrocomputer/RC2014tester">in my GitHub repo RC2014tester</A>.
+<BR />
+<A HREF="https://www.flickr.com/photos/anachrocomputer/albums/72157677044528084">Photos on Flickr</A>
+</P>
+<BR CLEAR=RIGHT>
+<H2>2019: Atmel ATtiny1616 Breakout Board</H2>
+<P>
+Having used the Atmel/Microchip ATtiny1616 in a robot leg project at at work,
+I quite liked the chip,
+which is part of the new One-Series.
+I bought some chips,
+with the intention to design a PCB for them.
+Meanwhile,
+I have soldered the ATtiny1616 to a DIL break-out board and programmed it as part of
+<A HREF="https://github.com/anachrocomputer/avrTest">avrTest repo on GitHub</A>.
+<BR />
+No photos of this one yet.
+</P>
+<BR CLEAR=RIGHT>
+<H2>2021: Atmel ATmega4809 Breakout Board</H2>
+<P>
+Amidst all the gloom and doom about chip shortages and supply-chain woes,
+I bought a few Atmel AVR microcontrollers to add to my
+<A HREF="https://github.com/anachrocomputer/avrTest">avrTest repo on GitHub</A>.
+This one is the ATmega4809,
+which is in a QFP-48 (0.5mm pitch) surface mount package.
+It's a Zero-Series ATmega microcontroller with four serial UARTs.
+<BR />
+<A HREF="https://www.flickr.com/photos/anachrocomputer/51155566956/">Photo on Flickr</A>
+</P>
+<BR CLEAR=RIGHT>
+<H2>2021: Atmel SAMD21 Curiosity Nano</H2>
+<P>
+An evaluation module with built-in programmer from Atmel/Microchip.
+I've been coding on it using the Microchip MPLAB X IDE and the XC32 compiler.
+The source code is
+<A HREF="https://github.com/anachrocomputer/SAMD21blinky">on GitHub in my SAMD21blinky repo</A>.
+<BR />
+<A HREF="https://www.flickr.com/photos/anachrocomputer/51114075234/">Photo on Flickr</A>
+</P>
+<BR CLEAR=RIGHT>
+<H2>2021: Atmel SAMD21E18A Breakout Board</H2>
+<P>
+Not satisfied with simply using a ready-made Curiosity Nano,
+and frustrated by the chip supply-chain troubles,
+I found a SAMD21E18A in TQFP-32 and soldered it to another inexpensive break-out PCB.
+I don't have it running any firmware yet, though.
+<BR />
+<A HREF="https://www.flickr.com/photos/anachrocomputer/51155551262/">Photo on Flickr</A>
 </P>
 <BR CLEAR=RIGHT>
 <H2>The Ones That Got Away</H2>
@@ -251,7 +342,7 @@ make a 68020 design feasible.
 <DIV ALIGN=CENTER>
 <P>Return to <A HREF="index.htm">John Honniball's home page</A></P>
 <FONT SIZE="-1">
-Copyright &copy; 2007-2008
+Copyright &copy; 2007-2021
 by <A HREF="eee.htm">John Honniball</A>.
 All rights reserved.
 </FONT>
