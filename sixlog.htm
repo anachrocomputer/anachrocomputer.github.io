@@ -22,6 +22,41 @@
 <H1 ALIGN=CENTER>Software for a 6809 in a 6502 machine</H1>
 </FONT>
 <A HREF="index.htm">HOME</A>&nbsp;&gt;&nbsp;<A HREF="comp.htm">Computers</A>&nbsp;&gt;&nbsp;<A HREF="sixadapt.htm">Six Adaptor</A>&nbsp;&gt;&nbsp;<B>Log</B>
+<H2>19th December 2021</H2>
+<P>
+I've always wanted to explore bit-mapped graphics on the UK101,
+but it does not have such a facility.
+But many years ago, I saw a program
+(probably in one of the 1980s home computer magazines)
+that turned the Commodore PET's 40x25 text screen into 80x50 pixel graphics.
+I think it was called "PLOTSUB" and I wrote something similar for the UK101 in BASIC,
+although it didn't work as well as the PET version.
+Being in BASIC, it was slow.
+How about a better implementation in 6809 assembler?
+</P>
+<P>
+So we now have two routines, 'setpixel' and 'clrpixel',
+that set and clear a pixel on a 48x32 bitmap on the UK101 screen.
+And some demo code to call those functions,
+and a simple random-number generator (RNG).
+</P>
+<P>
+<I>
+[As I write this in 2024,
+I realise that this update to the UK109 was on my 60th birthday,
+and I haven't touched it since then.]
+</I>
+</P>
+<H2>6th December 2021</H2>
+<P>
+Well, that didn't work very well!
+The hex loader was reading data from the keyboard, not from the 6850 ACIA.
+I think I originally wrote it for another 6809 dev board that used a
+serial port for all of its I/O.
+Oh well, it's fixed now by the simple expedient of duplicating all
+the hex input routines with versions that read from the ACIA.
+At 300 baud.
+</P>
 <H2>28th November 2021</H2>
 <P>
 I have now completely switched over to using the new 'asm6809' assembler
@@ -156,6 +191,7 @@ I have also found that the machine is not accessing video memory at all,
 even though that's just about the first thing it does after reset.
 I suspect a dud address bus line somewhere, but where?
 </P>
+<HR>
 <H2>23rd December 2010</H2>
 <P>
 The big event of 2010 was the first UK Vintage Computer Festival
