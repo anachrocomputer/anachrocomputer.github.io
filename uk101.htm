@@ -18,14 +18,10 @@
 <LINK HREF="eee.htm" REL="made" TITLE="John Honniball's Contact Page">
 <SCRIPT LANGUAGE="JavaScript">
 <!--
-//msgs = new Array ("What's a UK101?", "My UK101 Story",
-//                  "UK101 Architecture and Design", "The UK101 Museum",
-//                  "UK101 Links", "Feedback Page");
 // Script to do link highlighting
 names = new Array("ukwhat", "ukbj", "ukarch", "ukmusm", "uklink", "ukback");
 wlist = new Array(names.length);
 glist = new Array(names.length);
-//slist = new Array(names.length);
    
 if (document.images) {
    for (var i = 0; i < names.length; i++) {
@@ -33,7 +29,6 @@ if (document.images) {
       wlist[names[i]].src = names[i] + ".gif";
       glist[names[i]] = new Image();
       glist[names[i]].src = names[i] + "2.gif";
-//      slist[names[i]] = msgs[i];
    }
 }
 
@@ -44,11 +39,6 @@ function over (name, f) {
       else
          document[name].src = wlist[name].src;
    }
-
-//   if (f)
-//      window.status = window.defaultStatus = slist[name];
-//   else
-//      window.status = window.defaultStatus = "Compukit UK101 Home Page";
       
    return true;
 }
@@ -73,7 +63,7 @@ function over (name, f) {
 <TH WIDTH="25%" ALIGN=LEFT>
 <FONT SIZE="+2" FACE="Arial,Helvetica,sans-serif">L</FONT><FONT SIZE="+1" FACE="Arial,Helvetica,sans-serif">inks</FONT>
 </TH>
-<TD WIDTH="75%"BGCOLOR="#ffffff"><FONT FACE="Arial,Helvetica,sans-serif" SIZE="6" COLOR="#000edd"><B>1979-2024: Forty-Five Years of Compukit</B></FONT></TD>
+<TD WIDTH="75%" BGCOLOR="#ffffff"><FONT FACE="Arial,Helvetica,sans-serif" SIZE="6" COLOR="#000edd"><B>1979-2024: Forty-Five Years of Compukit</B></FONT></TD>
 </TR>
 <TR>
 <!-- Left-hand column; images (in UK101 font) as links -->
